@@ -1,0 +1,99 @@
+﻿using DataBaseManger;
+using DataBaseManger.Model;
+using DataBaseManger.SqlLite;
+using System;
+using System.Threading.Tasks;
+
+namespace TAN.Helpers
+{
+    public class commanHelper
+    {
+        public static async Task<Task> fetchAllDataAsync(IAPIHelper _apiHelper, string token, appConfigModel appConfig)
+        {
+            var apiVersion1 = await _apiHelper.getApiVersion(token);
+            appConfig.apiVersion = apiVersion1.data.appVersion;
+            appConfigSqlite.addData(appConfig);
+
+
+            var ans = await _apiHelper.getAllCustomers(token);
+            foreach (var item in ans.data)
+            {
+                CustomerSqllite.addData(item);
+            }
+            var ans1 = await _apiHelper.getAllPayments(token);
+            foreach (var item in ans1.data)
+            {
+                paymentSqlite.addData(item);
+            }
+
+
+
+
+            var ans3 = await _apiHelper.getAllProductVersions(token);
+            foreach (var item in ans3.data)
+            {
+                ProductVersionModelSqlite.addData(item);
+            }
+
+            var ans4 = await _apiHelper.getAllorderProductRelation(token);
+            foreach (var item in ans4.data)
+            {
+                orderProductRelationModelSqlite.addData(item);
+            }
+
+            var ans5 = await _apiHelper.getAllOrderTable(token);
+            foreach (var item in ans5.data)
+            {
+                OrderTableSqlite.addData(item);
+            }
+
+            var ans6 = await _apiHelper.getAllPaymentTypes(token);
+            foreach (var item in ans6.data)
+            {
+                PaymentTypeSqlite.addData(item);
+            }
+            return Task.CompletedTask;
+        }
+
+        public static async Task<bool> checkIfUserAlreadyLogin(IAPIHelper _apiHelper)
+        {
+
+            if (DbConnection.DBExists())
+            {
+                appConfigModel appConfig = appConfigSqlite.getData();
+                var result = await _apiHelper.Authicate(appConfig.adminEmail, appConfig.adminPassword);
+                var token = result.data1.adminToken;
+
+                var apiVersionRemote = await _apiHelper.getApiVersion(token);
+                var apiVersionLocal = appConfigSqlite.getData();
+
+                if (apiVersionLocal.apiVersion == apiVersionRemote.data.appVersion)
+                {
+                    //PartiesViewModel.assignParties();
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        appConfig.adminToken = token;
+
+                        DbConnection.deleteDb();
+                        CommanSQlite.initAll();
+                        var temp3 = await fetchAllDataAsync(_apiHelper, token, appConfig);
+
+                        //PartiesViewModel.assignParties();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+
+                }
+
+            }
+            return false;
+        }
+    }
+}

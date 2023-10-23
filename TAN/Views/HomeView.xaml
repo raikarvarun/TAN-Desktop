@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="TAN.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TAN.Views"
+             
+             xmlns:controls="clr-namespace:TAN.Controls"
+             
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000">
+
+
+
+    <Grid Background="#b7babf">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="4*" />
+            <ColumnDefinition Width="1*"
+                              MinWidth="200" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.25*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="0.25*" />
+                </Grid.RowDefinitions>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1.15*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderThickness="1"
+                            CornerRadius="5"
+                            Background="#ffffff"
+                            Margin="30 30 15 15"
+                            BorderBrush="Transparent">
+
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1.25*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="5*" />
+                            </Grid.RowDefinitions>
+                            <DockPanel Grid.ColumnSpan="2">
+                                <DockPanel Height="30">
+                                    <Path Height="20"
+                                          Data="M284 779h60V504h-60v275Zm166 0h60V373h-60v406Zm166 0h60V631h-60v148Zm77-328v-87h-88v-60h88v-88h60v88h87v60h-87v87h-60ZM180 936q-24 0-42-18t-18-42V276q0-24 18-42t42-18h395v205q0 24.75 17.625 42.375T635 481h205v395q0 24-18 42t-42 18H180Z"
+                                          Stretch="Uniform"
+                                          StrokeThickness="1.5"
+                                          Stroke="#f79f1f"
+                                          Width="20"
+                                          Margin="5 0 0 0">
+
+                                    </Path>
+                                    <TextBlock Text="Sale"
+                                               Margin="10 0 0 0"
+                                               FontSize="22"
+                                               FontWeight="Medium"
+                                               FontFamily="/Themes/Fonts/CalibriRegular.ttf #Calibri"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"></TextBlock>
+                                    <ComboBox x:Name="SaleCombo"
+                                              HorizontalAlignment="Right"
+                                              Width="100"
+                                              Margin="7"></ComboBox>
+
+                                </DockPanel>
+                            </DockPanel>
+
+                            <StackPanel Grid.Row="1">
+
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Height="auto"
+                                                    Width="auto">
+                                            
+
+                                            <TextBlock x:Name="Saletotaltextblock"
+                                                       Text="1526300"
+                                                       FontFamily="/Themes/Fonts/CalibriBold.ttf #Calibri"
+                                                       FontSize="32"
+                                                       Margin="10 40 0 0"></TextBlock>
+
+                                            <TextBlock x:Name="TotalSaleMonth"
+                                                       Text="Total Sale"
+                                                       Foreground="#a9afba"
+                                                       FontSize="18"
+                                                       Margin="10 0 0 0"></TextBlock>
+
+                                            <controls:GrowthDirectionControl Margin="10 30 0 0" x:Name="MonthGrowth" />
+
+                                           
+                                            
+                                            <TextBlock Text="This Month Growth"
+                                                       FontSize="16"
+                                                       Margin="10 0 0 0"
+                                                       Foreground="#a9afba"></TextBlock>
+
+                                        </StackPanel>
+                                        <DockPanel></DockPanel>
+
+                                    </StackPanel>
+                                </DockPanel>
+
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1"
+                            CornerRadius="5"
+                            Background="#ffffff"
+                            Grid.Column="1"
+                            Margin="15 30 30 15"
+                            BorderBrush="Transparent">
+                        <DockPanel>
+
+                        </DockPanel>
+                    </Border>
+
+
+
+                </Grid>
+
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border MinHeight="220"
+                            MinWidth="220"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Grid.Column="0"
+                            Background="#ffffff"
+                            Margin="30 15 15 15"
+                            BorderBrush="Transparent">
+                        <DockPanel>
+
+                        </DockPanel>
+                    </Border>
+                    <Border MinHeight="220"
+                            MinWidth="220"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Grid.Column="1"
+                            Background="#ffffff"
+                            Margin="15 15 15 15"
+                            BorderBrush="Transparent">
+                        <DockPanel>
+
+                        </DockPanel>
+                    </Border>
+                    <Border MinHeight="220"
+                            MinWidth="220"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Grid.Column="2"
+                            Background="#ffffff"
+                            Margin="15 15 30 15"
+                            BorderBrush="Transparent">
+                        <DockPanel>
+                        </DockPanel>
+                    </Border>
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Column="1"
+                      VerticalScrollBarVisibility="Auto">
+            <Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

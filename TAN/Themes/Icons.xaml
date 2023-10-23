@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Path x:Key="SortUp" Data="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z" />
+    <Path x:Key="SortDown" Data="M480 976 200 696l42-42 208 208V176h60v686l208-208 42 42-280 280Z" Fill="Black" />
+    <Geometry x:Key="BeeIcon1">
+        M200 896V576H80l400-360 200 177V276h80v191l120 108.574H760V896H565V656H395v240H200Zm195-410h170q0-33-25.5-54.5T480 410q-34 0-59.5 21.342Q395 452.685 395 486Z
+    </Geometry>
+</ResourceDictionary>

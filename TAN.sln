@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAN", "TAN\TAN.csproj", "{D6A0FC21-10ED-49A9-83AF-9DAD67D5C7C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseManger", "DataBaseManger\DataBaseManger.csproj", "{48B3AF8E-D160-452E-8DE9-42B8BE215206}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6A0FC21-10ED-49A9-83AF-9DAD67D5C7C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A0FC21-10ED-49A9-83AF-9DAD67D5C7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A0FC21-10ED-49A9-83AF-9DAD67D5C7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A0FC21-10ED-49A9-83AF-9DAD67D5C7C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B3AF8E-D160-452E-8DE9-42B8BE215206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B3AF8E-D160-452E-8DE9-42B8BE215206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B3AF8E-D160-452E-8DE9-42B8BE215206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B3AF8E-D160-452E-8DE9-42B8BE215206}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDCDEE35-D093-40E9-9572-FD21E96C3072}
+	EndGlobalSection
+EndGlobal

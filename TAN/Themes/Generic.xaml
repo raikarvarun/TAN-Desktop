@@ -1,0 +1,465 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TAN.Controls"
+                    xmlns:controls="clr-namespace:TAN.Notification.Controls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:wpf="clr-namespace:TAN.Notification"
+                    xmlns:helper="clr-namespace:TAN.Helpers">
+
+    
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="..\Notification\Themes\NotificationGenric.xaml"></ResourceDictionary>
+        </ResourceDictionary.MergedDictionaries>
+    
+    
+    
+    <Style TargetType="{x:Type local:SuggestionTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SuggestionTextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="SuggestionEditor"
+                                     AutoWordSelection="True"></TextBox>
+                            <local:Suggestion x:Name="Suggestion"
+                                              Grid.Row="1"
+                                              HorizontalAlignment="Stretch"></local:Suggestion>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Suggestion}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Suggestion}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Popup x:Name="SuggestionPopup"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   IsOpen="False">
+                                <ListBox x:Name="Suggestions"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                         VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch" />
+                            </Popup>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:CustomerSuggestionTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomerSuggestionTextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0" />
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="CustomerSuggestionEditor"
+                                     AutoWordSelection="True"
+                                     FontSize="16"
+                                     FontWeight="SemiBold"></TextBox>
+                            <local:CustomerSuggestion x:Name="CustomerSuggestion"
+                                                      Grid.Row="1"
+                                                      HorizontalAlignment="Stretch"></local:CustomerSuggestion>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:CustomerSuggestion}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomerSuggestion}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Popup x:Name="CustomerSuggestionPopup"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   IsOpen="False"
+                                   StaysOpen="False">
+
+
+                                <DataGrid Margin="10 0 5 10"
+                                          Foreground="Black"
+                                          x:Name="CustomerSuggestions"
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          RenderTransformOrigin="0.473,0.462"
+                                          Width="300"
+                                          Height="auto"
+                                          MaxHeight="350"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Stretch"
+                                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                                          HeadersVisibility="None">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn FontSize="18"
+                                                            Header="Name"
+                                                            Width="*"
+                                                            Binding="{Binding customerName}"></DataGridTextColumn>
+                                        <DataGridTextColumn FontSize="18"
+                                                            Header="Amount"
+                                                            Width="100"
+                                                            Binding="{Binding TotalAmount}">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Right" />
+                                                    <Setter Property="Foreground"
+                                                            Value="LimeGreen" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                         Color="#cee6f3" />
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                                         Color="#cee6f3" />
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ProductSuggestionTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ProductSuggestionTextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0" />
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="ProductSuggestionEditor"
+                                     FontSize="16"
+                                     AutoWordSelection="True"
+                                     Text="{TemplateBinding Text1}"
+                                     BorderThickness="0"
+                                     BorderBrush="Transparent"></TextBox>
+                            <local:ProductSuggestion x:Name="ProductSuggestion"
+                                                     Grid.Row="1"
+                                                     HorizontalAlignment="Stretch"></local:ProductSuggestion>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ProductSuggestion}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ProductSuggestion}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Popup x:Name="ProductSuggestionPopup"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   IsOpen="False"
+                                   StaysOpen="False">
+                                <!--<ListBox x:Name="CustomerSuggestions"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                         VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch"/>-->
+
+                                <DataGrid Margin="10 0 5 10"
+                                          Foreground="Black"
+                                          x:Name="ProductSuggestions"
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          RenderTransformOrigin="0.473,0.462"
+                                          Width="900"
+                                          Height="auto"
+                                          MaxHeight="250"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Stretch"
+                                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                                          HeadersVisibility="None">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn FontSize="18"
+                                                            Header="Name"
+                                                            Width="550"
+                                                            Binding="{Binding productName}"></DataGridTextColumn>
+                                        <DataGridTextColumn FontSize="18"
+                                                            Header="Sale Price"
+                                                            Width="*"
+                                                            Binding="{Binding salePrice}"></DataGridTextColumn>
+                                        <DataGridTextColumn FontSize="18"
+                                                            Header="Purchase Price"
+                                                            Width="*"
+                                                            Binding="{Binding purchasePrice}"></DataGridTextColumn>
+
+                                        <DataGridTextColumn  x:Name="ProductQuntity"
+                                                             FontSize="18"
+                                                             Header="Stock"
+                                                             Width="*"
+                                                             Binding="{Binding productQuntity}">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Right" />
+
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                         Color="#cee6f3" />
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                                         Color="#cee6f3" />
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:DropDownMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DropDownMenu}">
+                    <Grid>
+                        <CheckBox x:Name="checkdejh"
+                                  IsChecked="{Binding IsOpen, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}">
+                            <CheckBox.Template>
+                                <ControlTemplate TargetType="CheckBox">
+                                    <Grid Background="Transparent"
+                                          Width="20"
+                                          Height="20">
+                                        <Viewbox>
+                                            <Path Fill="Black"
+                                                  Data="M479.858 896Q460 896 446 881.858q-14-14.141-14-34Q432 828 446.142 814q14.141-14 34-14Q500 800 514 814.142q14 14.141 14 34Q528 868 513.858 882q-14.141 14-34 14Zm0-272Q460 624 446 609.858q-14-14.141-14-34Q432 556 446.142 542q14.141-14 34-14Q500 528 514 542.142q14 14.141 14 34Q528 596 513.858 610q-14.141 14-34 14Zm0-272Q460 352 446 337.858q-14-14.141-14-34Q432 284 446.142 270q14.141-14 34-14Q500 256 514 270.142q14 14.141 14 34Q528 324 513.858 338q-14.141 14-34 14Z" />
+                                        </Viewbox>
+                                    </Grid>
+                                </ControlTemplate>
+                            </CheckBox.Template>
+                        </CheckBox>
+                        <Popup IsOpen="{TemplateBinding IsOpen}"
+                               Placement="Bottom"
+                               PlacementTarget="{Binding ElementName=checkdejh}"
+                               StaysOpen="False">
+                            <ContentControl Content="{TemplateBinding Content}">
+                            </ContentControl>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+   
+    <Style TargetType="{x:Type local:CusTextBox}"
+           BasedOn="{StaticResource ResourceKey={x:Type TextBox}}">
+        <Setter Property="BorderBrush"
+                Value="#a9acb4" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CusTextBox}">
+                    <ControlTemplate.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolenTovisibilityCOnvereter"  />
+                        <SolidColorBrush x:Key="TextBox.MouseOver.Border"
+                                         Color="Black" />
+                        <SolidColorBrush x:Key="TextBox.Focus.Border"
+                                         Color="#2d8dec" />
+
+                        
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+                        
+                        
+                        
+
+                        <TextBlock Panel.ZIndex="9"
+                                   x:Name="PlaceHolderTextBox"
+                                   Grid.Row="0"
+                                   Padding="5 0"
+                                   Margin="10 15 0 0"
+                                   FontSize="16"
+                                   Background="#ffffff"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   Text="{TemplateBinding PlaceHolder}"
+                                   Foreground="Gray"
+                                   >
+
+                        </TextBlock>
+                        <Border x:Name="border"
+                                Grid.Row="0"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="10 5"
+                                
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Height="35"
+                                CornerRadius="3"
+                                Margin="0 10"
+                                >
+                            <ScrollViewer x:Name="PART_ContentHost" FontSize="16"></ScrollViewer>
+
+                        </Border>
+
+
+                        <TextBlock
+                            x:Name="BalanceHolderTextBox"
+                            Text="{TemplateBinding BalanceHolder}"
+                                   Grid.Row="1"  />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                       
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="BorderBrush"
+                                    
+                                    Value="{StaticResource TextBox.MouseOver.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true">
+                            <Setter Property="BorderBrush"
+                                    
+                                    Value="{StaticResource TextBox.Focus.Border}" />
+                            
+                            
+                            <Setter Property="BorderThickness"
+                                    
+                                    Value="2"></Setter>
+                        </Trigger>
+                        
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
+
+    <Style TargetType="{x:Type local:GrowthDirectionControl}"
+           >
+        <Setter Property="Foreground"
+                Value="Blue"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:GrowthDirectionControl}">
+                    <ControlTemplate.Resources>
+                        <Path x:Key="UpwardDirection"
+                              Data="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z"
+                              Fill="#29c68d"
+                              Stretch="Uniform"
+                              Stroke="#29c68d"
+                              StrokeThickness="1"
+                               />
+                        <Path x:Key="DownDirection"
+                              Data="M480 896 160 576l42-42 248 248V256h60v526l248-248 42 42-320 320Z"
+                              Fill="Red"
+                              Stretch="Uniform"
+                              Stroke="Red"
+                              StrokeThickness="1"
+                               />
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+
+
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Margin="0 0 5 0"
+                                        VerticalAlignment="Center"
+                                        Grid.Column="0">
+                            <ContentControl x:Name="Icon"
+                                            Width="12"
+                                            Height="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                        </ContentControl>
+
+                        <TextBlock x:Name="temptest"
+                                   Grid.Column="1"
+                                   Text="{TemplateBinding ActualText}"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Tag="{TemplateBinding GrowthText}"
+                                   >
+
+                        </TextBlock>
+                        
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Tag,ElementName=temptest}"
+                                     Value="Positive">
+                            <Setter TargetName="Icon"
+                                    Property="Content"
+                                    Value="{StaticResource UpwardDirection}" />
+                            <Setter TargetName="temptest"
+                                    Property="Foreground"
+                                    Value="#29c68d" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Tag,ElementName=temptest}"
+                                     Value="Negative">
+                            <Setter TargetName="Icon"
+                                    Property="Content"
+                                    Value="{StaticResource DownDirection}" />
+                            <Setter TargetName="temptest"
+                                    Property="Foreground"
+                                    Value="red" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

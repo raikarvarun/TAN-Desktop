@@ -1,0 +1,586 @@
+﻿<UserControl x:Class="TAN.Views.ItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TAN.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="1280      ">
+    <Grid Background="#b7babf"
+          MaxWidth="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth}">
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="140"
+                              Width="*" />
+            <ColumnDefinition MinWidth="140"
+                              Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition MinWidth="10"
+                              MaxWidth="420"
+                              Width="420"/>
+            <ColumnDefinition MinWidth="10"
+                              MaxWidth="420"
+                              Width="420"
+                              />
+            
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Border Margin="0 0 0 5"
+                BorderThickness="0 , 0 , 0 ,2"
+                BorderBrush="#0b8fc5"
+                Grid.Row="0"
+                Grid.ColumnSpan="5">
+            <DockPanel   Background="#f5f5f5">
+                <TextBlock Text="PRODUCTS"
+                           Foreground="#50add3"
+                           HorizontalAlignment="Center"
+                           FontSize="24"
+                           VerticalAlignment="Center" />
+            </DockPanel>
+        </Border>
+
+
+        <Grid Grid.Row="3"
+              Grid.RowSpan="3"
+              Grid.ColumnSpan="2"
+              Grid.Column="0">
+
+
+            <Grid Width="auto"
+                  Grid.Row="0"
+                  Grid.Column="0">
+                <DataGrid Margin="10 0 0 10"
+                          Width="auto"
+                          Foreground="Black"
+                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle2}"
+                          x:Name="PRODUCTS"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          RenderTransformOrigin="0.473,0.462"
+                          SelectionChanged="PARTIES_SelectionChanged">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                                            Header="ITEM"
+                                            MinWidth="50"
+                                            Width="*"
+                                            Binding="{Binding productName}"
+                                            ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn 
+                                            Header="QUANTITY"
+                                            MinWidth="50"
+                                            Binding="{Binding productQuntity}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Right" />
+                                    <Setter Property="Foreground"
+                                            Value="LimeGreen" />
+                                    <Setter Property="Margin"
+                                            Value="0,5,0,5" />
+                                    <Setter Property="Padding"
+                                            Value="7 5" />
+                                    <Setter Property="FontSize"
+                                            Value="14" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                         Color="#cee6f3" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                         Color="Black" />
+                    </DataGrid.Resources>
+                </DataGrid>
+
+            </Grid>
+
+        </Grid>
+
+
+
+
+        <DockPanel x:Name="searchTextDockPannel"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="2"
+                   Background="#ffffff"
+                   Margin="10 5 0 0"
+                   Width="auto"
+                   Visibility="Collapsed">
+            <Border BorderBrush="Gray"
+                    BorderThickness="1"
+                    Opacity="0.7"
+                    Margin="20 20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="29" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Path x:Name="SearchClickable1"
+                          Margin="5 0 5 0"
+                          HorizontalAlignment="Left"
+                          Height="20"
+                          Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                          Fill="Gray"
+                          Opacity="0.7"
+                          Stretch="Uniform"
+                          Width="20">
+                        <Path.Resources>
+                            <Style TargetType="Path">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Cursor"
+                                                Value="IBeam" />
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Resources>
+                    </Path>
+
+
+
+                    <Button  Grid.Column="2"
+                             Height="17"
+                             Width="17"
+                             DockPanel.Dock="Right"
+                             x:Name="CloseSearchButton"
+                             Margin="5 0 5 0"
+                             Click="Button_Click_1"
+                             BorderThickness="0"
+                             Background="Transparent">
+                        <Path x:Name="SearchClickable4"
+                              Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                              Fill="Black"
+                              Stretch="Uniform" />
+
+                    </Button>
+                    <TextBox Grid.Column="1"
+                             x:Name="searchTextBox"
+                             Height="30"
+                             TextChanged="searchTextBox_TextChanged"
+                             LostFocus="searchTextBox_LostFocus"
+                             HorizontalAlignment="Stretch"
+                             BorderThickness="0"
+                             VerticalAlignment="Center"
+                             Padding="5"
+                             FontSize="16"></TextBox>
+
+
+
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <DockPanel x:Name="searchButtonDP"
+                   Grid.Column="0"
+                   Grid.RowSpan="2"
+                   Grid.Row="1"
+                   Background="#ffffff"
+                   Margin="10 5 0 0"
+                   Width="auto">
+
+            <Button Height="40"
+                    Width="40"
+                    HorizontalAlignment="Left"
+                    Margin="5 0 0 0"
+                    Click="Button_Click"
+                    BorderThickness="0"
+                    Background="LightGray">
+                <Path x:Name="SearchClickable"
+                      Height="20"
+                      Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                      Fill="Black"
+                      Stretch="Uniform"
+                      Width="20" />
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="40"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+        <DockPanel x:Name="addPartyDP"
+                   Grid.Column="1"
+                   Grid.RowSpan="2"
+                   Grid.Row="1"
+                   Background="#ffffff"
+                   Margin="0 5 0 0"
+                   Width="auto">
+
+
+
+            <Button Height="40"
+                    FontSize="14"
+                    Background="#f3a33a"
+                    Foreground="#fef6ec"
+                    x:Name="SaveButtonClicked"
+                    FontWeight="Medium"
+                    FontFamily="Times"
+                    Padding="15 9"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="15 1"
+                    Command="{Binding SaveButtonClicked}">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="7" />
+                    </Style>
+                </Button.Resources>
+                <StackPanel Orientation="Horizontal">
+                    <Path Height="12"
+                          Data="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"
+                          Stretch="Uniform"
+                          Margin="0 0 5 0"
+                          Width="12">
+                        <Path.Style>
+                            <Style>
+                                <Setter Property="Path.Fill"
+                                        Value="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                    <TextBlock  Text="Add Item"
+                                VerticalAlignment="Center" />
+
+                </StackPanel>
+            </Button>
+        </DockPanel>
+
+        <GridSplitter Grid.Row="1"
+                      Grid.Column="2"
+                      Grid.RowSpan="4"
+                      Margin="0,0,0,0"
+                      Width="10"
+                      Panel.ZIndex="99"
+                      Background="Transparent"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Center"
+                      ResizeBehavior="PreviousAndNext"
+                      ResizeDirection="Columns"
+                      />
+
+
+        <DockPanel Grid.Column="3"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Background="#ffffff"
+                   Margin="0 5 10 0"
+                   Width="auto">
+            <TextBlock x:Name="NameText"
+                       Text="Name"
+                       HorizontalAlignment="Left"
+                       Margin="10 10 0 0"
+                       FontSize="18"
+                       
+                       FontFamily="/Themes/Fonts/CalibriBold.ttf #Calibri"
+                       >
+            </TextBlock>
+        </DockPanel>
+        <Grid Grid.Column="3" 
+              Grid.Row="2"
+              Grid.ColumnSpan ="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0"
+                       
+                       Background="#ffffff"
+                       
+                       Width="auto">
+                <TextBlock  Text="SALE PRICE:"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Margin="10 0 0 0">
+                </TextBlock>
+                <TextBlock x:Name="SalePrice"
+                           Text=""
+                           HorizontalAlignment="Left"
+                           FontSize="14"
+                           Foreground="#18c184">
+                </TextBlock>
+            </DockPanel>
+            <DockPanel Grid.Column="1"
+                       
+                       Background="#ffffff"
+                       Width="auto"
+                       Margin="0 0 10 0">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0 0 10 0">
+                    <TextBlock  Text="STOCK QUANTITY: "
+                                FontSize="14"
+                                Margin="10 0 0 0">
+                    </TextBlock>
+                    <TextBlock x:Name="StockQuantity"
+                               Text=""
+                               FontSize="14"
+                               Foreground="#18c184">
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+
+        <Grid Grid.Column="3"
+              Grid.Row="3"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0"
+                       Background="#ffffff"
+                      
+                       
+                       Width="auto">
+                <TextBlock Text="PURCHASE PRICE:"
+                           HorizontalAlignment="Right"
+                           FontSize="14"
+                           
+                           Margin="10 0 0 0">
+                </TextBlock>
+                <TextBlock x:Name="PurchasePrice"
+                           Text=""
+                           HorizontalAlignment="Left"
+                           FontSize="14"
+                           
+                           Foreground="#18c184">
+                </TextBlock>
+            </DockPanel>
+
+
+            <DockPanel Grid.Column="1"
+                       
+                       Background="#ffffff"
+                       Margin="0 0 10 0"
+                       Width="auto">
+                <DockPanel HorizontalAlignment="Right"
+                           Margin="0 0 10 0">
+                    <TextBlock  Text="STOCK VALUE:"
+                                HorizontalAlignment="Right"
+                                Margin="10 0 0 0"
+                                FontSize="14"
+                                Width="auto">
+                    </TextBlock>
+                    <TextBlock x:Name="StockValue"
+                               Text=""
+                               FontSize="14"
+                               HorizontalAlignment="Right"
+                               Foreground="#18c184">
+                    </TextBlock>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+
+        
+
+        <Grid Grid.Column="3"
+              Grid.Row="4"
+              Grid.ColumnSpan="2"
+              Margin="0 10 10 10"
+              Background="#ffffff">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <DockPanel Width="auto">
+                <TextBlock FontWeight="Medium"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"
+                           >TRANSACTIONS</TextBlock>
+
+                <DockPanel x:Name="searchTextDockPannel1"
+                           
+                           Background="#ffffff"
+                          
+                           Width="220"
+                           MinWidth="60"
+                           HorizontalAlignment="Right"
+                           Height="30"
+                           Visibility="Visible"
+                           Margin="0 0 30 0"
+                           >
+                    <Border BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            Opacity="0.7"
+                            >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="29" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Path x:Name="SearchClickable11"
+                                  Margin="5 0 5 0"
+                                  HorizontalAlignment="Left"
+                                  Height="20"
+                                  Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                                  Fill="Gray"
+                                  Opacity="0.7"
+                                  Stretch="Uniform"
+                                  Width="20">
+                                <Path.Resources>
+                                    <Style TargetType="Path">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter Property="Cursor"
+                                                        Value="IBeam" />
+
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Path.Resources>
+                            </Path>
+
+
+
+                            <Button  Grid.Column="2"
+                                     Height="17"
+                                     Width="17"
+                                     DockPanel.Dock="Right"
+                                     x:Name="CloseSearchButton1"
+                                     Visibility="Collapsed"
+                                     Margin="5 0 5 0"
+                                     Click="CloseSearchButton1_Click"
+                                     BorderThickness="0"
+                                     Background="Transparent">
+                                <Path x:Name="SearchClickable41"
+                                      Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                                      Fill="Black"
+                                      Stretch="Uniform" />
+
+                            </Button>
+                            <TextBox Grid.Column="1"
+                                     x:Name="searchTextBox1"
+                                     Height="30"
+                                     TextChanged="searchTextBox1_TextChanged"
+                                     LostFocus="searchTextBox1_LostFocus"
+                                     HorizontalAlignment="Stretch"
+                                     BorderThickness="0"
+                                     VerticalAlignment="Center"
+                                     Padding="5"
+                                     FontSize="16"></TextBox>
+
+
+
+                        </Grid>
+                    </Border>
+                </DockPanel>
+
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <DataGrid Margin="0 0 0 10"
+                          Width="auto"
+                          Foreground="Black"
+                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                          x:Name="ItemsTransation"
+                          
+                          AutoGenerateColumns="False"
+                          AlternatingRowBackground="#f7f7f7"
+                          GridLinesVisibility="Vertical"
+                          VerticalGridLinesBrush="#dedede"
+                          IsReadOnly="True"
+                          RenderTransformOrigin="0.473,0.462"
+                          FontSize="16">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header=""
+                                                Width="25">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button 
+                                        Content="{Binding urlimg}"
+                                        Background="Transparent"
+                                        IsHitTestVisible="False"
+                                        BorderBrush="Transparent"
+                                        
+                                        ></Button>
+                                    <!--<Path x:Name="SearchClickable"
+                                          Height="10"
+                                          
+                                          Fill="Black"
+                                          Stretch="Uniform"
+                                          Width="10">
+                                        <Path.Data>
+                                            <PathGeometry Figures="{Binding urlimg}" />
+                                        </Path.Data>
+                                    </Path>-->
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Header="TYPE"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Type}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="NAME"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Name}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="DATE"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Date}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="QUANTITY"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Qty}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+
+                        <DataGridTextColumn  Header="PRICE/UNIT"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Price}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+
+                        <DataGridTextColumn  Header="STATUS"
+                                             MinWidth="10"
+                                             Width="*"
+                                             Binding="{Binding Status}"
+                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                         Color="#cee6f3" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                         Color="Black" />
+                    </DataGrid.Resources>
+                </DataGrid>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

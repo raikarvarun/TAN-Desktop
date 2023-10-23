@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="TAN.Views.PartiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TAN.Views"
+             xmlns:viewmodels="clr-namespace:TAN.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:PartiesViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#b7babf" >
+
+            
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions> 
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Border Margin="0 0 0 5" BorderThickness="0 , 0 , 0 ,2" BorderBrush="#0b8fc5" Grid.Row="0" Grid.ColumnSpan="5">
+            <DockPanel   Background="#f5f5f5" >
+            <TextBlock
+            Text="NAME" 
+            Foreground="#50add3"
+            HorizontalAlignment="Center"
+            FontSize="24"
+                VerticalAlignment="Center"
+            />
+            </DockPanel>
+        </Border>
+        <!--ItemsSource="{Binding PARTIES }"-->
+        <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" 
+            Margin="10 0 5 10"  
+            Grid.Row="2"
+                  Grid.RowSpan="3"
+                  Grid.ColumnSpan="2"
+                  Grid.Column="0"
+                  Foreground="Black" RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  x:Name="PARTIES" 
+                  AutoGenerateColumns="False"
+                  
+                  IsReadOnly="True"
+                  RenderTransformOrigin="0.473,0.462" SelectionChanged="PARTIES_SelectionChanged">
+            
+            <DataGrid.Columns >
+                <DataGridTextColumn FontSize="18" Header="Name" MinWidth="50" Width="*" Binding="{Binding customerName}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                <DataGridTextColumn FontSize="18" Header="Amount" MinWidth="50" Binding="{Binding TotalAmount}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="Foreground" Value="LimeGreen" />
+                            <Setter Property="Margin" Value="0,5,0,5" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#cee6f3"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+            </DataGrid.Resources>
+        </DataGrid>
+
+        
+
+        <DockPanel x:Name="searchTextDockPannel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  Background="#ffffff" Margin="10 0 5 0" Width="auto" Visibility="Collapsed">
+            <TextBox x:Name="searchTextBox" TextChanged="searchTextBox_TextChanged" Margin="20 0" 
+                     LostFocus="searchTextBox_LostFocus"
+                     
+                     ></TextBox>
+        </DockPanel>
+
+        <DockPanel x:Name="searchButtonDP" Grid.Column="0" Grid.Row="1"  Background="#ffffff" Margin="10 0 0 0" Width="auto">
+
+            <Button Margin="15 7" Content="Search" Click="Button_Click"></Button>
+        </DockPanel>
+        <DockPanel x:Name="addPartyDP" Grid.Column="1" Grid.Row="1"  Background="#ffffff" Margin="0 0 5 0" Width="auto">
+                
+
+            <Button 
+                    Command="{Binding SaveButtonClicked}" 
+                    Content="Add Party" 
+                    Background="#f3a33a" 
+                    Foreground="#fef6ec" 
+                    x:Name="SaveButtonClicked"
+                    FontWeight="Medium"
+                    FontFamily="Times"
+                Margin="15 7"
+                       >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="7"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+        
+
+        <DockPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Background="#ffffff" Margin="5 5 10 0" Width="auto">
+            <TextBlock x:Name="NameText" Text="Name" HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="18" FontWeight="Bold">
+            </TextBlock>
+        </DockPanel>
+
+        <DockPanel Grid.Column="2" Grid.Row="2" Background="#ffffff" Margin="5 0 0 0" Width="auto">
+            <TextBlock x:Name="MobileText" Text="Phone: " HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="16">
+            </TextBlock>
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="2" Background="#ffffff" Margin="0 0 10 0" Width="auto">
+            <TextBlock Text="Name" HorizontalAlignment="Right" Margin="10 0 0 0">
+            </TextBlock>
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="3" Background="#ffffff" Margin="5 0 0 0" Width="auto">
+            <TextBlock Text="Name" HorizontalAlignment="Left" Margin="10 0 0 0">
+            </TextBlock>
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="3" Background="#ffffff" Margin="0 0 10 0" Width="auto">
+            <TextBlock Text="Name" HorizontalAlignment="Right" Margin="10 0 0 0">
+            </TextBlock>
+        </DockPanel>
+
+        <Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Margin="5 5 10 10" Background="#ffffff">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <DockPanel VerticalAlignment="Center" >
+                <TextBlock Text="Trasactions" FontSize="18" Margin="30 0 0 0"></TextBlock>
+            </DockPanel>
+            
+
+            <DockPanel Grid.Row="1" >
+                <DataGrid 
+            
+                 Width="auto"
+                  Foreground="Black" 
+                    CellStyle="{DynamicResource DataGridCellStyle1}" 
+                  RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  x:Name="PartiesTransation" 
+                  AutoGenerateColumns="False"
+                          AlternatingRowBackground="#f7f7f7"
+                          GridLinesVisibility="Vertical"
+                          VerticalGridLinesBrush="Gray"
+                   IsReadOnly="True"
+                  RenderTransformOrigin="0.473,0.462"   
+                          FontSize="16" 
+                          >
+
+                    <DataGrid.Columns >
+                        <DataGridTextColumn  Header="TYPE" MinWidth="10" Width="*" Binding="{Binding Type}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="NUMBER" MinWidth="10" Width="*" Binding="{Binding Number}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="DATE" MinWidth="10"  Width="*" Binding="{Binding Date1}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="TOTAL" MinWidth="10"  Width="*" Binding="{Binding Total}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+
+                        <DataGridTextColumn  Header="BALANCE" MinWidth="10"  Width="*" Binding="{Binding Balance}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+
+                   </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#cee6f3"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

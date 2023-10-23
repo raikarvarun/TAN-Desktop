@@ -1,0 +1,86 @@
+﻿<Application x:Class="TAN.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModel="clr-namespace:TAN.ViewModels"
+             xmlns:view="clr-namespace:TAN.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
+             
+             xmlns:local="clr-namespace:TAN"
+             >
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                
+
+                <ResourceDictionary>
+                    <local:Bootstrapper x:Key="Bootstrapper"/>
+                </ResourceDictionary>
+                <ResourceDictionary  Source="Themes/Icons.xaml"/>
+                <ResourceDictionary
+                    Source="Themes/MenuButtonTheme.xaml"/>
+
+                <ResourceDictionary  Source="Themes/Button.xaml"/>
+                <ResourceDictionary  Source="Themes/DataGrid.xaml"/>
+                <ResourceDictionary  Source="Themes/TextBoxStyleTheme.xaml"/>
+                
+
+
+                <!--<ResourceDictionary>
+                    <Style x:Key="RegularFont">
+                        <Setter Property="TextElement.FontFamily"
+                                    Value="/Themes/Fonts/roboto-blackitalic.ttf"/>
+                    </Style>
+                    
+                </ResourceDictionary>-->
+                
+            </ResourceDictionary.MergedDictionaries>
+
+
+            
+            <Style x:Key="ColumnElementStyle" TargetType="TextBlock">
+                    <Setter Property="Margin" Value="0,7,0,7" />
+                     <Setter Property="Padding"
+                        Value="7 5" />
+                <Setter Property="FontSize"
+                        Value="14" />
+            </Style>
+            
+
+            <Style x:Key="WinAll" TargetType="{x:Type Window}">
+                <Setter Property="FontFamily"
+                         Value="/Themes/Fonts/CalibriRegular.ttf #Calibri" />
+                
+            </Style>
+            <DataTemplate
+                DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView></view:HomeView>
+            </DataTemplate>
+
+
+            <DataTemplate
+                DataType="{x:Type viewModel:PartiesViewModel}">
+                <view:PartiesView/>
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type viewModel:ItemViewModel}">
+                <view:ItemView/>
+            </DataTemplate>
+
+
+            <DataTemplate
+                DataType="{x:Type viewModel:CommanNavigationViewModel}">
+                <view:CommanNavigationView/>
+            </DataTemplate>
+            <!--<DataTemplate
+                DataType="{x:Type viewModel:AddPartiesViewModel}">
+                <view:AddPartiesView/>
+            </DataTemplate>-->
+
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
