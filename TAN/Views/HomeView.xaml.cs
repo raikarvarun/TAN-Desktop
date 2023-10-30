@@ -1,5 +1,7 @@
 ﻿
+using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
+using Newtonsoft.Json.Bson;
 using System;
 using System.Globalization;
 using System.Windows.Controls;
@@ -48,6 +50,8 @@ namespace TAN.Views
             MonthGrowth.ActualText = growthMonth.ToString("#.#") + " %";
             Saletotaltextblock.Text = "₹ " + DisplayIndianCurrency(currentMonthsale);
 
+            
+            SetReceiveBox();
         }
         private string growthDirection;
 
@@ -63,6 +67,29 @@ namespace TAN.Views
             hindi.NumberFormat.CurrencySymbol = "";
             string text = string.Format(hindi, "{0:c0}", parsed);
             return text;
+        }
+        private void SetPusrchaseAmount()
+        {
+
+        }
+        private void SetReceiveBox()
+        {
+            string totalReceiveAmount = OrderTableSqlite.getSumOfTotalReceiveAmount();
+            Receivetotaltextblock.Text = "₹ " + DisplayIndianCurrency(totalReceiveAmount);
+
+
+
+            var customers =OrderTableSqlite.getAllReciversNames();
+
+            ReceiveNameTextBlock1.Text = customers[0].customerName;
+            ReceiveNameTextBlock2.Text = customers[1].customerName;
+            ReceiveNameTextBlock3.Text = customers[2].customerName;
+
+            ReceiveAmountTextBlock1.Text = customers[0].TotalAmount.ToString();
+            ReceiveAmountTextBlock2.Text = customers[1].TotalAmount.ToString();
+            ReceiveAmountTextBlock3.Text = customers[2].TotalAmount.ToString();
+
+
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

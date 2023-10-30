@@ -89,7 +89,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <StackPanel Height="auto"
                                                     Width="auto">
-                                            
+
 
                                             <TextBlock x:Name="Saletotaltextblock"
                                                        Text="1526300"
@@ -105,8 +105,8 @@
 
                                             <controls:GrowthDirectionControl Margin="10 30 0 0" x:Name="MonthGrowth" />
 
-                                           
-                                            
+
+
                                             <TextBlock Text="This Month Growth"
                                                        FontSize="16"
                                                        Margin="10 0 0 0"
@@ -154,7 +154,70 @@
                             Margin="30 15 15 15"
                             BorderBrush="Transparent">
                         <DockPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition />
+                                    
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0">
+                                    <TextBlock
+                                        Text="You'll Receive"
+                                        />
 
+
+                                </DockPanel>
+                                <DockPanel Grid.Row="1">
+                                    <TextBlock 
+                                        x:Name="Receivetotaltextblock"
+                                       Text="1526300"
+                                       FontSize="22"
+                                       Margin="10 10 0 0"></TextBlock>
+                                </DockPanel>
+                                <DockPanel Grid.Row="2">
+                                    <Grid Margin="10 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <DockPanel>
+                                            <TextBlock x:Name="ReceiveNameTextBlock1"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="1">
+                                            <TextBlock x:Name="ReceiveNameTextBlock2"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="2">
+                                            <TextBlock x:Name="ReceiveNameTextBlock3"/>
+                                        </DockPanel>
+
+                                        <DockPanel Grid.Column="1">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock1"/>
+                                        </DockPanel >
+                                        <DockPanel Grid.Column="1" Grid.Row="1">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock2"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Grid.Row="2">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock3"/>
+                                        </DockPanel>
+
+                                    </Grid>
+                                </DockPanel>
+                                <DockPanel Grid.Row="3">
+                                    <TextBlock 
+                                        x:Name="Moretotaltextblock"
+                                       Text="more"
+                                       FontSize="22"
+                                       Margin="10 10 0 0"></TextBlock>
+                                </DockPanel>
+                            </Grid>
                         </DockPanel>
                     </Border>
                     <Border MinHeight="220"

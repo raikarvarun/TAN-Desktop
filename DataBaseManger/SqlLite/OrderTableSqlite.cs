@@ -322,5 +322,59 @@ namespace DataBaseManger.SqlLite
             conn.Close();
             return ans;
         }
+        public static string getSumOfTotalReceiveAmount()
+        {
+
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+
+            string query = "SELECT sum(TotalAmount) as ansAmount FROM CUSTOMER WHERE TotalAmount>0";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            string ans = null;
+
+            while (reader.Read())
+            {
+                if (reader.IsDBNull(0))
+                {
+                    ans = "0";
+                }
+                else
+                {
+                    ans = reader.GetFloat(0).ToString();
+                }
+
+            }
+            conn.Close();
+            return ans;
+        }
+        public static List<customerModel> getAllReciversNames()
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "SELECT * FROM CUSTOMER WHERE TotalAmount>0 ORDER BY TotalAmount DESC ";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<customerModel> customerModels = new List<customerModel>();
+
+            while (reader.Read())
+            {
+
+                var customer = new customerModel(
+                    reader.GetInt32(0),
+                    (string)reader["customerName"],
+                    reader.GetInt32(2),
+                    (string)reader["customerMobile"],
+                    (string)reader["customerAddress"],
+                    reader.GetFloat(5),
+                    reader.GetFloat(6)
+                    );
+
+                customerModels.Add(customer);
+            }
+            conn.Close();
+            return customerModels;
+        }
+       
     }
 }
