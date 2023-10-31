@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using System.Windows;
+using System.Windows.Input;
 using TAN.Helpers;
 
 namespace TAN.Views
@@ -24,6 +25,53 @@ namespace TAN.Views
         public ShellView()
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+
+        }
+        private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                if (e.ClickCount == 2)
+                {
+                    if (this.WindowState == WindowState.Maximized)
+                    {
+                        this.WindowState = WindowState.Normal;
+                        NormalWindowButton.Visibility = Visibility.Visible;
+                        MaximizeWindowButton.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        this.WindowState = WindowState.Maximized;
+                        NormalWindowButton.Visibility = Visibility.Collapsed;
+                        MaximizeWindowButton.Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    Application.Current.MainWindow.DragMove();
+                }
+        }
+        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Windows[0].WindowState = WindowState.Minimized;
+        }
+        private void MaximizeWindow(object sender, RoutedEventArgs e)
+        {
+            NormalWindowButton.Visibility = Visibility.Visible;
+            MaximizeWindowButton.Visibility = Visibility.Collapsed;
+            Application.Current.Windows[0].WindowState = WindowState.Normal;
+        }
+        private void NormalWindow(object sender, RoutedEventArgs e)
+        {
+            NormalWindowButton.Visibility = Visibility.Collapsed;
+            MaximizeWindowButton.Visibility = Visibility.Visible;
+            Application.Current.Windows[0].WindowState = WindowState.Maximized;
+        }
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Windows[0].Close();
         }
         public void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper)
         {
@@ -93,5 +141,8 @@ namespace TAN.Views
         {
             ShellGridMain.Children.Remove(_debitPageView);
         }
+
+        
+        
     }
 }

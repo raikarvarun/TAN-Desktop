@@ -52,6 +52,7 @@ namespace TAN.Views
 
             
             SetReceiveBox();
+            SetPayBox();
         }
         private string growthDirection;
 
@@ -88,6 +89,29 @@ namespace TAN.Views
             ReceiveAmountTextBlock1.Text = customers[0].TotalAmount.ToString();
             ReceiveAmountTextBlock2.Text = customers[1].TotalAmount.ToString();
             ReceiveAmountTextBlock3.Text = customers[2].TotalAmount.ToString();
+
+            Moretotaltextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+
+        }
+        private void SetPayBox()
+        {
+            string totalPayAmount = OrderTableSqlite.getSumOfTotalPayAmount();
+            Paytotaltextblock.Text = "₹ " + DisplayIndianCurrency(totalPayAmount);
+
+
+
+            var customers = OrderTableSqlite.getAllPayersNames();
+
+            PayNameTextBlock1.Text = customers[0].customerName;
+            PayNameTextBlock2.Text = customers[1].customerName;
+            PayNameTextBlock3.Text = customers[2].customerName;
+
+            PayAmountTextBlock1.Text = (customers[0].TotalAmount * -1).ToString();
+            PayAmountTextBlock2.Text = (customers[1].TotalAmount * -1).ToString();
+            PayAmountTextBlock3.Text = (customers[2].TotalAmount * -1).ToString();
+
+            MorePaytextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+
 
 
         }

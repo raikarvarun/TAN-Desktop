@@ -14,6 +14,13 @@
              d:DesignWidth="1280"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid Background="#b7babf">
+        
+        
+        <Border BorderBrush="Black"
+                BorderThickness="0 1 0 0"
+                Grid.Row="1">
+            
+        
 
         <ScrollViewer VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollBarVisibility="Disabled">
@@ -779,5 +786,7 @@
 
             </Grid>
         </ScrollViewer>
+        </Border>
+        
     </Grid>
 </UserControl>

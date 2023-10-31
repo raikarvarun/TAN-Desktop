@@ -6,13 +6,92 @@
         xmlns:local="clr-namespace:TAN.Views"
         mc:Ignorable="d"
         Icon="../TANSVG.ico"
+        
+        
+        Height="720" Width="1280"
+        
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="TAN NIBM" Height="720" Width="1280"
-         Style="{StaticResource WinAll}"
+        
+        
         >
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>-->
+    <!--
+    Title="TAN NIBM" 
+    Style="{StaticResource WinAll}"-->
     <Grid x:Name="ShellGridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.04*" MinHeight="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#f7f8fb"  MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <DockPanel HorizontalAlignment="Right">
+                <Button 
+                    HorizontalAlignment="Left"
+                    Width="40"
+                    Click="MinimizeWindow"
+                    BorderThickness="0"   
+                    Background="Transparent">
+                    <Path 
+                        Height="15"
+                        Data="M240-120v-80h480v80H240Z"
+                        Fill="Black"
+                        Stretch="Uniform"
+                        Width="15" />
+                </Button>
+                <Button 
+                        x:Name="NormalWindowButton"
+                        Visibility="Collapsed"
+                        HorizontalAlignment="Left"
+                        Width="40"
+                        Click="NormalWindow"
+                        BorderThickness="0"
+                        Background="Transparent">
+                    <Path 
+                        Height="20"
+                        Data="m4.5 3c-.82843 0-1.5.67157-1.5 1.5v7c0 .8284.67157 1.5 1.5 1.5h7c.8284 0 1.5-.6716 1.5-1.5v-7c0-.82843-.6716-1.5-1.5-1.5zm0 1h7c.2761 0 .5.22386.5.5v7c0 .2761-.2239.5-.5.5h-7c-.27614 0-.5-.2239-.5-.5v-7c0-.27614.22386-.5.5-.5z" 
+                        Fill="Black"
+                        Stretch="Uniform"
+                        Width="20" />
+                </Button>
+                <Button 
+                        x:Name="MaximizeWindowButton"
+                        HorizontalAlignment="Left"
+                        Width="40"
+                        Click="MaximizeWindow"
+                        BorderThickness="0"
+                        Background="Transparent">
+                    <Path 
+                        Height="20"
+                        Data="m9.6367 41.9453h4.3593v4.0313c0 4.8281 2.4376 7.2656 7.3595 7.2656h25.0313c4.8749 0 7.3359-2.4375 7.3359-7.2656v-24.9141c0-4.8047-2.461-7.2422-7.3359-7.2422h-4.3595v-3.7969c0-4.8281-2.4609-7.2656-7.3594-7.2656h-25.0312c-4.8985 0-7.3594 2.4375-7.3594 7.2656v24.6797c0 4.8281 2.4609 7.2422 7.3594 7.2422zm.0703-3.7734c-2.3437 0-3.6562-1.2422-3.6562-3.6797v-24.2578c0-2.4375 1.3125-3.7032 3.6562-3.7032h24.9141c2.2968 0 3.6328 1.2657 3.6328 3.7032v3.5859h-16.8984c-4.9219 0-7.3595 2.4141-7.3595 7.2422v17.1094zm11.6953 11.2968c-2.3437 0-3.6328-1.2656-3.6328-3.7031v-24.4922c0-2.4375 1.2891-3.6797 3.6328-3.6797h24.914c2.3203 0 3.6331 1.2422 3.6331 3.6797v24.5157c0 2.414-1.3128 3.6796-3.6331 3.6796z"
+                        Fill="Black"
+                        Stretch="Uniform"
+                        Width="20" />
+                </Button>
+                <Button 
+                        HorizontalAlignment="Left"
+                        Width="40"
+                        Click="CloseWindow"
+                        BorderThickness="0"
+                        Background="Transparent">
+                    <Path 
+                        Height="20"
+                        Data="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                        Fill="Black"
+                        Stretch="Uniform"
+                        Width="20" />
+                    
+                </Button>
+            </DockPanel>
+        </Grid>
 
-        <Grid>
+
+
+        <Grid Grid.Row="1" >
             <ContentControl x:Name="ActiveItem" ></ContentControl>
         </Grid>
         

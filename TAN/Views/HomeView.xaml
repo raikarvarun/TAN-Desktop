@@ -11,7 +11,7 @@
              d:DesignHeight="600"
              d:DesignWidth="1000">
 
-
+    
 
     <Grid Background="#b7babf">
         <Grid.ColumnDefinitions>
@@ -153,73 +153,117 @@
                             Background="#ffffff"
                             Margin="30 15 15 15"
                             BorderBrush="Transparent">
-                        <DockPanel>
+                        <DockPanel Margin="10">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition Height="4*"/>
-                                    <RowDefinition />
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="5*"/>
+
+                                    
                                     
                                 </Grid.RowDefinitions>
                                 <DockPanel Grid.Row="0">
+                                    <Path Height="20"
+                                          Data="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"
+                                          Stretch="Uniform"
+                                          
+                                          Fill="#16c184"
+                                          
+                                          Width="20"
+                                          Margin="5 0 5 0">
+
+                                    </Path>
                                     <TextBlock
                                         Text="You'll Receive"
+                                        Foreground="#676a79"
+                                        FontSize="20"
                                         />
 
 
                                 </DockPanel>
                                 <DockPanel Grid.Row="1">
+                                    
                                     <TextBlock 
                                         x:Name="Receivetotaltextblock"
                                        Text="1526300"
-                                       FontSize="22"
-                                       Margin="10 10 0 0"></TextBlock>
+                                       FontSize="24"
+                                        FontWeight="Bold"
+                                       Margin="30 0 0 0"></TextBlock>
                                 </DockPanel>
                                 <DockPanel Grid.Row="2">
+                                    
+                                </DockPanel>
+                                <Button Grid.Row="3"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Style="{StaticResource MyButtonStyle}"
+                                        >
                                     <Grid Margin="10 5">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
+                                            <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         
                                         <DockPanel>
-                                            <TextBlock x:Name="ReceiveNameTextBlock1"/>
+                                            <TextBlock x:Name="ReceiveNameTextBlock1" 
+                                                       FontSize="16"
+                                                       Foreground="#9aa1ae"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       />
                                         </DockPanel>
                                         <DockPanel Grid.Row="1">
-                                            <TextBlock x:Name="ReceiveNameTextBlock2"/>
+                                            <TextBlock x:Name="ReceiveNameTextBlock2" 
+                                                       FontSize="16"
+                                                       Foreground="#9aa1ae"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       />
                                         </DockPanel>
                                         <DockPanel Grid.Row="2">
-                                            <TextBlock x:Name="ReceiveNameTextBlock3"/>
+                                            <TextBlock x:Name="ReceiveNameTextBlock3" 
+                                                       FontSize="16"
+                                                       Foreground="#9aa1ae"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       />
                                         </DockPanel>
 
-                                        <DockPanel Grid.Column="1">
-                                            <TextBlock x:Name="ReceiveAmountTextBlock1"/>
-                                        </DockPanel >
-                                        <DockPanel Grid.Column="1" Grid.Row="1">
-                                            <TextBlock x:Name="ReceiveAmountTextBlock2"/>
+                                        <DockPanel Grid.Column="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock1" 
+                                                       FontSize="16"
+                                                       Foreground="#32c892"/>
                                         </DockPanel>
-                                        <DockPanel Grid.Column="1" Grid.Row="2">
-                                            <TextBlock x:Name="ReceiveAmountTextBlock3"/>
+                                        <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock2" 
+                                                       FontSize="16"
+                                                       Foreground="#32c892"/>
                                         </DockPanel>
-
+                                        <DockPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="ReceiveAmountTextBlock3" 
+                                                       FontSize="16"
+                                                       Foreground="#32c892"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
+                                            <TextBlock x:Name="Moretotaltextblock"
+                                                    Text="more"
+                                                    FontSize="16"
+                                                    TextAlignment="Center"
+                                                    Foreground="#9aa1ae"
+                                                    Margin="10 10 0 0"/>
+                                        </DockPanel>
                                     </Grid>
-                                </DockPanel>
-                                <DockPanel Grid.Row="3">
-                                    <TextBlock 
-                                        x:Name="Moretotaltextblock"
-                                       Text="more"
-                                       FontSize="22"
-                                       Margin="10 10 0 0"></TextBlock>
-                                </DockPanel>
+                                </Button>
+                                
                             </Grid>
                         </DockPanel>
                     </Border>
+                    
                     <Border MinHeight="220"
                             MinWidth="220"
                             BorderThickness="1"
@@ -228,8 +272,114 @@
                             Background="#ffffff"
                             Margin="15 15 15 15"
                             BorderBrush="Transparent">
-                        <DockPanel>
+                        <DockPanel Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="5*"/>
 
+
+
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0">
+                                    <Path Height="20"
+                                          Data="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"
+                                          Stretch="Uniform"
+                  
+                                          Fill="#f26647"
+                  
+                                          Width="20"
+                                          Margin="5 0 5 0">
+
+                                    </Path>
+                                    <TextBlock
+                                        Text="You'll Pay"
+                                        Foreground="#676a79"
+                                        FontSize="20"
+                                        />
+
+
+                                </DockPanel>
+                                <DockPanel Grid.Row="1">
+
+                                    <TextBlock 
+                                           x:Name="Paytotaltextblock"
+                                          Text="1526300"
+                                          FontSize="24"
+                                           FontWeight="Bold"
+                                          Margin="30 0 0 0"></TextBlock>
+                                </DockPanel>
+                                <DockPanel Grid.Row="2">
+
+                                </DockPanel>
+                                <Button Grid.Row="3"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Style="{StaticResource MyButtonStyle}"
+                                        >
+                                    <Grid Margin="10 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel>
+                                            <TextBlock x:Name="PayNameTextBlock1" 
+                                                FontSize="16"
+                                                Foreground="#9aa1ae"
+                                                TextTrimming="CharacterEllipsis"
+                                                />
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="1">
+                                            <TextBlock x:Name="PayNameTextBlock2" 
+                                                FontSize="16"
+                                                Foreground="#9aa1ae"
+                                                TextTrimming="CharacterEllipsis"
+                                                />
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="2">
+                                            <TextBlock x:Name="PayNameTextBlock3" 
+                                                FontSize="16"
+                                                Foreground="#9aa1ae"
+                                                TextTrimming="CharacterEllipsis"
+                                                />
+                                        </DockPanel>
+
+                                        <DockPanel Grid.Column="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PayAmountTextBlock1" 
+                                                FontSize="16"
+                                                Foreground="#f2684a"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PayAmountTextBlock2" 
+                                                FontSize="16"
+                                                Foreground="#f2684a"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PayAmountTextBlock3" 
+                                                FontSize="16"
+                                                Foreground="#f2684a"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
+                                            <TextBlock x:Name="MorePaytextblock"
+                                                    Text="more"
+                                                    FontSize="16"
+                                                    TextAlignment="Center"
+                                                    Foreground="#9aa1ae"
+                                                    Margin="10 10 0 0"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </Button>
+
+                            </Grid>
                         </DockPanel>
                     </Border>
                     <Border MinHeight="220"
