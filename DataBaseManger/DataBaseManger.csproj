@@ -109,6 +109,7 @@
     <Compile Include="CommanSQlite.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="Model\adminModel.cs" />
+    <Compile Include="Model\ChartSalesModel.cs" />
     <Compile Include="Model\appConfigModel.cs" />
     <Compile Include="Model\BankTransactoin.cs" />
     <Compile Include="Model\customerModel.cs" />

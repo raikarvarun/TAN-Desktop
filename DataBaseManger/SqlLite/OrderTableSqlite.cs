@@ -430,5 +430,36 @@ namespace DataBaseManger.SqlLite
             return customerModels;
         }
 
+
+        public static List<ChartSalesModel> getChartData()
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "SELECT date(orderDate) as orderDate , sum(TotalBalance) as TotalBalance " +
+                "from OrderTable INNER JOIN PAYMENT ON OrderTable.paymentID = PAYMENT.paymentID " +
+                "WHERE orderType=1 AND " +
+                "date(orderDate)>=\"2023-05-01\" " +
+                "AND date(orderDate)<=\"2023-05-31\" " +
+                "GROUP by date(orderDate)" ;
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<ChartSalesModel> ChartSales = new List<ChartSalesModel>() ;
+            ChartSalesModel chart;
+            while (reader.Read())
+            {
+
+
+                chart = new ChartSalesModel(
+                    
+                    (string)reader["orderDate"],
+                    reader.GetFloat(1)
+
+                    );
+                ChartSales.Add(chart);
+
+            }
+            conn.Close();
+            return ChartSales;
+        }
     }
 }

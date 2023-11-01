@@ -1,12 +1,16 @@
 ﻿
 using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
-using Newtonsoft.Json.Bson;
+using LiveCharts.Wpf;
+using LiveCharts;
 using System;
 using System.Globalization;
 using System.Windows.Controls;
 using TAN.Notification;
 using TAN.Notification.Utils;
+using System.Collections.Generic;
+using LiveCharts.Defaults;
+using System.Windows.Media;
 
 namespace TAN.Views
 {
@@ -53,7 +57,79 @@ namespace TAN.Views
             
             SetReceiveBox();
             SetPayBox();
+            InitChart();
         }
+
+        
+        public SeriesCollection SeriesCollection { get; private set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> YFormatter { get; set; }
+
+        public static IEnumerable<DateTime> EachCalendarDay(DateTime startDate, DateTime endDate)
+        {
+            for (var date = startDate.Date; date.Date <= endDate.Date; date = date.AddDays(1)) yield
+            return date;
+        }
+
+        private void InitChart()
+        {
+            List<ChartSalesModel> chartSales = OrderTableSqlite.getChartData();
+
+            
+
+             
+            
+
+            DateTime StartDate = Convert.ToDateTime("01-05-2023");
+            DateTime EndDate = Convert.ToDateTime("31-05-2023");
+            List<string> months = new List<string>();
+            ChartValues<float> saleValues = new ChartValues<float>();
+            foreach (DateTime day in EachCalendarDay(StartDate, EndDate))
+            {
+                string b = day.ToString("dd-MM-yyyy");
+                months.Add(b);
+                
+                float ans = 0; 
+                foreach(ChartSalesModel chart in chartSales)
+                {
+                    string a = Convert.ToDateTime(chart.saleDate).ToString("dd-MM-yyyy");
+                    if (a == b)
+                    {
+                        ans = chart.saleAmount;
+                    }
+                }
+                saleValues.Add(ans);
+            }
+
+
+
+            // Yellow is green + red
+            SolidColorBrush LineColour = new SolidColorBrush(Color.FromRgb(93, 182, 81));
+
+            SeriesCollection = new SeriesCollection
+            {
+                
+                new LineSeries
+                {
+                    Title = null,
+                    Values = saleValues,
+                    LineSmoothness = 1,
+                    PointGeometry = null,
+                    
+                    Stroke = LineColour,
+
+
+
+                }
+                
+            };
+            Labels = months.ToArray();
+            YFormatter = value => value.ToString("C");
+
+            DataContext = this;
+        }
+
+
         private string growthDirection;
 
         public string GrowthDirection
@@ -61,6 +137,9 @@ namespace TAN.Views
             get { return growthDirection; }
             set { growthDirection = value; }
         }
+
+        
+
         private string DisplayIndianCurrency(string data)
         {
             decimal parsed = decimal.Parse(data, CultureInfo.InvariantCulture);
