@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TAN.Views"
              mc:Ignorable="d" 
+             xmlns:controls="clr-namespace:TAN.Controls"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#ffffff" Margin="10 0 20 10">
         <Grid.ColumnDefinitions>
@@ -14,40 +15,243 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel>
-            <TextBlock HorizontalAlignment="Left" Text="Search Text"></TextBlock>
-            <Button Content="Add Sale" Foreground="White" Background="#1789fc" Width="100" Height="50"
-                HorizontalAlignment="Right" Margin="0 0 50 0" >
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- Search textbox -->
+            <Border 
+                HorizontalAlignment="Left"
+                Width="220"
+                Height="25"
+                Margin="20 5 10 5"
+                BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    Opacity="0.8"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Path x:Name="SearchIcon"
+                            Margin="5 0 5 0"
+                            HorizontalAlignment="Left"
+                            Height="20"
+                            Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                            Fill="Gray"
+                            Opacity="0.7"
+                            Stretch="Uniform"
+                            Width="20">
+                            <Path.Resources>
+                                <Style TargetType="Path">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                                            <Setter Property="Cursor"
+                                    Value="IBeam" />
+
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Resources>
+                        </Path>
+
+
+
+                        <Button  Grid.Column="2"
+                        Height="17"
+                        Width="17"
+                        DockPanel.Dock="Right"
+                        x:Name="CloseSearchButton1"
+                        Visibility="Collapsed"
+                        Margin="5 0 5 0"
+                        Click="CloseSearchButton_Click"
+                        BorderThickness="0"
+                        Background="Transparent">
+                            <Path x:Name="SearchClickable41"
+                         Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                         Fill="Black"
+                         Stretch="Uniform" />
+
+                        </Button>
+                        <TextBox Grid.Column="1"
+                            x:Name="searchTextBox1"
+                            Height="30"
+                            TextChanged="searchTextBox_TextChanged"
+                            HorizontalAlignment="Stretch"
+                            BorderThickness="0"
+                            VerticalAlignment="Center"
+                            Padding="5"
+                            FontSize="16"></TextBox>
+
+
+
+                    </Grid>
+                </Border>
+
+                <!--Add sale Button-->
+            <Button Grid.Column="1"
+                Height="40"
+                    FontSize="14"
+                    Background="#1789fc"
+                    Foreground="#fef6ec"
+                    FontWeight="Medium"
+                    FontFamily="Times"
+                    Padding="15 9"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="15 1"
+                    Click="AddSaleButtonClicked">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                    Value="7" />
+                    </Style>
+                </Button.Resources>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="#fef6ec" CornerRadius="100" Margin="0 0 5 0">
+
+
+                        <Path Height="12"
+                            Data="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"
+                            Stretch="Uniform"
+                            Margin="3"
+                            Fill="#1789fc"
+                            Stroke="#1789fc"
+                            StrokeThickness="1"
+                            Width="12">
+
+                        </Path>
+                    </Border>
+                    <TextBlock  Text="Add Purchase"
+                    VerticalAlignment="Center" />
+
+                </StackPanel>
             </Button>
 
-        </DockPanel>
+
+        </Grid>
 
 
-
+    <!--Data grid-->
         <Grid Background="#ffffff" Grid.Row="1" >
-            <DataGrid x:Name="PurchaseDatagrid"
-                      RowStyle="{DynamicResource DataGridRowStyle1}" 
-                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                    CellStyle="{DynamicResource DataGridCellStyle1}" 
-            Margin="10 0 5 10"  
-            Grid.Row="2"
-                  Grid.RowSpan="3"
-                  Grid.ColumnSpan="2"
-                  Grid.Column="0"
-                  Foreground="Black"  
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  >
+            <DataGrid 
+     RowStyle="{DynamicResource DataGridRowStyle1}" 
+      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+        CellStyle="{DynamicResource DataGridCellStyle1}" 
+    x:Name="PurchaseDatagrid"
+
+Grid.Row="2"
+      Grid.RowSpan="3"
+      Grid.ColumnSpan="2"
+      Grid.Column="0"
+      Foreground="Black"  
+      AutoGenerateColumns="False"
+      IsReadOnly="True"
+       VerticalGridLinesBrush="Gray"
+          GridLinesVisibility="Vertical"
+          AlternatingRowBackground="#f7f7f7"
+      >
 
                 <DataGrid.Columns >
-                    <DataGridTextColumn FontSize="16" Header="Date" MinWidth="50" Width="*" Binding="{Binding Date}"></DataGridTextColumn>
-                    <DataGridTextColumn FontSize="16" Header="InvoiceNo" MinWidth="50" Binding="{Binding InvoiceNo}"></DataGridTextColumn>
-                    <DataGridTextColumn FontSize="16" Header="PartyName" MinWidth="50" Width="*" Binding="{Binding PartyName}"></DataGridTextColumn>
-                    <DataGridTextColumn FontSize="16" Header="PaymentType" MinWidth="50" Binding="{Binding PaymentType}"></DataGridTextColumn>
-                    <DataGridTextColumn FontSize="16" Header="Amount" MinWidth="50" Width="*" Binding="{Binding Amount}"></DataGridTextColumn>
-                    <DataGridTextColumn FontSize="16" Header="BalanceDue" MinWidth="50" Binding="{Binding BalanceDue}"></DataGridTextColumn>
+                    <DataGridTextColumn  FontSize="16" Header="Date" MinWidth="50" Width="*" Binding="{Binding Date}" ElementStyle="{StaticResource ColumnElementStyle}" >
+
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="16" Header="InvoiceNo" MinWidth="50" Binding="{Binding InvoiceNo}"   >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                <Setter Property="Margin" Value="0,5,0,5" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="16" Header="PartyName" MinWidth="50" Width="*" Binding="{Binding PartyName}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                    <DataGridTextColumn FontSize="16" Header="PaymentType" MinWidth="50" Binding="{Binding PaymentType}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                    <DataGridTextColumn FontSize="16" Header="Amount" MinWidth="50" Width="*" Binding="{Binding Amount}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                <Setter Property="Margin" Value="0,5,0,5" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="16" Header="BalanceDue" MinWidth="50" Binding="{Binding BalanceDue}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                <Setter Property="Margin" Value="0,5,0,5" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Edit" Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <controls:DropDownMenu >
+                                    <controls:DropDownMenu.Resources>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                            <Setter Property="Padding" Value="20 10" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border
+                                            Padding="{TemplateBinding Padding}"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <ColorAnimation
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                    To="LightGray"
+                                                    Duration="0:0:0.1" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                    <Trigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <ColorAnimation
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                    To="Transparent"
+                                                    Duration="0:0:0.1" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.ExitActions>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </controls:DropDownMenu.Resources>
+                                    <Border
+                        Background="White"
+                        BorderBrush="LightGray"
+                        BorderThickness="1">
+                                        <StackPanel>
+                                            <Button  Content="Edit" />
+                                            <Button  Content="Delete" />
+                                        </StackPanel>
+                                    </Border>
+                                </controls:DropDownMenu>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
+
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#cee6f3"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>

@@ -33,7 +33,7 @@ namespace TAN.ViewModels
                     ShowView = new PaymentInView(_events);
                     break;
                 case 1:
-                    ShowView = new saleInvoices();
+                    ShowView = new saleInvoices(_events, _apiHelper);
                     break;
                 case 2:
                     ShowView = new PaymentOutView(_events, _apiHelper);
@@ -45,7 +45,7 @@ namespace TAN.ViewModels
                     ShowView = new DebitNoteView(_events, _apiHelper);
                     break;
                 case 5:
-                    ShowView = new PurchaseBillsView();
+                    ShowView = new PurchaseBillsView(_events, _apiHelper);
                     break;
             }
         }
