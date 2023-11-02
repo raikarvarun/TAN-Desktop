@@ -211,8 +211,6 @@
     <Compile Include="EventModels\removeDebitViewPageViewEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentInEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentOutEventModel.cs" />
-    <Compile Include="EventModels\RemovePurchasePageEventModel.cs" />
-    <Compile Include="EventModels\ShowPurchasePageEventMOdel.cs" />
     <Compile Include="EventModels\ShowSalePageEventModel.cs" />
     <Compile Include="Helpers\APIHelper.cs" />
     <Compile Include="Helpers\commanHelper.cs" />
@@ -312,9 +310,6 @@
     </Compile>
     <Compile Include="Views\PurchaseBillsView.xaml.cs">
       <DependentUpon>PurchaseBillsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PurchasePageVIew.xaml.cs">
-      <DependentUpon>PurchasePageVIew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PurchaseReturnView.xaml.cs">
       <DependentUpon>PurchaseReturnView.xaml</DependentUpon>
@@ -471,10 +466,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PurchaseBillsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PurchasePageVIew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

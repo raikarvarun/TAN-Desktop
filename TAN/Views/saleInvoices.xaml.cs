@@ -44,7 +44,7 @@ namespace TAN.Views
 
         private void AddSaleButtonClicked(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel());
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
         }
 
 

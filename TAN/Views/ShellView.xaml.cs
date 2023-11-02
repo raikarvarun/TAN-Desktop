@@ -13,7 +13,7 @@ namespace TAN.Views
         private AddPartiesView _addPartiesView { get; set; }
         private PaymentInPageVIew _paymentInPageVIew { get; set; }
         private SalePageView _salePageView { get; set; }
-        private PurchasePageVIew _purchasePageView { get; set; }
+        
         private PaymentOutPageView _paymentOutPageView { get; set; }
         private CreditViewPageVIew _creditView { get; set; }
         private DebitPageView _debitPageView { get; set; }
@@ -83,24 +83,16 @@ namespace TAN.Views
             ShellGridMain.Children.Remove(_addPartiesView);
         }
 
-        public void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        public void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
         {
-            _salePageView = new SalePageView(events, aPIHelper);
+            _salePageView = new SalePageView(events, aPIHelper, orderType);
             ShellGridMain.Children.Add(_salePageView);
         }
         public void removeSalePagefromShellView()
         {
             ShellGridMain.Children.Remove(_salePageView);
         }
-        public void addPurchaseePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper)
-        {
-            _purchasePageView = new PurchasePageVIew(events, aPIHelper);
-            ShellGridMain.Children.Add(_purchasePageView);
-        }
-        public void removePurchasePagefromShellView()
-        {
-            ShellGridMain.Children.Remove(_purchasePageView);
-        }
+        
 
 
         public void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper)

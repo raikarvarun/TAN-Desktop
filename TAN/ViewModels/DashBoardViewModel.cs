@@ -66,11 +66,11 @@ namespace TAN.ViewModels
 
             AddSaleClicked = new RelayCommand(o =>
             {
-                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel());
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
             });
             PurchaseSaleClicked = new RelayCommand(o =>
             {
-                _events.PublishOnUIThreadAsync(new ShowPurchasePageEventMOdel());
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(2));
             });
             HomeViewCommand = new RelayCommand(o =>
             {

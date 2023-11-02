@@ -26,11 +26,13 @@ namespace TAN.Views
         private int _totalQTY;
         private float _finalAmount;
         private float _balance;
-        public SalePageView(IEventAggregator events, IAPIHelper aPIHelper)
+        private int _orderTypeGlobal;
+        public SalePageView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
+            _orderTypeGlobal = orderType;
             //InvoiceDatePicker.Text = DateTime.Now.ToString();
             var tem = OrderTableSqlite.getInvoiceNo(1);
             _invoiceNO = tem == -1 ? 1 : tem + 1;
@@ -196,7 +198,7 @@ namespace TAN.Views
             placeOrder.order.orderDate = temporderdate;
             placeOrder.order.paymentDone = 1;
             placeOrder.order.customerID = _customerData.customerID;
-            placeOrder.order.orderType = 1;
+            placeOrder.order.orderType = _orderTypeGlobal;
             placeOrder.order.InvoiceNo = int.Parse(AboveInVoiceNo.Text);
             //relation
             placeOrder.productNos = _prouctNo;
@@ -228,7 +230,28 @@ namespace TAN.Views
             for (int i = 0; i < relation.productNo.Count; i++)
             {
                 productVersionModel productVersionModel = ProductVersionModelSqlite.getSingleDataByID(relation.productNo[i]);
-                productVersionModel.productQuntity -= placeOrder.orderQuantitys[i];
+
+                if (_orderTypeGlobal == 1)
+                {
+                    productVersionModel.productQuntity -= placeOrder.orderQuantitys[i];
+                }
+                else if(_orderTypeGlobal == 2)
+                {
+                    productVersionModel.productQuntity += placeOrder.orderQuantitys[i];
+                }
+                else if (_orderTypeGlobal == 5)
+                {
+                    productVersionModel.productQuntity += placeOrder.orderQuantitys[i];
+                }
+                else if (_orderTypeGlobal == 6)
+                {
+                    productVersionModel.productQuntity -= placeOrder.orderQuantitys[i];
+                }
+
+
+
+
+
                 productVersionModel.salePrice = placeOrder.orderSellingPrices[i];
                 ProductVersionModelSqlite.UpdateProductByID(productVersionModel);
             }
