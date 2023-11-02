@@ -16,9 +16,106 @@
                 <RowDefinition Height="150"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <DockPanel Margin="10 10 20 10" Background="#ffffff">
+         <Grid Margin="10 10 20 10" Background="#ffffff">
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition  Height="2*"/>
+            </Grid.RowDefinitions>
+
             
-        </DockPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border 
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Background="#b9f3e7"
+                        Margin="5 5 5 10"
+                        BorderBrush="Transparent">
+                    <StackPanel>
+                        <TextBlock 
+                            Text="Paid"
+                            Margin="15 5 5 5 "
+                            FontSize="15"/>
+                        <TextBlock 
+                            x:Name="PaidAmount"
+                            Text="1578122"
+                            Margin="15 0 5 5 "
+                            FontWeight="Medium"
+                            FontSize="20"/>
+
+                    </StackPanel>
+                </Border>
+
+
+                
+                <TextBlock 
+                    Text="+" 
+                    Grid.Column="1"
+                    FontSize="50"/>
+
+
+                
+
+                <Border 
+                    Grid.Column="2"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Background="#cfe6fe"
+                    Margin="5 5 5 10"
+                    BorderBrush="Transparent">
+                    <StackPanel>
+                        <TextBlock 
+                            Text="Unpaid"
+                            Margin="15 5 5 5 "
+                            FontSize="15"/>
+                        <TextBlock 
+                            x:Name="UnPaidAmount"
+                            Text="1578122"
+                            Margin="15 0 5 5 "
+                            FontWeight="Medium"
+                            FontSize="20"/>
+
+                    </StackPanel>
+                </Border>
+                <TextBlock Text="=" 
+                            Grid.Column="3"
+                           FontSize="50"/>
+
+
+                <Border 
+                    Grid.Column="4"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Background="#f8c888"
+                    Margin="5 5 5 10"
+                    BorderBrush="Transparent">
+                    <StackPanel>
+                        <TextBlock 
+                            Text="Total"
+                            Margin="15 5 5 5 "
+                            FontSize="15"/>
+                        <TextBlock 
+                            x:Name="TotalPaidUnpaidAmount"
+                            Text="1578122"
+                            Margin="15 0 5 5 "
+                            FontWeight="Medium"
+                            FontSize="20"/>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
+            
+          </Grid>
 
         <ContentControl Content="{Binding ShowView}" Grid.Row="1">
             

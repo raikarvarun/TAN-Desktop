@@ -461,5 +461,27 @@ namespace DataBaseManger.SqlLite
             conn.Close();
             return ChartSales;
         }
+
+        public static List<float> getSalesPaidUnpaidData()
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "SELECT sum(paymentAmount) as paymentAmount ,sum(remainingBalance) as remainingBalance " +
+                ",sum(TotalBalance) as TotalBalance  from " +
+                "OrderTable LEFT JOIN PAYMENT ON OrderTable.paymentID = PAYMENT.paymentID " +
+                "WHERE orderDate>=\"01-05-2023\" and orderDate<=\"31-05-2023\" and orderType= 1";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<float> ans = new List<float>();
+            
+            while (reader.Read())
+            { 
+                ans.Add(reader.GetFloat(0));
+                ans.Add(reader.GetFloat(1));
+                ans.Add(reader.GetFloat(2));
+            }
+            conn.Close();
+            return ans;
+        }
     }
 }

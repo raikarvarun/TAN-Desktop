@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TAN.Views"
-
+             xmlns:controls="clr-namespace:TAN.Controls"
              mc:Ignorable="d" 
              Panel.ZIndex="10"
              d:DesignHeight="720" d:DesignWidth="1280">
@@ -40,109 +40,46 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <controls:CusTextBox x:Name="PartyName"
+                     PlaceHolder="Party Name*"
+                     Grid.Row="1"
+                     Margin="35 20 0 0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Width="250" />
+
+                <controls:CusTextBox x:Name="PhoneNumber"
+                        PlaceHolder="Phone Number"
+                        Grid.Row="1" Grid.Column="1"
+                        Margin="35 20 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="250" />
+
+                <controls:CusTextBox x:Name="Amount"
+                        PlaceHolder="Opening Balance"
+                        Grid.Row="2" Grid.Column="0"
+                        Margin="35 20 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="250" />
+
+                <controls:CusTextBox x:Name="Address"
+                        PlaceHolder="Address"
+                        Grid.Row="2" Grid.Column="1"
+                        Margin="35 20 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="250" />
                 
 
-                    <TextBox Grid.Row="1" Height="30"  Margin="20" x:Name="PartyName">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                            <Style.Resources>
-                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Label Content="Party Name*" Foreground="LightGray" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Style.Resources>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="Text" Value="{x:Null}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="Background" Value="White" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+
+                
 
 
-                <TextBox Grid.Row="1" Grid.Column="1" Height="30" Margin="20" x:Name="PhoneNumber">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                            <Style.Resources>
-                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Label Content="Phone Number" Foreground="LightGray" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Style.Resources>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="Text" Value="{x:Null}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="Background" Value="White" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                
 
-
-                <TextBox Grid.Row="2" Grid.Column="0" Height="30" VerticalContentAlignment="Top" Margin="20" x:Name="Amount">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                            <Style.Resources>
-                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Label Content="Opening Balance" Foreground="LightGray" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Style.Resources>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="Text" Value="{x:Null}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="Background" Value="White" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-
-                <TextBox Grid.Row="2" Grid.Column="1" Height="100" TextWrapping="Wrap" Margin="25" VerticalContentAlignment="Top" x:Name="Address">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                            <Style.Resources>
-                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Label Content="Address" Foreground="LightGray" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Style.Resources>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="Text" Value="{x:Null}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="Background" Value="White" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                
                     
                 <Border>
                     <DockPanel>
