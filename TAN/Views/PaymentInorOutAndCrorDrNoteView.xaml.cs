@@ -1,53 +1,58 @@
 ﻿using Caliburn.Micro;
 using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using TAN.EventModels;
 using TAN.Helpers;
 
 namespace TAN.Views
 {
     /// <summary>
-    /// Interaction logic for PurchaseBillsView.xaml
+    /// Interaction logic for PaymentInorOutAndCrorDrNote.xaml
     /// </summary>
-    public partial class PurchaseBillsView : UserControl
+    public partial class PaymentInorOutAndCrorDrNoteView : UserControl
     {
-        
-        
-
-
-        private static List<SaleInvoiceModel> _purchases;
+       
+        private static List<PaymentInModel> _sales;
         private object _lockMutex = new object();
-        private ObservableCollection<SaleInvoiceModel> _purchaseInvoiceModel;
-        public ObservableCollection<SaleInvoiceModel> PurchaseInvoiceModel
+        private ObservableCollection<PaymentInModel> _saleInvoiceModel;
+        public ObservableCollection<PaymentInModel> SaleInvoiceModel
         {
-            get { return _purchaseInvoiceModel; }
-            set { _purchaseInvoiceModel = value; }
+            get { return _saleInvoiceModel; }
+            set { _saleInvoiceModel = value; }
         }
         private IEventAggregator _events;
         private IAPIHelper _apiHelper;
 
-        public PurchaseBillsView(IEventAggregator events, IAPIHelper aPIHelper)
+        public PaymentInorOutAndCrorDrNoteView(IEventAggregator events, IAPIHelper aPIHelper)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
-            _purchaseInvoiceModel = new ObservableCollection<SaleInvoiceModel>();
-            BindingOperations.EnableCollectionSynchronization(PurchaseInvoiceModel, _lockMutex);
-            PurchaseDatagrid.ItemsSource = PurchaseInvoiceModel;
+            _saleInvoiceModel = new ObservableCollection<PaymentInModel>();
+            BindingOperations.EnableCollectionSynchronization(SaleInvoiceModel, _lockMutex);
+            TransactionDatagrid.ItemsSource = SaleInvoiceModel;
 
             assginSales();
         }
 
         private void AddSaleButtonClicked(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(2));
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
         }
 
 
@@ -63,10 +68,10 @@ namespace TAN.Views
             return Task.Factory.StartNew(() =>
             {
 
-                _purchases = OrderTableSqlite.getInvoices(2);
-                foreach (SaleInvoiceModel c in _purchases)
+                _sales = OrderTableSqlite.getInvoicesByPaymentInModel(3); ;
+                foreach (PaymentInModel c in _sales)
                 {
-                    _purchaseInvoiceModel.Add(c);
+                    _saleInvoiceModel.Add(c);
                 }
             });
         }
@@ -106,10 +111,10 @@ namespace TAN.Views
         {
             return Task.Factory.StartNew(() =>
             {
-                _purchaseInvoiceModel.Clear();
-                foreach (SaleInvoiceModel c in _purchases)
+                _saleInvoiceModel.Clear();
+                foreach (PaymentInModel c in _sales)
                 {
-                    _purchaseInvoiceModel.Add(c);
+                    _saleInvoiceModel.Add(c);
                 }
             });
         }
@@ -121,10 +126,10 @@ namespace TAN.Views
         private void SearchData1Async(string key)
         {
 
-            _purchaseInvoiceModel.Clear();
-            foreach (SaleInvoiceModel c in _purchases.Where(s => s.PartyName.ToLower().Contains(key)).ToList())
+            _saleInvoiceModel.Clear();
+            foreach (PaymentInModel c in _sales.Where(s => s.PartyName.ToLower().Contains(key)).ToList())
             {
-                _purchaseInvoiceModel.Add(c);
+                _saleInvoiceModel.Add(c);
             }
 
         }

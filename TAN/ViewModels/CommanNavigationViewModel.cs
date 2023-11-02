@@ -30,22 +30,22 @@ namespace TAN.ViewModels
             switch (n)
             {
                 case 0:
-                    ShowView = new PaymentInView(_events);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
                     break;
                 case 1:
                     ShowView = new saleInvoices(_events, _apiHelper);
                     break;
                 case 2:
-                    ShowView = new PaymentOutView(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper );
                     break;
                 case 3:
-                    ShowView = new CreditNoteView(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
                     break;
                 case 4:
-                    ShowView = new DebitNoteView(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
                     break;
                 case 5:
-                    ShowView = new PurchaseBillsView(_events, _apiHelper);
+                    ShowView = new saleInvoices(_events, _apiHelper);
                     break;
             }
         }

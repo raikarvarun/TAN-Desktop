@@ -13,8 +13,7 @@ namespace TAN.ViewModels
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
         , IHandle<PaymentOutEventModel>, IHandle<RemovePaymentOutEventModel>
-        , IHandle<addCreditNotePageEventModel>, IHandle<RemoveCreditNotePageEventModel>
-        , IHandle<addDebitNotePageViewEventModel>, IHandle<removeDebitViewPageViewEventModel>
+        
         , IViewAware
     {
         private IEventAggregator _events;
@@ -118,28 +117,6 @@ namespace TAN.ViewModels
             return Task.CompletedTask;
         }
 
-        public Task HandleAsync(addCreditNotePageEventModel message, CancellationToken cancellationToken)
-        {
-            _view.addCreditNoteToShellView(_events, _apiHelper);
-            return Task.CompletedTask;
-        }
-
-        public Task HandleAsync(RemoveCreditNotePageEventModel message, CancellationToken cancellationToken)
-        {
-            _view.removeCreditNoteFromShellView();
-            return Task.CompletedTask;
-        }
-
-        public Task HandleAsync(addDebitNotePageViewEventModel message, CancellationToken cancellationToken)
-        {
-            _view.addDebitNoteToShellView(_events, _apiHelper);
-            return Task.CompletedTask;
-        }
-
-        public Task HandleAsync(removeDebitViewPageViewEventModel message, CancellationToken cancellationToken)
-        {
-            _view.removeDebitNoteFromShellView();
-            return Task.CompletedTask;
-        }
+        
     }
 }

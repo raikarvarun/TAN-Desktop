@@ -15,8 +15,7 @@ namespace TAN.Views
         private SalePageView _salePageView { get; set; }
         
         private PaymentOutPageView _paymentOutPageView { get; set; }
-        private CreditViewPageVIew _creditView { get; set; }
-        private DebitPageView _debitPageView { get; set; }
+        
 
 
 
@@ -115,25 +114,8 @@ namespace TAN.Views
             ShellGridMain.Children.Remove(_paymentOutPageView);
         }
 
-        public void addCreditNoteToShellView(IEventAggregator events, IAPIHelper aPIHelper)
-        {
-            _creditView = new CreditViewPageVIew(events, aPIHelper);
-            ShellGridMain.Children.Add(_creditView);
-        }
-        public void removeCreditNoteFromShellView()
-        {
-            ShellGridMain.Children.Remove(_creditView);
-        }
-        public void addDebitNoteToShellView(IEventAggregator events, IAPIHelper aPIHelper)
-        {
-            _debitPageView = new DebitPageView(events, aPIHelper);
-            ShellGridMain.Children.Add(_debitPageView);
-        }
-        public void removeDebitNoteFromShellView()
-        {
-            ShellGridMain.Children.Remove(_debitPageView);
-        }
-
+       
+       
         
         
     }

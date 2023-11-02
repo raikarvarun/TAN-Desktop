@@ -196,10 +196,8 @@
     <Compile Include="Controls\SuggestionTextBox.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
-    <Compile Include="EventModels\addDebitNotePageViewEventModel.cs" />
     <Compile Include="EventModels\AddPartyEventModel.cs" />
     <Compile Include="EventModels\ClearChildShellView.cs" />
-    <Compile Include="EventModels\CreditNotePageEventModel.cs" />
     <Compile Include="EventModels\CustomerDataEventArgs.cs" />
     <Compile Include="EventModels\LogOnEventModel.cs" />
     <Compile Include="EventModels\MenuButtonClickEventArgs.cs" />
@@ -207,8 +205,6 @@
     <Compile Include="EventModels\PaymentOutEventModel.cs" />
     <Compile Include="EventModels\ProductDataEventArgs.cs" />
     <Compile Include="EventModels\ClearSalePageEventModel.cs" />
-    <Compile Include="EventModels\RemoveCreditNotePageEventModel.cs" />
-    <Compile Include="EventModels\removeDebitViewPageViewEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentInEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentOutEventModel.cs" />
     <Compile Include="EventModels\ShowSalePageEventModel.cs" />
@@ -267,20 +263,8 @@
     <Compile Include="Views\CommanNavigationView.xaml.cs">
       <DependentUpon>CommanNavigationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreditNoteView.xaml.cs">
-      <DependentUpon>CreditNoteView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreditViewPageVIew.xaml.cs">
-      <DependentUpon>CreditViewPageVIew.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DebitNoteView.xaml.cs">
-      <DependentUpon>DebitNoteView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DebitPageView.xaml.cs">
-      <DependentUpon>DebitPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -296,20 +280,14 @@
     <Compile Include="Views\PartiesView.xaml.cs">
       <DependentUpon>PartiesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaymentInorOutAndCrorDrNoteView.xaml.cs">
+      <DependentUpon>PaymentInorOutAndCrorDrNoteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PaymentInPageVIew.xaml.cs">
       <DependentUpon>PaymentInPageVIew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PaymentInView.xaml.cs">
-      <DependentUpon>PaymentInView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PaymentOutPageView.xaml.cs">
       <DependentUpon>PaymentOutPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PaymentOutView.xaml.cs">
-      <DependentUpon>PaymentOutView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PurchaseBillsView.xaml.cs">
-      <DependentUpon>PurchaseBillsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PurchaseReturnView.xaml.cs">
       <DependentUpon>PurchaseReturnView.xaml</DependentUpon>
@@ -413,23 +391,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreditNoteView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreditViewPageVIew.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DashBoardView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DebitNoteView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DebitPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -449,23 +411,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PaymentInorOutAndCrorDrNoteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PaymentInPageVIew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PaymentInView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\PaymentOutPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PaymentOutView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PurchaseBillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

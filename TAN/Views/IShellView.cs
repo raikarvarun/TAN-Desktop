@@ -18,12 +18,6 @@ namespace TAN.Views
         void addPaymentOutShellView(IEventAggregator events, IAPIHelper aPIHelper);
         void removePaymentOutChildOfShellView();
 
-        void addCreditNoteToShellView(IEventAggregator events, IAPIHelper aPIHelper);
-        void removeCreditNoteFromShellView();
-
-        void addDebitNoteToShellView(IEventAggregator events, IAPIHelper aPIHelper);
-
-        void removeDebitNoteFromShellView();
-
+        
     }
 }
