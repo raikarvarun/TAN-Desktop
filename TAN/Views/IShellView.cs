@@ -12,11 +12,11 @@ namespace TAN.Views
         void removeSalePagefromShellView();
         
 
-        void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType);
         void removePaymentChildOfShellView();
+        
 
-        void addPaymentOutShellView(IEventAggregator events, IAPIHelper aPIHelper);
-        void removePaymentOutChildOfShellView();
+        
 
         
     }

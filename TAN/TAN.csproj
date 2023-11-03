@@ -283,23 +283,14 @@
     <Compile Include="Views\PaymentInorOutAndCrorDrNoteView.xaml.cs">
       <DependentUpon>PaymentInorOutAndCrorDrNoteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PaymentInPageVIew.xaml.cs">
-      <DependentUpon>PaymentInPageVIew.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PaymentOutPageView.xaml.cs">
-      <DependentUpon>PaymentOutPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PurchaseReturnView.xaml.cs">
-      <DependentUpon>PurchaseReturnView.xaml</DependentUpon>
+    <Compile Include="Views\PaymentINorOutPageVIew.xaml.cs">
+      <DependentUpon>PaymentINorOutPageVIew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\saleInvoices.xaml.cs">
       <DependentUpon>saleInvoices.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SalePageView.xaml.cs">
       <DependentUpon>SalePageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SaleReturnView.xaml.cs">
-      <DependentUpon>SaleReturnView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -415,15 +406,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PaymentInPageVIew.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PaymentOutPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PurchaseReturnView.xaml">
+    <Page Include="Views\PaymentINorOutPageVIew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -432,10 +415,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SalePageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SaleReturnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

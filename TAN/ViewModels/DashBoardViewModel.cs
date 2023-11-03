@@ -95,29 +95,30 @@ namespace TAN.ViewModels
             PurchaseBillsCommand = new RelayCommand(o =>
             {
 
-                CurrentView = new CommanNavigationViewModel(5, _events, _apiHelper);
+                CurrentView = new CommanNavigationViewModel(2, _events, _apiHelper);
             });
 
             PaymentInCommand = new RelayCommand(o =>
             {
 
-                CurrentView = new CommanNavigationViewModel(0, _events, _apiHelper);
-            });
-            SaleReturnCommand = new RelayCommand(o =>
-            {
                 CurrentView = new CommanNavigationViewModel(3, _events, _apiHelper);
-
             });
             PaymentOutCommand = new RelayCommand(o =>
             {
 
 
-                CurrentView = new CommanNavigationViewModel(2, _events, _apiHelper);
+                CurrentView = new CommanNavigationViewModel(4, _events, _apiHelper);
 
             });
+            SaleReturnCommand = new RelayCommand(o =>
+            {
+                CurrentView = new CommanNavigationViewModel(5, _events, _apiHelper);
+
+            });
+            
             PurchaseReturnCommand = new RelayCommand(o =>
             {
-                CurrentView = new CommanNavigationViewModel(4, _events, _apiHelper);
+                CurrentView = new CommanNavigationViewModel(6, _events, _apiHelper);
 
             });
             BankAccountCommand = new RelayCommand(o =>

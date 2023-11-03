@@ -13,25 +13,44 @@ using TAN.PostRequest;
 namespace TAN.Views
 {
     /// <summary>
-    /// Interaction logic for PaymentOutPageView.xaml
+    /// Interaction logic for PaymentInPageVIew.xaml
     /// </summary>
-    public partial class PaymentOutPageView : UserControl
+    public partial class PaymentINorOutPageVIew : UserControl
     {
         private IEventAggregator _events;
         private IAPIHelper _apiHelper;
         private int _invoiceNO;
         private bool _hideOrUnhide;
-        public PaymentOutPageView(IEventAggregator events, IAPIHelper aPIHelper, bool hideOrUnhide)
+        private int _orderTypeGlobal;
+
+        public PaymentINorOutPageVIew(IEventAggregator events, IAPIHelper aPIHelper, bool hideorUnhide, int orderType)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
-            var tem = OrderTableSqlite.getInvoiceNo(4);
+            _orderTypeGlobal =orderType;
+
+            int tem = 0;
+            if (orderType == 3)
+            {
+                tem = OrderTableSqlite.getInvoiceNo(3);
+                TittleTextBlock.Text = "Payment-IN";
+                UserAmountTextBlock.Text = "Received";
+
+            }
+            else
+            {
+                tem = OrderTableSqlite.getInvoiceNo(4);
+                TittleTextBlock.Text = "Payment-OUT";
+                UserAmountTextBlock.Text = "Paid";
+
+            }
+
             _invoiceNO = tem == -1 ? 1 : tem + 1;
             AboveInVoiceNo.Text = _invoiceNO.ToString();
             InvoiceDatePicker.SelectedDate = DateTime.Now.Date;
-            _hideOrUnhide = hideOrUnhide;
-            if (hideOrUnhide)
+            _hideOrUnhide = hideorUnhide;
+            if (hideorUnhide)
             {
                 RemainingBalanceDockPanel.Visibility = Visibility.Hidden;
                 BalanceBueDockPanel.Visibility = Visibility.Hidden;
@@ -39,7 +58,6 @@ namespace TAN.Views
             }
             assognCombobox();
         }
-
         private List<PaymentTypeModel> _paymentTypeModels;
         private void assognCombobox()
         {
@@ -51,7 +69,6 @@ namespace TAN.Views
             }
             ComboBoxPaymentType.SelectedIndex = 0;
         }
-
         private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             closePage();
@@ -71,7 +88,7 @@ namespace TAN.Views
             switch (result)
             {
                 case MessageBoxResult.OK:
-                    _ = _events.PublishOnUIThreadAsync(new RemovePaymentOutEventModel());
+                    _ = _events.PublishOnUIThreadAsync(new RemovePaymentInEventModel());
                     break;
                 case MessageBoxResult.Cancel:
 
@@ -109,7 +126,7 @@ namespace TAN.Views
             //assign request
             placeOrder = new PlaceOrderPostRequest();
             //payment
-            placeOrder.payment.paymentType = _paymentTypeModels[ComboBoxPaymentType.SelectedIndex].paymentTypeId;
+            placeOrder.payment.paymentType = _paymentTypeModels[ComboBoxPaymentType.SelectedIndex].paymentTypeId; ;
             placeOrder.payment.paymentDate = InvoiceDatePicker.SelectedDate.ToString();
             placeOrder.payment.paymentAmount = tempReceivebal;
             if (_hideOrUnhide)
@@ -122,7 +139,7 @@ namespace TAN.Views
             placeOrder.order.orderDate = temporderdate;
             placeOrder.order.paymentDone = 1;
             placeOrder.order.customerID = _customerData.customerID;
-            placeOrder.order.orderType = 4;
+            placeOrder.order.orderType = _orderTypeGlobal;
             placeOrder.order.InvoiceNo = int.Parse(AboveInVoiceNo.Text);
             //relation
             placeOrder.productNos = _prouctNo;
@@ -141,11 +158,14 @@ namespace TAN.Views
             //editing customer amount locally
             //ustomerModel customer = CustomerSqllite.getSingleDataByID(_customerData.customerID);
             customerModel customer = (customerModel)_customerData.Clone();
-            customer.TotalAmount += placeOrder.payment.paymentAmount;
+            if (_orderTypeGlobal == 3)
+                customer.TotalAmount -= placeOrder.payment.paymentAmount;
+            else
+                customer.TotalAmount += placeOrder.payment.paymentAmount;
             CustomerSqllite.UpdateByID(customer);
 
 
-            _ = _events.PublishOnUIThreadAsync(new RemovePaymentOutEventModel());
+            _ = _events.PublishOnUIThreadAsync(new RemovePaymentInEventModel());
         }
     }
 }

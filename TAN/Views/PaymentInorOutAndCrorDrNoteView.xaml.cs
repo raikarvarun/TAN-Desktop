@@ -1,21 +1,13 @@
 ﻿using Caliburn.Micro;
 using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TAN.EventModels;
 using TAN.Helpers;
 
@@ -37,12 +29,32 @@ namespace TAN.Views
         }
         private IEventAggregator _events;
         private IAPIHelper _apiHelper;
+        private int _orderTypeGlobal;
 
-        public PaymentInorOutAndCrorDrNoteView(IEventAggregator events, IAPIHelper aPIHelper)
+        public PaymentInorOutAndCrorDrNoteView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
+            _orderTypeGlobal= orderType;
+
+            if (orderType == 3)
+            {
+                AddButtonTextBlock.Text = "Add Payment-In";
+            }
+            else if(orderType == 4)
+            {
+                AddButtonTextBlock.Text = "Add Payment-Out";
+            }
+            else if (orderType == 5)
+            {
+                AddButtonTextBlock.Text = "Add Credit Note";
+            }
+            else if (orderType == 6)
+            {
+                AddButtonTextBlock.Text = "Add Debit Note";
+            }
+
             _saleInvoiceModel = new ObservableCollection<PaymentInModel>();
             BindingOperations.EnableCollectionSynchronization(SaleInvoiceModel, _lockMutex);
             TransactionDatagrid.ItemsSource = SaleInvoiceModel;
@@ -50,9 +62,12 @@ namespace TAN.Views
             assginSales();
         }
 
-        private void AddSaleButtonClicked(object sender, RoutedEventArgs e)
+        private void AddButtonClicked(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
+            if(_orderTypeGlobal==5 || _orderTypeGlobal==6)
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal));
+            else
+                _events.PublishOnUIThreadAsync(new PaymentInEventModel(_orderTypeGlobal));
         }
 
 
@@ -68,7 +83,7 @@ namespace TAN.Views
             return Task.Factory.StartNew(() =>
             {
 
-                _sales = OrderTableSqlite.getInvoicesByPaymentInModel(3); ;
+                _sales = OrderTableSqlite.getInvoicesByPaymentInModel(_orderTypeGlobal); ;
                 foreach (PaymentInModel c in _sales)
                 {
                     _saleInvoiceModel.Add(c);

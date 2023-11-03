@@ -161,15 +161,60 @@ namespace TAN.Views
 
             var customers =OrderTableSqlite.getAllReciversNames();
 
-            ReceiveNameTextBlock1.Text = customers[0].customerName;
-            ReceiveNameTextBlock2.Text = customers[1].customerName;
-            ReceiveNameTextBlock3.Text = customers[2].customerName;
+            if (customers.Count > 0)
+            {
+                ReceiveNameTextBlock1.Text = customers[0].customerName;
+                ReceiveAmountTextBlock1.Text = customers[0].TotalAmount.ToString();
 
-            ReceiveAmountTextBlock1.Text = customers[0].TotalAmount.ToString();
-            ReceiveAmountTextBlock2.Text = customers[1].TotalAmount.ToString();
-            ReceiveAmountTextBlock3.Text = customers[2].TotalAmount.ToString();
+                if (customers.Count > 1)
+                {
+                    ReceiveNameTextBlock2.Text = customers[1].customerName;
+                    ReceiveAmountTextBlock2.Text = customers[1].TotalAmount.ToString();
+                    if (customers.Count > 2)
+                    {
+                        ReceiveNameTextBlock3.Text = customers[2].customerName;
+                        ReceiveAmountTextBlock3.Text = customers[2].TotalAmount.ToString();
+                    }
+                    else
+                    {
+                        ReceiveNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                        ReceiveAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                }
+                else
+                {
+                    ReceiveNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    ReceiveAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    ReceiveNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    ReceiveAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                }
 
-            Moretotaltextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+            }
+            else
+            {
+                ReceiveNameTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                ReceiveAmountTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                ReceiveNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                ReceiveAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                ReceiveNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                ReceiveAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+
+            }
+
+            
+            
+                
+            
+
+
+
+
+
+
+            if (customers.Count > 3)
+                Moretotaltextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+            else
+                Moretotaltextblock.Visibility = System.Windows.Visibility.Hidden;
 
         }
         private void SetPayBox()
@@ -181,16 +226,49 @@ namespace TAN.Views
 
             var customers = OrderTableSqlite.getAllPayersNames();
 
-            PayNameTextBlock1.Text = customers[0].customerName;
-            PayNameTextBlock2.Text = customers[1].customerName;
-            PayNameTextBlock3.Text = customers[2].customerName;
+            if (customers.Count > 0) 
+            {
+                PayNameTextBlock1.Text = customers[0].customerName;
+                PayAmountTextBlock1.Text = (customers[0].TotalAmount * -1).ToString();
+                if(customers.Count > 1)
+                {
+                    PayNameTextBlock2.Text = customers[1].customerName;
+                    PayAmountTextBlock2.Text = (customers[1].TotalAmount * -1).ToString();
+                    if(customers.Count > 2)
+                    {
+                        PayNameTextBlock3.Text = customers[2].customerName;
+                        PayAmountTextBlock3.Text = (customers[2].TotalAmount * -1).ToString();
+                    }
+                    else
+                    {
+                        PayNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                        PayAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                }
+                else
+                {
+                    PayNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    PayAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    PayNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    PayAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+            else
+            {
+                PayNameTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                PayAmountTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                PayNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                PayAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                PayNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                PayAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+            }
 
-            PayAmountTextBlock1.Text = (customers[0].TotalAmount * -1).ToString();
-            PayAmountTextBlock2.Text = (customers[1].TotalAmount * -1).ToString();
-            PayAmountTextBlock3.Text = (customers[2].TotalAmount * -1).ToString();
 
-            MorePaytextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
 
+            if (customers.Count > 3)
+                MorePaytextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+            else
+                MorePaytextblock.Visibility = System.Windows.Visibility.Hidden;
 
 
         }

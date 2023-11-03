@@ -23,30 +23,31 @@ namespace TAN.ViewModels
                 onPropertyChanged();
             }
         }
-        public CommanNavigationViewModel(int n, IEventAggregator events, IAPIHelper aPIHelper)
+        public CommanNavigationViewModel(int n, IEventAggregator events, IAPIHelper aPIHelper )
         {
             _events = events;
             _apiHelper = aPIHelper;
             switch (n)
             {
-                case 0:
-                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
-                    break;
                 case 1:
-                    ShowView = new saleInvoices(_events, _apiHelper);
+                    ShowView = new saleInvoices(_events, _apiHelper, 1);
                     break;
                 case 2:
-                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper );
+                    ShowView = new saleInvoices(_events, _apiHelper, 2);
                     break;
                 case 3:
-                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper, 3);
                     break;
                 case 4:
-                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper , 4 );
                     break;
                 case 5:
-                    ShowView = new saleInvoices(_events, _apiHelper);
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper, 5 );
                     break;
+                case 6:
+                    ShowView = new PaymentInorOutAndCrorDrNoteView(_events, _apiHelper, 6);
+                    break;
+                
             }
         }
     }

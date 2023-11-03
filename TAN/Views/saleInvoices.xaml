@@ -106,7 +106,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="15 1"
-                    Click="AddSaleButtonClicked">
+                    Click="AddButtonClicked">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"
@@ -128,7 +128,7 @@
                         
                     </Path>
                     </Border>
-                    <TextBlock  Text="Add Sale"
+                    <TextBlock x:Name="AddButton"  Text="Add Sale"
                     VerticalAlignment="Center" />
 
                 </StackPanel>

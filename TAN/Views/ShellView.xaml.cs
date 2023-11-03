@@ -11,10 +11,10 @@ namespace TAN.Views
     public partial class ShellView : Window, IShellView
     {
         private AddPartiesView _addPartiesView { get; set; }
-        private PaymentInPageVIew _paymentInPageVIew { get; set; }
+        private PaymentINorOutPageVIew _paymentInPageVIew { get; set; }
         private SalePageView _salePageView { get; set; }
         
-        private PaymentOutPageView _paymentOutPageView { get; set; }
+        
         
 
 
@@ -94,9 +94,9 @@ namespace TAN.Views
         
 
 
-        public void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        public void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper ,int orderType)
         {
-            _paymentInPageVIew = new PaymentInPageVIew(events, aPIHelper, true);
+            _paymentInPageVIew = new PaymentINorOutPageVIew(events, aPIHelper, true,orderType);
             ShellGridMain.Children.Add(_paymentInPageVIew);
         }
         public void removePaymentChildOfShellView()
@@ -104,15 +104,7 @@ namespace TAN.Views
             ShellGridMain.Children.Remove(_paymentInPageVIew);
         }
 
-        public void addPaymentOutShellView(IEventAggregator events, IAPIHelper aPIHelper)
-        {
-            _paymentOutPageView = new PaymentOutPageView(events, aPIHelper, true);
-            ShellGridMain.Children.Add(_paymentOutPageView);
-        }
-        public void removePaymentOutChildOfShellView()
-        {
-            ShellGridMain.Children.Remove(_paymentOutPageView);
-        }
+        
 
        
        

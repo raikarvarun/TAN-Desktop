@@ -29,12 +29,26 @@ namespace TAN.Views
         }
         private IEventAggregator _events;
         private IAPIHelper _apiHelper;
+        private int _orderTypeGlobal;
 
-        public saleInvoices(IEventAggregator events, IAPIHelper aPIHelper)
+        public saleInvoices(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
+            _orderTypeGlobal = orderType;
+
+            if (orderType == 1)
+            {
+                AddButton.Text = "Add Sale";
+            }
+            else
+            {
+                AddButton.Text = "Add Purchase";
+            }
+
+
+
             _saleInvoiceModel = new ObservableCollection<SaleInvoiceModel>();
             BindingOperations.EnableCollectionSynchronization(SaleInvoiceModel, _lockMutex);
             SaleDatagrid.ItemsSource = SaleInvoiceModel;
@@ -42,9 +56,9 @@ namespace TAN.Views
             assginSales();
         }
 
-        private void AddSaleButtonClicked(object sender, RoutedEventArgs e)
+        private void AddButtonClicked(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal));
         }
 
 
@@ -60,7 +74,7 @@ namespace TAN.Views
             return Task.Factory.StartNew(() =>
             {
 
-                _sales = OrderTableSqlite.getInvoices(1);
+                _sales = OrderTableSqlite.getInvoices(_orderTypeGlobal);
                 foreach (SaleInvoiceModel c in _sales)
                 {
                     _saleInvoiceModel.Add(c);

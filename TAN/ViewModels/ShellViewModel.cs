@@ -12,7 +12,7 @@ namespace TAN.ViewModels
         IHandle<AddPartyEventModel>
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
-        , IHandle<PaymentOutEventModel>, IHandle<RemovePaymentOutEventModel>
+        
         
         , IViewAware
     {
@@ -95,7 +95,7 @@ namespace TAN.ViewModels
 
         public Task HandleAsync(PaymentInEventModel message, CancellationToken cancellationToken)
         {
-            _view.addPaymentInShellView(_events, _apiHelper);
+            _view.addPaymentInShellView(_events, _apiHelper , message.orderType);
             return Task.CompletedTask;
         }
 
@@ -105,17 +105,7 @@ namespace TAN.ViewModels
             return Task.CompletedTask;
         }
 
-        public Task HandleAsync(PaymentOutEventModel message, CancellationToken cancellationToken)
-        {
-            _view.addPaymentOutShellView(_events, _apiHelper);
-            return Task.CompletedTask;
-        }
-
-        public Task HandleAsync(RemovePaymentOutEventModel message, CancellationToken cancellationToken)
-        {
-            _view.removePaymentOutChildOfShellView();
-            return Task.CompletedTask;
-        }
+        
 
         
     }
