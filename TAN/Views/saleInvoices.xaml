@@ -152,8 +152,10 @@
                   Foreground="Black"  
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                   VerticalGridLinesBrush="Gray"
-                      GridLinesVisibility="Vertical"
+                   
+                
+                GridLinesVisibility="Vertical"
+                VerticalGridLinesBrush="#dedede"
                       AlternatingRowBackground="#f7f7f7"
                   >
                

@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace DataBaseManger.SqlLite
 {
@@ -188,12 +191,22 @@ namespace DataBaseManger.SqlLite
 
                 string type1 = OrderTableSqlite.getOrderTypebyId(model.orderType);
                 string ordredate = Convert.ToDateTime(model.orderDate).ToString("dd-MM-yyyy");
-                CustomerTransationmodel customerTransation = new CustomerTransationmodel();
-                customerTransation.Type = type1;
-                customerTransation.Number = model.InvoiceNo.ToString();
-                customerTransation.Date1 = ordredate;
-                customerTransation.Total = payment.TotalBalance.ToString();
-                customerTransation.Balance = payment.remainingBalance.ToString();
+
+
+                SolidColorBrush CircleColor = ProductVersionModelSqlite.findCircleColourByTypeID(model.orderType);
+                var myPath = new Path();
+                myPath.Fill = CircleColor;
+                myPath.Stretch = Stretch.Uniform;
+                myPath.Width = 8;
+                myPath.Height = 8;
+                myPath.Data = Geometry.Parse("M480 976q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Z");
+
+                string totalBalance = "₹ " + CommanSQlite.DisplayIndianCurrency(payment.TotalBalance.ToString());
+                string remBalance = "₹ " +  CommanSQlite.DisplayIndianCurrency(payment.remainingBalance.ToString());
+                CustomerTransationmodel customerTransation = new CustomerTransationmodel(myPath, 
+                    type1, model.InvoiceNo.ToString(), ordredate, totalBalance, remBalance
+                    );
+                
 
                 customerTransationmodels.Add(customerTransation);
             }

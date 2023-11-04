@@ -475,10 +475,34 @@ namespace DataBaseManger.SqlLite
             List<float> ans = new List<float>();
             
             while (reader.Read())
-            { 
-                ans.Add(reader.GetFloat(0));
-                ans.Add(reader.GetFloat(1));
-                ans.Add(reader.GetFloat(2));
+            {
+                if (!reader.IsDBNull(0))
+                {
+                    ans.Add(reader.GetFloat(0));
+                    
+                }
+                else
+                {
+                    ans.Add(0);
+                }
+                if(!reader.IsDBNull(1))
+                {
+                    ans.Add(reader.GetFloat(1));
+                }
+                else 
+                { 
+                    ans.Add(0);
+                }
+                if(!reader.IsDBNull(2))
+                {
+                    ans.Add(reader.GetFloat(2));
+                    
+                }
+                else
+                {
+                    ans.Add(0);
+                }
+                
             }
             conn.Close();
             return ans;

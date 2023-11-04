@@ -54,10 +54,9 @@ namespace TAN.ViewModels
 
         public async Task LogIn()
         {
-            UserName = "varun";
+            
+            UserName = "varun123";
             Password = "123";
-            //UserName = "varun123";
-            //Password = "123";
             //UserName = "TANNIBM";
             //Password = "Saurav2333@";
             try
@@ -74,7 +73,7 @@ namespace TAN.ViewModels
 
 
 
-                //PartiesViewModel.assignParties();
+                
 
                 //calling Dashboard data
                 _ = _events.PublishOnUIThreadAsync(new LogOnEventModel());

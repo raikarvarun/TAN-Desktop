@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:TAN.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewmodels:PartiesViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1280">
     <Grid Background="#b7babf" >
 
             
@@ -41,28 +41,49 @@
             </DockPanel>
         </Border>
         <!--ItemsSource="{Binding PARTIES }"-->
-        <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" 
+        <DataGrid  
             Margin="10 0 5 10"  
             Grid.Row="2"
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="2"
                   Grid.Column="0"
-                  Foreground="Black" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                  x:Name="PARTIES" 
+                  Foreground="Black" 
+            
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                    RowStyle="{DynamicResource DataGridRowStyle1}"
+                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle2}"
+                    x:Name="PARTIES" 
                   AutoGenerateColumns="False"
                   
                   IsReadOnly="True"
                   RenderTransformOrigin="0.473,0.462" SelectionChanged="PARTIES_SelectionChanged">
             
             <DataGrid.Columns >
-                <DataGridTextColumn FontSize="18" Header="Name" MinWidth="50" Width="*" Binding="{Binding customerName}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                <DataGridTextColumn 
+                    FontSize="18" 
+                    Header="Name" 
+                    MinWidth="50" 
+                    Width="*" 
+                    Binding="{Binding customerName}" 
+                    ElementStyle="{StaticResource ColumnElementStyle}"
+                    ></DataGridTextColumn>
                 <DataGridTextColumn FontSize="18" Header="Amount" MinWidth="50" Binding="{Binding TotalAmount}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="HorizontalAlignment" Value="Right" />
-                            <Setter Property="Foreground" Value="LimeGreen" />
-                            <Setter Property="Margin" Value="0,5,0,5" />
+                            <Setter 
+                                Property="HorizontalAlignment" 
+                                Value="Right" />
+                            <Setter 
+                                Property="Foreground" 
+                                Value="LimeGreen" />
+                            <Setter 
+                                Property="Margin" 
+                                Value="0,5,0,5" />
+                            
+                            <Setter Property="Padding"
+                                Value="7 5" />
+                            <Setter Property="FontSize"
+                                Value="14" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
@@ -75,36 +96,161 @@
 
         
 
-        <DockPanel x:Name="searchTextDockPannel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  Background="#ffffff" Margin="10 0 5 0" Width="auto" Visibility="Collapsed">
-            <TextBox x:Name="searchTextBox" TextChanged="searchTextBox_TextChanged" Margin="20 0" 
+        
+        <DockPanel x:Name="searchTextDockPannel"
+                    
+                    Grid.ColumnSpan="2" 
+                    
+                    Grid.Column="0" 
+                    Grid.Row="1"  
+                    Background="#ffffff" 
+                    Margin="10 0 5 0" 
+                    Width="auto"
+                    Visibility="Collapsed">
+            <Border BorderBrush="Gray"
+            BorderThickness="1"
+            Opacity="0.7"
+            Margin="30 10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="29" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Path x:Name="SearchClickable1"
+                  Margin="5 0 5 0"
+                  HorizontalAlignment="Left"
+                  Height="20"
+                  Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                  Fill="Gray"
+                  Opacity="0.7"
+                  Stretch="Uniform"
+                  Width="20">
+                        <Path.Resources>
+                            <Style TargetType="Path">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                        <Setter Property="Cursor"
+                                        Value="IBeam" />
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Resources>
+                    </Path>
+
+
+
+                    <Button  Grid.Column="2"
+                     Height="17"
+                     Width="17"
+                     DockPanel.Dock="Right"
+                     x:Name="CloseSearchButton"
+                     Margin="5 0 5 0"
+                     Click="Button_Click_1"
+                     BorderThickness="0"
+                     Background="Transparent">
+                        <Path x:Name="SearchClickable4"
+                      Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                      Fill="Black"
+                      Stretch="Uniform" />
+
+                    </Button>
+                    <TextBox Grid.Column="1"
+                     x:Name="searchTextBox"
+                     Height="30"
+                     TextChanged="searchTextBox_TextChanged"
                      LostFocus="searchTextBox_LostFocus"
-                     
-                     ></TextBox>
+                     HorizontalAlignment="Stretch"
+                     BorderThickness="0"
+                     VerticalAlignment="Center"
+                     Padding="5"
+                     FontSize="16"></TextBox>
+
+
+
+                </Grid>
+            </Border>
         </DockPanel>
 
-        <DockPanel x:Name="searchButtonDP" Grid.Column="0" Grid.Row="1"  Background="#ffffff" Margin="10 0 0 0" Width="auto">
+        <DockPanel x:Name="searchButtonDP"
+           Grid.Column="0"
+           
+           Grid.Row="1"
+           Background="#ffffff"
+           Margin="10 5 0 0"
+           Width="auto">
 
-            <Button Margin="15 7" Content="Search" Click="Button_Click"></Button>
-        </DockPanel>
-        <DockPanel x:Name="addPartyDP" Grid.Column="1" Grid.Row="1"  Background="#ffffff" Margin="0 0 5 0" Width="auto">
-                
-
-            <Button 
-                    Command="{Binding SaveButtonClicked}" 
-                    Content="Add Party" 
-                    Background="#f3a33a" 
-                    Foreground="#fef6ec" 
-                    x:Name="SaveButtonClicked"
-                    FontWeight="Medium"
-                    FontFamily="Times"
-                Margin="15 7"
-                       >
+            <Button Height="40"
+            Width="40"
+            HorizontalAlignment="Left"
+            Margin="5 0 0 0"
+            Click="Button_Click"
+            BorderThickness="0"
+            Background="LightGray">
+                <Path x:Name="SearchClickable"
+              Height="20"
+              Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+              Fill="Black"
+              Stretch="Uniform"
+              Width="20" />
                 <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="7"/>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                        Value="40"></Setter>
                     </Style>
                 </Button.Resources>
             </Button>
+        </DockPanel>
+        
+        <DockPanel x:Name="addPartyDP" 
+                   Grid.Column="1" 
+                   Grid.Row="1"  
+                   Background="#ffffff" 
+                   Margin="0 5 5 0" 
+                    Width="auto">
+
+            <Button Height="40"
+                    
+                    FontSize="14"
+                    Background="#f3a33a"
+                    Foreground="#fef6ec"
+                    x:Name="SaveButtonClicked"
+                    FontWeight="Medium"
+                    FontFamily="Times"
+                    Padding="15 9"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="15 1"
+                    Command="{Binding SaveButtonClicked}">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                    Value="7" />
+                    </Style>
+                </Button.Resources>
+                <StackPanel Orientation="Horizontal">
+                    <Path Height="12"
+                            Data="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"
+                            Stretch="Uniform"
+                            Margin="0 0 5 0"
+                            Width="12">
+                            <Path.Style>
+                            <Style>
+                                <Setter Property="Path.Fill"
+                            Value="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                    <TextBlock  Text="Add Party"
+                    VerticalAlignment="Center" />
+
+                </StackPanel>
+            </Button>
+            
         </DockPanel>
         
 
@@ -130,16 +276,104 @@
             </TextBlock>
         </DockPanel>
 
-        <Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Margin="5 5 10 10" Background="#ffffff">
+        <Grid Grid.Column="2" Grid.Row="4"
+              Grid.ColumnSpan="2" 
+              Margin="5 10 10 10" Background="#ffffff">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <DockPanel VerticalAlignment="Center" >
-                <TextBlock Text="Trasactions" FontSize="18" Margin="30 0 0 0"></TextBlock>
+            <DockPanel Width="auto">
+                <TextBlock FontWeight="Medium"
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            Margin="20 0 0 0"
+                            >TRANSACTIONS</TextBlock>
+
+                <DockPanel x:Name="searchTextDockPannel1"
+               
+                            Background="#ffffff"
+              
+                            Width="220"
+                            MinWidth="60"
+                            HorizontalAlignment="Right"
+                            Height="30"
+                            Visibility="Visible"
+                            Margin="0 0 30 0"
+                            >
+                    <Border BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            Opacity="0.7"
+                            >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="29" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Path x:Name="SearchClickable11"
+                                    Margin="5 0 5 0"
+                                    HorizontalAlignment="Left"
+                                    Height="20"
+                                    Data="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"
+                                    Fill="Gray"
+                                    Opacity="0.7"
+                                    Stretch="Uniform"
+                                    Width="20">
+                                <Path.Resources>
+                                    <Style TargetType="Path">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                                <Setter Property="Cursor"
+                                            Value="IBeam" />
+
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Path.Resources>
+                            </Path>
+
+
+
+                            <Button  Grid.Column="2"
+                                     Height="17"
+                                     Width="17"
+                                     DockPanel.Dock="Right"
+                                     x:Name="CloseSearchButton1"
+                                     Visibility="Collapsed"
+                                     Margin="5 0 5 0"
+                                     Click="CloseSearchButton1_Click"
+                                     BorderThickness="0"
+                                     Background="Transparent">
+                                    <Path x:Name="SearchClickable41"
+                                      Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                                      Fill="Black"
+                                      Stretch="Uniform" />
+
+                            </Button>
+                            <TextBox Grid.Column="1"
+                                    x:Name="searchTextBox1"
+                                    Height="30"
+                                    TextChanged="searchTextBox1_TextChanged"
+                                    LostFocus="searchTextBox1_LostFocus"
+                                    HorizontalAlignment="Stretch"
+                                    BorderThickness="0"
+                                    VerticalAlignment="Center"
+                                    Padding="5"
+                                    FontSize="16"></TextBox>
+
+
+
+                        </Grid>
+                    </Border>
+                </DockPanel>
+
             </DockPanel>
-            
+
 
             <DockPanel Grid.Row="1" >
                 <DataGrid 
@@ -152,20 +386,58 @@
                   x:Name="PartiesTransation" 
                   AutoGenerateColumns="False"
                           AlternatingRowBackground="#f7f7f7"
-                          GridLinesVisibility="Vertical"
-                          VerticalGridLinesBrush="Gray"
+                          
+                    
+                    GridLinesVisibility="Vertical"
+                    VerticalGridLinesBrush="#dedede"
                    IsReadOnly="True"
                   RenderTransformOrigin="0.473,0.462"   
                           FontSize="16" 
                           >
 
                     <DataGrid.Columns >
-                        <DataGridTextColumn  Header="TYPE" MinWidth="10" Width="*" Binding="{Binding Type}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
-                        <DataGridTextColumn  Header="NUMBER" MinWidth="10" Width="*" Binding="{Binding Number}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
-                        <DataGridTextColumn  Header="DATE" MinWidth="10"  Width="*" Binding="{Binding Date1}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
-                        <DataGridTextColumn  Header="TOTAL" MinWidth="10"  Width="*" Binding="{Binding Total}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header=""
+                                                    Width="25">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button 
+                                            Content="{Binding urlimg}"
+                                            Background="Transparent"
+                                            IsHitTestVisible="False"
+                                            BorderBrush="Transparent"
+                                            
+                                            ></Button>
 
-                        <DataGridTextColumn  Header="BALANCE" MinWidth="10"  Width="*" Binding="{Binding Balance}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Header="TYPE" MinWidth="10" Width="*" Binding="{Binding Type}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="NUMBER" MinWidth="10" Width="*" Binding="{Binding Number}" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="Margin" Value="0,5,0,5" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Header="DATE" MinWidth="10"  Width="*" Binding="{Binding Date1}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="TOTAL" MinWidth="10"  Width="*" Binding="{Binding Total}" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="Margin" Value="0,5,0,5" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn  Header="BALANCE" MinWidth="10"  Width="*" Binding="{Binding Balance}" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="Margin" Value="0,5,0,5" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
 
                    </DataGrid.Columns>
                     <DataGrid.Resources>

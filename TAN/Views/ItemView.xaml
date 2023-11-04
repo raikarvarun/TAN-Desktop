@@ -527,16 +527,7 @@
                                         BorderBrush="Transparent"
                                         
                                         ></Button>
-                                    <!--<Path x:Name="SearchClickable"
-                                          Height="10"
-                                          
-                                          Fill="Black"
-                                          Stretch="Uniform"
-                                          Width="10">
-                                        <Path.Data>
-                                            <PathGeometry Figures="{Binding urlimg}" />
-                                        </Path.Data>
-                                    </Path>-->
+                                    
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -187,6 +187,7 @@ namespace DataBaseManger.SqlLite
                 }
                 string price = "₹ " + order.orderSellingPrice.ToString();
                 string ordredate = Convert.ToDateTime(order1.orderDate).ToString("dd-MM-yyyy");
+
                 SolidColorBrush CircleColor = findCircleColourByTypeID(order1.orderType);
                 var myPath = new Path();
                 myPath.Fill = CircleColor;
