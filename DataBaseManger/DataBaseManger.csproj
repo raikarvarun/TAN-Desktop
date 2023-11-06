@@ -117,6 +117,12 @@
     <Compile Include="Model\ItemdataModel.cs" />
     <Compile Include="Model\ItemTransactionModel.cs" />
     <Compile Include="Model\orderProductRelationModel.cs" />
+    <Compile Include="Model\Rl_expense_cat_itemModel.cs" />
+    <Compile Include="Model\ItemUnitModel.cs" />
+    <Compile Include="Model\ItemMapModel.cs" />
+    <Compile Include="Model\ExpenseItemModel.cs" />
+    <Compile Include="Model\ExpenseCategoryModel.cs" />
+    <Compile Include="Model\PurchaseHomeViewBoxModel.cs" />
     <Compile Include="Model\OrderTableModel.cs" />
     <Compile Include="Model\PaymentInModel.cs" />
     <Compile Include="Model\paymentModel.cs" />
@@ -126,8 +132,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlLite\appConfigSqlite.cs" />
     <Compile Include="SqlLite\CustomerSqllite.cs" />
+    <Compile Include="SqlLite\Rl_expense_cat_itemSqllite.cs" />
+    <Compile Include="SqlLite\ItemUnitSqllite.cs" />
+    <Compile Include="SqlLite\ItemMapSqllite.cs" />
+    <Compile Include="SqlLite\ExpenseItemSqllite.cs" />
     <Compile Include="SqlLite\orderProductRelationModelSqlite.cs" />
     <Compile Include="SqlLite\OrderTableSqlite.cs" />
+    <Compile Include="SqlLite\ExpenseCategorySqllite.cs" />
     <Compile Include="SqlLite\paymentSqlite.cs" />
     <Compile Include="SqlLite\PaymentTypeSqlite.cs" />
     <Compile Include="SqlLite\ProductVersionModelSqlite.cs" />

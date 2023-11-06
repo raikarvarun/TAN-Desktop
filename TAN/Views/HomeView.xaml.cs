@@ -11,6 +11,7 @@ using TAN.Notification.Utils;
 using System.Collections.Generic;
 using LiveCharts.Defaults;
 using System.Windows.Media;
+using DataBaseManger;
 
 namespace TAN.Views
 {
@@ -52,11 +53,12 @@ namespace TAN.Views
             }
             MonthGrowth.GrowthText = GrowthDirection;
             MonthGrowth.ActualText = growthMonth.ToString("#.#") + " %";
-            Saletotaltextblock.Text = "₹ " + DisplayIndianCurrency(currentMonthsale);
+            Saletotaltextblock.Text = "₹ " + CommanSQlite.DisplayIndianCurrency(currentMonthsale);
 
             
             SetReceiveBox();
             SetPayBox();
+            SetPusrchaseAmount();
             InitChart();
         }
 
@@ -140,22 +142,65 @@ namespace TAN.Views
 
         
 
-        private string DisplayIndianCurrency(string data)
-        {
-            decimal parsed = decimal.Parse(data, CultureInfo.InvariantCulture);
-            CultureInfo hindi = new CultureInfo("hi-IN");
-            hindi.NumberFormat.CurrencySymbol = "";
-            string text = string.Format(hindi, "{0:c0}", parsed);
-            return text;
-        }
+        
         private void SetPusrchaseAmount()
         {
+            string totalPurchaseAmount = OrderTableSqlite.getSumOfTotalPurchaseAmount();
+            Purchasetotaltextblock.Text = "₹ " + CommanSQlite.DisplayIndianCurrency(totalPurchaseAmount);
 
+
+
+            var customers = OrderTableSqlite.getAllPurchaseNames();
+
+            if (customers.Count > 0)
+            {
+                PurchaseNameTextBlock1.Text = customers[0].ProductName;
+                PurchaseAmountTextBlock1.Text = (customers[0].Amount ).ToString();
+                if (customers.Count > 1)
+                {
+                    PurchaseNameTextBlock2.Text = customers[1].ProductName;
+                    PurchaseAmountTextBlock2.Text = (customers[1].Amount ).ToString();
+                    if (customers.Count > 2)
+                    {
+                        PurchaseNameTextBlock3.Text = customers[2].ProductName;
+                        PurchaseAmountTextBlock3.Text = (customers[2].Amount ).ToString();
+                    }
+                    else
+                    {
+                        PurchaseNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                        PurchaseAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                }
+                else
+                {
+                    PurchaseNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    PurchaseAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                    PurchaseNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                    PurchaseAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+            else
+            {
+                PurchaseNameTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                PurchaseAmountTextBlock1.Visibility = System.Windows.Visibility.Hidden;
+                PurchaseNameTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                PurchaseAmountTextBlock2.Visibility = System.Windows.Visibility.Hidden;
+                PurchaseNameTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+                PurchaseAmountTextBlock3.Visibility = System.Windows.Visibility.Hidden;
+            }
+
+
+
+            if (customers.Count > 3)
+                MorePurchasetextblock.Text = " + " + (customers.Count - 3).ToString() + " More ";
+            else
+                MorePurchasetextblock.Visibility = System.Windows.Visibility.Hidden;
         }
+
         private void SetReceiveBox()
         {
             string totalReceiveAmount = OrderTableSqlite.getSumOfTotalReceiveAmount();
-            Receivetotaltextblock.Text = "₹ " + DisplayIndianCurrency(totalReceiveAmount);
+            Receivetotaltextblock.Text = "₹ " + CommanSQlite.DisplayIndianCurrency(totalReceiveAmount);
 
 
 
@@ -220,7 +265,7 @@ namespace TAN.Views
         private void SetPayBox()
         {
             string totalPayAmount = OrderTableSqlite.getSumOfTotalPayAmount();
-            Paytotaltextblock.Text = "₹ " + DisplayIndianCurrency(totalPayAmount);
+            Paytotaltextblock.Text = "₹ " + CommanSQlite.DisplayIndianCurrency(totalPayAmount);
 
 
 

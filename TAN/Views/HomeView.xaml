@@ -392,6 +392,8 @@
                             </Grid>
                         </DockPanel>
                     </Border>
+                    
+                    <!--Purchase BOx-->
                     <Border MinHeight="220"
                             MinWidth="220"
                             BorderThickness="1"
@@ -400,7 +402,113 @@
                             Background="#ffffff"
                             Margin="15 15 30 15"
                             BorderBrush="Transparent">
-                        <DockPanel>
+                        <DockPanel Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="5*"/>
+
+
+
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0">
+                                    
+
+                                    <Path Height="20"
+                                            Data="M286.788 975Q257 975 236 953.788q-21-21.213-21-51Q215 873 236.212 852q21.213-21 51-21Q317 831 338 852.212q21 21.213 21 51Q359 933 337.788 954q-21.213 21-51 21Zm400 0Q657 975 636 953.788q-21-21.213-21-51Q615 873 636.212 852q21.213-21 51-21Q717 831 738 852.212q21 21.213 21 51Q759 933 737.788 954q-21.213 21-51 21ZM205 255h589.074q22.964 0 34.945 21Q841 297 829 318L694 561q-11 19-28.559 30.5Q647.881 603 627 603H324l-56 104h491v60H277q-42 0-60.5-28t.5-63l64-118-152-322H51v-60h117l37 79Z"
+                                            Stretch="Uniform"
+                                            Fill="#19aaf1"
+
+                                            Width="20"
+                                            Margin="5 0 5 0"/>
+                                    <TextBlock
+                                        Text="Purchase"
+                                        Foreground="#676a79"
+                                        FontSize="20"
+                                        />
+
+
+                                </DockPanel>
+                                <DockPanel Grid.Row="1">
+
+                                    <TextBlock 
+                                           x:Name="Purchasetotaltextblock"
+                                          Text="1526300"
+                                          FontSize="24"
+                                           FontWeight="Bold"
+                                          Margin="30 0 0 0"></TextBlock>
+                                </DockPanel>
+                                <DockPanel Grid.Row="2">
+
+                                </DockPanel>
+                                <Button Grid.Row="3"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Style="{StaticResource MyButtonStyle}"
+                                        >
+                                    <Grid Margin="10 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel>
+                                            <TextBlock x:Name="PurchaseNameTextBlock1" 
+                                                        FontSize="16"
+                                                        Foreground="#9aa1ae"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        />
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="1">
+                                            <TextBlock x:Name="PurchaseNameTextBlock2" 
+                                                        FontSize="16"
+                                                        Foreground="#9aa1ae"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        />
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="2">
+                                            <TextBlock x:Name="PurchaseNameTextBlock3" 
+                                                    FontSize="16"
+                                                    Foreground="#9aa1ae"
+                                                    TextTrimming="CharacterEllipsis"
+                                                    />
+                                        </DockPanel>
+
+                                        <DockPanel Grid.Column="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PurchaseAmountTextBlock1" 
+                                                        FontSize="16"
+                                                        Foreground="#32c892"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PurchaseAmountTextBlock2" 
+                                                        FontSize="16"
+                                                        Foreground="#32c892"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="PurchaseAmountTextBlock3" 
+                                                        FontSize="16"
+                                                        Foreground="#32c892"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
+                                            <TextBlock x:Name="MorePurchasetextblock"
+                                                        Text="more"
+                                                        FontSize="16"
+                                                        TextAlignment="Center"
+                                                        Foreground="#9aa1ae"
+                                                        Margin="10 10 0 0"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </Button>
+
+                            </Grid>
                         </DockPanel>
                     </Border>
                 </Grid>

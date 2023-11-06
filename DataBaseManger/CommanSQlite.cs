@@ -14,6 +14,11 @@ namespace DataBaseManger
             appConfigSqlite.createTable();
             OrderTableSqlite.createTable();
             PaymentTypeSqlite.createTable();
+            ExpenseCategorySqllite.createTable();
+            ExpenseItemSqllite.createTable();
+            Rl_expense_cat_itemSqllite.createTable() ;
+            ItemUnitSqllite.createTable();
+            ItemMapSqllite.createTable();
         }
         public static string DisplayIndianCurrency(string data)
         {

@@ -395,6 +395,32 @@ namespace DataBaseManger.SqlLite
                 }
                 else
                 {
+                    ans = (reader.GetFloat(0) * -1).ToString();
+                }
+
+            }
+            conn.Close();
+            return ans;
+        }
+        public static string getSumOfTotalPurchaseAmount()
+        {
+
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+
+            string query = "SELECT sum(orderSellingPrice) as sum FROM (SELECT productNo ,sum(orderSellingPrice) as orderSellingPrice from orderProductRelationModel left JOIN OrderTable on orderProductRelationModel.orderID = OrderTable.orderID where OrderTable.orderType=2 GROUP by productNo)";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            string ans = null;
+
+            while (reader.Read())
+            {
+                if (reader.IsDBNull(0))
+                {
+                    ans = "0";
+                }
+                else
+                {
                     ans = reader.GetFloat(0).ToString();
                 }
 
@@ -430,6 +456,29 @@ namespace DataBaseManger.SqlLite
             return customerModels;
         }
 
+        public static List<PurchaseHomeViewBoxModel> getAllPurchaseNames()
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "SELECT productName , orderSellingPrice from  (SELECT productNo ,sum(orderSellingPrice) as orderSellingPrice from orderProductRelationModel left JOIN OrderTable on orderProductRelationModel.orderID = OrderTable.orderID where OrderTable.orderType=2 GROUP by productNo) as data LEFT JOIN PRODUCTVERSION  ON data.productNo= PRODUCTVERSION.productNo ";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<PurchaseHomeViewBoxModel> purchaseModels = new List<PurchaseHomeViewBoxModel>();
+
+            while (reader.Read())
+            {
+
+                var data = new PurchaseHomeViewBoxModel(
+                    (string)reader["productName"],
+                    reader.GetFloat(1)
+                    
+                    );
+
+                purchaseModels.Add(data);
+            }
+            conn.Close();
+            return purchaseModels;
+        }
 
         public static List<ChartSalesModel> getChartData()
         {

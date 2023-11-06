@@ -13,6 +13,35 @@ using TAN.PostRequest;
 
 namespace TAN.Helpers
 {
+    public class Comman<T>
+    {
+        
+
+        public async Task<T> GetAll(string token , string url1 , HttpClient ApiClient)
+        {
+            var query = new Dictionary<string, string>()
+            {
+                ["token"] = token
+
+            };
+            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+            apiUrl += url1;
+            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<T>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+    }
+
     public class APIHelper : IAPIHelper
     {
 
@@ -76,28 +105,11 @@ namespace TAN.Helpers
                 }
             }
         }
-        public async Task<customerResponse> getAllCustomers(string token)
-        {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/customer/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<customerResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+        
+        public Task<customerResponse> getAllCustomers(string token)
+        { 
+            Comman<customerResponse> comman = new Comman<customerResponse>();
+            return comman.GetAll(token , "/api/customer/all" , ApiClient);
         }
 
         public async Task<paymentResponse> getAllPayments(string token)
@@ -173,8 +185,36 @@ namespace TAN.Helpers
                 }
             }
         }
+        public Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token)
+        {
+            Comman< GetAllCommanResponse<ExpenseCategoryModel> > comman = new Comman<GetAllCommanResponse<ExpenseCategoryModel>>();
+            return comman.GetAll(token, "/api/expensecat/all", ApiClient);
+        }
 
+        public Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token)
+        {
+            Comman<GetAllCommanResponse<ExpenseItemModel>> comman = new Comman<GetAllCommanResponse<ExpenseItemModel>>();
+            return comman.GetAll(token, "/api/expenseitem/all", ApiClient);
+        }
 
+        public Task<GetAllCommanResponse<Rl_expense_cat_itemModel>> getAllRl_expense_cat_item(string token)
+        {
+            Comman<GetAllCommanResponse<Rl_expense_cat_itemModel>> comman = new Comman<GetAllCommanResponse<Rl_expense_cat_itemModel>>();
+            return comman.GetAll(token, "/api/rlexpensecatitem/all", ApiClient);
+        }
+
+        public Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token)
+        {
+            Comman<GetAllCommanResponse<ItemUnitModel>> comman = new Comman<GetAllCommanResponse<ItemUnitModel>>();
+            return comman.GetAll(token, "/api/itemunit/all", ApiClient);
+        }
+
+        public Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token)
+        {
+            Comman<GetAllCommanResponse<ItemMapModel>> comman = new Comman<GetAllCommanResponse<ItemMapModel>>();
+            return comman.GetAll(token, "/api/itemmap/all", ApiClient);
+        }
+        
         public async Task<customerPostResponse> postCustomers(string token, customerModel customer)
         {
 

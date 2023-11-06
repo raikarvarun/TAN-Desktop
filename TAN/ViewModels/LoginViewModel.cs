@@ -55,10 +55,10 @@ namespace TAN.ViewModels
         public async Task LogIn()
         {
             
-            UserName = "varun123";
-            Password = "123";
-            //UserName = "TANNIBM";
-            //Password = "Saurav2333@";
+            //UserName = "varun123";
+            //Password = "123";
+            UserName = "TANNIBM";
+            Password = "Saurav2333@";
             try
             {
                 var result = await _apiHelper.Authicate(UserName, Password);

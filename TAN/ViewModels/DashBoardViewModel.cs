@@ -26,7 +26,7 @@ namespace TAN.ViewModels
         public RelayCommand PurchaseReturnCommand { get; set; }
         public RelayCommand BankAccountCommand { get; set; }
 
-
+        public RelayCommand ExpenseCommand { get; set; }
 
 
 
@@ -119,6 +119,11 @@ namespace TAN.ViewModels
             PurchaseReturnCommand = new RelayCommand(o =>
             {
                 CurrentView = new CommanNavigationViewModel(6, _events, _apiHelper);
+
+            });
+            ExpenseCommand = new RelayCommand(o =>
+            {
+                CurrentView = new ExpenseView();
 
             });
             BankAccountCommand = new RelayCommand(o =>
