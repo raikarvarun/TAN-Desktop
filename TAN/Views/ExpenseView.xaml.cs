@@ -23,18 +23,35 @@ namespace TAN.Views
         public ExpenseView()
         {
             InitializeComponent();
+            CategoryButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
+            ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
+
+            ExpenseMainItem.Content = new ExpenseCatView();
+            CategoryButton.Foreground = new SolidColorBrush(Colors.Black);
+            CategoryButton.BorderThickness = new Thickness(0, 0, 0, 2);
         }
 
         
 
         private void ItemsButton_Click(object sender, RoutedEventArgs e)
         {
+            ItemsButton.Foreground = new SolidColorBrush(Colors.Black);
+            ItemsButton.BorderThickness = new Thickness(0, 0, 0, 2);
+
+            CategoryButton.BorderThickness = new Thickness(0);
+
+            CategoryButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
 
         }
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
             ExpenseMainItem.Content = new ExpenseCatView();
+            CategoryButton.Foreground  = new SolidColorBrush(Colors.Black);
+            CategoryButton.BorderThickness = new Thickness(0, 0 , 0 , 2);
+
+            ItemsButton.BorderThickness = new Thickness(0);
+            ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
         }
     }
 }

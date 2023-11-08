@@ -29,7 +29,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="50" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -238,13 +238,14 @@
                     Background="#f3a33a"
                     Foreground="#fef6ec"
                     x:Name="SaveButtonClicked"
+                    Click="SaveButtonClicked_Click"
                     FontWeight="Medium"
                     FontFamily="Times"
                     Padding="15 9"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="15 1"
-                    Command="{Binding SaveButtonClicked}">
+                    >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"

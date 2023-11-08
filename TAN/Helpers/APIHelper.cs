@@ -17,7 +17,7 @@ namespace TAN.Helpers
     {
         
 
-        public async Task<T> GetAll(string token , string url1 , HttpClient ApiClient)
+        public async Task<GetAllCommanResponse<T>> GetAll(string token , string url1 , HttpClient ApiClient)
         {
             var query = new Dictionary<string, string>()
             {
@@ -31,7 +31,40 @@ namespace TAN.Helpers
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<T>();
+                    var result = await response.Content.ReadAsAsync<GetAllCommanResponse<T>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<PostReqCommanResponse<T>> PostData(string token, string url1 , T newData , HttpClient ApiClient)
+        {
+
+            
+
+            var content = JsonConvert.SerializeObject(newData);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var data = new ByteArrayContent(buffer);
+
+            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var query = new Dictionary<string, string>()
+            {
+                ["token"] = token
+
+            };
+            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+            apiUrl += url1;
+            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<T>>();
                     return result;
                 }
                 else
@@ -81,6 +114,7 @@ namespace TAN.Helpers
                 }
             }
         }
+        
         public async Task<apiVersionResponse> getApiVersion(string token)
         {
 
@@ -106,168 +140,154 @@ namespace TAN.Helpers
             }
         }
         
-        public Task<customerResponse> getAllCustomers(string token)
+        //
+        //
+        //
+        // Get Request
+
+
+
+        public Task<GetAllCommanResponse<customerModel>> getAllCustomers(string token)
         { 
-            Comman<customerResponse> comman = new Comman<customerResponse>();
+            Comman<customerModel> comman = new Comman<customerModel>();
             return comman.GetAll(token , "/api/customer/all" , ApiClient);
         }
 
-        public async Task<paymentResponse> getAllPayments(string token)
+        public Task<GetAllCommanResponse<paymentModel>> getAllPayments(string token)
         {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/payment/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<paymentResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            Comman<paymentModel> comman = new Comman<paymentModel>();
+            return comman.GetAll(token, "/api/payment/all", ApiClient);
         }
 
-
-
-        public async Task<productVersionResponse> getAllProductVersions(string token)
+        public Task<GetAllCommanResponse<productVersionModel>> getAllProductVersions(string token)
         {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/productversion/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<productVersionResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            Comman<productVersionModel> comman = new Comman<productVersionModel>();
+            return comman.GetAll(token, "/api/productversion/all", ApiClient);
         }
 
-        public async Task<orderProductRelationResponse> getAllorderProductRelation(string token)
+        public Task<GetAllCommanResponse<orderProductRelationModel>> getAllorderProductRelation(string token)
         {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/orderproductrelation/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<orderProductRelationResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+            Comman<orderProductRelationModel> comman = new Comman<orderProductRelationModel>();
+            return comman.GetAll(token, "/api/orderproductrelation/all", ApiClient);
         }
+
         public Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token)
         {
-            Comman< GetAllCommanResponse<ExpenseCategoryModel> > comman = new Comman<GetAllCommanResponse<ExpenseCategoryModel>>();
+            Comman< ExpenseCategoryModel > comman = new Comman<ExpenseCategoryModel>();
             return comman.GetAll(token, "/api/expensecat/all", ApiClient);
         }
 
         public Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token)
         {
-            Comman<GetAllCommanResponse<ExpenseItemModel>> comman = new Comman<GetAllCommanResponse<ExpenseItemModel>>();
+            Comman<ExpenseItemModel> comman = new Comman<ExpenseItemModel>();
             return comman.GetAll(token, "/api/expenseitem/all", ApiClient);
         }
 
         public Task<GetAllCommanResponse<Rl_expense_cat_itemModel>> getAllRl_expense_cat_item(string token)
         {
-            Comman<GetAllCommanResponse<Rl_expense_cat_itemModel>> comman = new Comman<GetAllCommanResponse<Rl_expense_cat_itemModel>>();
+            Comman<Rl_expense_cat_itemModel> comman = new Comman<Rl_expense_cat_itemModel>();
             return comman.GetAll(token, "/api/rlexpensecatitem/all", ApiClient);
         }
 
         public Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token)
         {
-            Comman<GetAllCommanResponse<ItemUnitModel>> comman = new Comman<GetAllCommanResponse<ItemUnitModel>>();
+            Comman<ItemUnitModel> comman = new Comman<ItemUnitModel>();
             return comman.GetAll(token, "/api/itemunit/all", ApiClient);
         }
 
         public Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token)
         {
-            Comman<GetAllCommanResponse<ItemMapModel>> comman = new Comman<GetAllCommanResponse<ItemMapModel>>();
+            Comman<ItemMapModel> comman = new Comman<ItemMapModel>();
             return comman.GetAll(token, "/api/itemmap/all", ApiClient);
         }
-        
-        public async Task<customerPostResponse> postCustomers(string token, customerModel customer)
+
+        public Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token)
         {
+            Comman<OrderTableModel> comman = new Comman<OrderTableModel>();
+            return comman.GetAll(token, "/api/order/all", ApiClient);
+        }
 
-            var data = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("customerName", customer.customerName),
-                new KeyValuePair<string, string>("customerTypeID", customer.customerTypeID.ToString()),
-                new KeyValuePair<string, string>("customerMobile", customer.customerMobile),
-                new KeyValuePair<string, string>("customerAddress", customer.customerAddress),
-                new KeyValuePair<string, string>("customerOpeningAmount", customer.customerOpeningAmount.ToString()),
-                new KeyValuePair<string, string>("TotalAmount", customer.TotalAmount.ToString())
-            });
-
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/customer/insert";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<customerPostResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
+        public Task<GetAllCommanResponse<PaymentTypeModel>> getAllPaymentTypes(string token)
+        {
+            Comman<PaymentTypeModel> comman = new Comman<PaymentTypeModel>();
+            return comman.GetAll(token, "/api/paymenttype/all", ApiClient);
         }
 
 
-        public async Task<productPostResponse> postProducts(string token, productVersionModel product)
+
+        //
+        //
+        //
+        //Post Request
+        public async Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer)
+        {
+            Comman<customerModel> comman = new Comman<customerModel>();
+            return await comman.PostData(token, "/api/customer/all", customer,  ApiClient);
+            
+        }
+
+        //public async Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer)
+        //{
+
+        //    //var data = new FormUrlEncodedContent(new[]
+        //    //{
+        //    //    new KeyValuePair<string, string>("customerName", customer.customerName),
+        //    //    new KeyValuePair<string, string>("customerTypeID", customer.customerTypeID.ToString()),
+        //    //    new KeyValuePair<string, string>("customerMobile", customer.customerMobile),
+        //    //    new KeyValuePair<string, string>("customerAddress", customer.customerAddress),
+        //    //    new KeyValuePair<string, string>("customerOpeningAmount", customer.customerOpeningAmount.ToString()),
+        //    //    new KeyValuePair<string, string>("TotalAmount", customer.TotalAmount.ToString())
+        //    //});
+
+        //    var content = JsonConvert.SerializeObject(customer);
+        //    var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+        //    var data = new ByteArrayContent(buffer);
+
+        //    data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+        //    var query = new Dictionary<string, string>()
+        //    {
+        //        ["token"] = token
+
+        //    };
+        //    string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+        //    apiUrl += "/api/customer/insert";
+        //    apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+        //    using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
+        //    {
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var result = await response.Content.ReadAsAsync<PostReqCommanResponse<customerModel>>();
+        //            return result;
+        //        }
+        //        else
+        //        {
+        //            throw new Exception(response.ReasonPhrase);
+        //        }
+        //    }
+        //}
+
+
+        public async Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product)
         {
 
-            var data = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("productType", product.productType),
-                new KeyValuePair<string, string>("productPrice", product.productPrice.ToString()),
-                new KeyValuePair<string, string>("productQuntity", product.productQuntity.ToString()),
-                new KeyValuePair<string, string>("productImage", product.productImage),
-                new KeyValuePair<string, string>("productName", product.productName.ToString()),
-                new KeyValuePair<string, string>("openingQuantity", product.openingQuantity.ToString()),
-                new KeyValuePair<string, string>("atprice", product.atprice.ToString()),
-                new KeyValuePair<string, string>("salePrice", product.salePrice.ToString()),
-                new KeyValuePair<string, string>("purchasePrice", product.purchasePrice.ToString())
+            //var data = new FormUrlEncodedContent(new[]
+            //{
+            //    new KeyValuePair<string, string>("productType", product.productType),
+            //    new KeyValuePair<string, string>("productPrice", product.productPrice.ToString()),
+            //    new KeyValuePair<string, string>("productQuntity", product.productQuntity.ToString()),
+            //    new KeyValuePair<string, string>("productImage", product.productImage),
+            //    new KeyValuePair<string, string>("productName", product.productName.ToString()),
+            //    new KeyValuePair<string, string>("openingQuantity", product.openingQuantity.ToString()),
+            //    new KeyValuePair<string, string>("atprice", product.atprice.ToString()),
+            //    new KeyValuePair<string, string>("salePrice", product.salePrice.ToString()),
+            //    new KeyValuePair<string, string>("purchasePrice", product.purchasePrice.ToString())
 
-            });
-
+            //});
+            var content = JsonConvert.SerializeObject(product);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var data = new ByteArrayContent(buffer);
+            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var query = new Dictionary<string, string>()
             {
                 ["token"] = token
@@ -280,7 +300,7 @@ namespace TAN.Helpers
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<productPostResponse>();
+                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<productVersionModel>>();
                     return result;
                 }
                 else
@@ -289,16 +309,21 @@ namespace TAN.Helpers
                 }
             }
         }
-        public async Task<PaymentTypePostResponse> postPaymentType(string token, PaymentTypeModel paymentType)
+        public async Task<PostReqCommanResponse<PaymentTypeModel>> postPaymentType(string token, PaymentTypeModel paymentType)
         {
 
-            var data = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("paymentTypeType", paymentType.paymentTypeType),
-                new KeyValuePair<string, string>("paymentTypeName", paymentType.paymentTypeName)
+            //var data = new FormUrlEncodedContent(new[]
+            //{
+            //    new KeyValuePair<string, string>("paymentTypeType", paymentType.paymentTypeType),
+            //    new KeyValuePair<string, string>("paymentTypeName", paymentType.paymentTypeName)
 
 
-            });
+            //});
+            var content = JsonConvert.SerializeObject(paymentType);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var data = new ByteArrayContent(buffer);
+            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
 
             var query = new Dictionary<string, string>()
             {
@@ -312,7 +337,7 @@ namespace TAN.Helpers
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<PaymentTypePostResponse>();
+                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<PaymentTypeModel>>();
                     return result;
                 }
                 else
@@ -321,61 +346,14 @@ namespace TAN.Helpers
                 }
             }
         }
-        public async Task<OrderTableResponse> getAllOrderTable(string token)
-        {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/order/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<OrderTableResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
-
-
-        public async Task<PaymentTypeResponse> getAllPaymentTypes(string token)
-        {
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/paymenttype/all";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<PaymentTypeResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
+        
         public async Task<PlaceOrderPostResponse> postPlaceOrder(string token, PlaceOrderPostRequest PlaceOrder)
         {
 
             var content = JsonConvert.SerializeObject(PlaceOrder);
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            var byteContent = new ByteArrayContent(buffer);
-            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var data = new ByteArrayContent(buffer);
+            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var query = new Dictionary<string, string>()
             {
@@ -385,7 +363,7 @@ namespace TAN.Helpers
             string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
             apiUrl += "/api/placeorder/insert";
             apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, byteContent))
+            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -395,6 +373,7 @@ namespace TAN.Helpers
                 else
                 {
                     throw new Exception(response.ReasonPhrase);
+
                 }
             }
         }

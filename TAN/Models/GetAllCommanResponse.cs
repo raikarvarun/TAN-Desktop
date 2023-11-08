@@ -1,4 +1,4 @@
-﻿using DataBaseManger.Model;
+﻿
 using System.Collections.Generic;
 
 namespace TAN.Models

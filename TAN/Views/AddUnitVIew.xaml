@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TAN.Views.AddItemView"
+﻿<UserControl x:Class="TAN.Views.AddUnitVIew"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -36,7 +36,7 @@
 
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Add Item"
+                    <TextBlock Text="NEW UNIT"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Left"
                                Margin="20 5 0 0"
@@ -80,130 +80,24 @@
 
                     </Border>
 
-                    <controls:CusTextBox x:Name="ItemName"
-                                         PlaceHolder="Item Name *"
+                    <controls:CusTextBox x:Name="UnitName"
+                                         PlaceHolder="Unit Name *"
                                          Grid.Row="1"
                                          Margin="35 20 0 0"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Width="250" />
-                    <Button Grid.Column="1"
-                            Grid.Row="1"
-                            Width="100"
-                            Height="50"
-                            HorizontalAlignment="Left"
-                            Margin="20 0 0 0"
-                            Background="#d2e9ff"
-                            Foreground="#3b96ee"
-                            Content="Edit Unit"
-                            FontWeight="Bold"
-                            FontSize="20"
-                            Click="EditUnitButton_Click"
-                            >
-                        
-                    </Button>
-                    
-                    <Border Grid.Column="0"
-                            Grid.Row="1"
-                            Panel.ZIndex="-1"
-                            Grid.ColumnSpan="3"
-                            BorderBrush="Gray"
-                            Margin="10 0"
-                            BorderThickness="0 0 0 0.5"
-                            Opacity="0.5"
-                            Background="Transparent">
 
-                    </Border>
+                    <controls:CusTextBox x:Name="ShortName"
+                         PlaceHolder="Short Name *"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Margin="35 20 0 0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Width="250" />
 
-                    <TextBlock Grid.Row="2"
-                               Grid.Column="0"
-                               Text="Pricing"
-                               FontSize="18"
-                               FontWeight="SemiBold"
-                               Margin="20 30 0 0"></TextBlock>
-
-
-
-                    <StackPanel Orientation="Vertical"
-                                Background="#f9fafa"
-                                Width="auto"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Margin="20 0 0 0"
-                                Grid.Row="3">
-                        <TextBlock Text="Purchase Price"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Margin="25 25 0 10">
-
-                        </TextBlock>
-                        <controls:CusTextBox x:Name="PurchasePrice"
-                                             PlaceHolder="Purchase Price"
-                                             Grid.Row="3"
-                                             Margin="25 0 40 20"
-                                             HorizontalAlignment="Left"
-                                             VerticalAlignment="Top"
-                                             Width="250" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="3"
-                                Grid.Column="1"
-                                Background="#f9fafa"
-                                Width="auto"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top">
-                        <TextBlock Text="Sale Price"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Margin="25 25 0 10">
-
-                        </TextBlock>
-                        <controls:CusTextBox x:Name="SalePrice"
-                                             PlaceHolder="Sale Price"
-                                             Margin="25 0 40 20"
-                                             HorizontalAlignment="Left"
-                                             VerticalAlignment="Top"
-                                             Width="250" />
-                    </StackPanel>
-
-
-
-                    <Border Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            Grid.Row="3"
-                            BorderThickness="0 0 0 0.5"
-                            BorderBrush="Gray"
-                            Margin="10 0"
-                            Opacity="0.5"
-                            Panel.ZIndex="-1"
-                            Background="Transparent"></Border>
-
-
-                    <TextBlock Grid.Row="4"
-                               Grid.Column="0"
-                               Text="Opening Stock"
-                               FontWeight="SemiBold"
-                               FontSize="18"
-                               Margin="20 20 0 0"></TextBlock>
-
-                    <controls:CusTextBox x:Name="Amount"
-                                         PlaceHolder="Opening Balance"
-                                         Grid.Row="5"
-                                         Margin="35 0 0 0"
-                                         HorizontalAlignment="Left"
-                                         VerticalAlignment="Top"
-                                         Width="250" />
-                    <controls:CusTextBox x:Name="Atprice"
-                                         PlaceHolder="AtPrice"
-                                         Grid.Row="5"
-                                         Grid.Column="1"
-                                         Margin="25 0 0 0"
-                                         HorizontalAlignment="Left"
-                                         VerticalAlignment="Top"
-                                         Width="250" />
-
-
-                    <Border Grid.Column="0"
+                <Border Grid.Column="0"
                             Grid.ColumnSpan="3"
                             Grid.Row="5"
                             BorderThickness="0 0 0 0.5"
@@ -217,7 +111,8 @@
                     <Button Grid.Column="2"
                             Grid.Row="6"
                             Margin="50 10 130 0"
-                            Click="Button_Click_2"
+                            x:Name="SaveNewButton"
+                            Click ="SaveNewButton_Click"
                             FontSize="18"
                             Padding="10 5"
                             VerticalAlignment="Top"

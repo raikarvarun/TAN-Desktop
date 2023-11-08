@@ -37,7 +37,7 @@ namespace TAN.ViewModels
 
         public HomeViewModel HomeVM { get; set; }
         public PartiesViewModel PartiesVM { get; set; }
-        public ItemViewModel ItemsVM { get; set; }
+       
 
 
         private object _currentView;
@@ -59,7 +59,7 @@ namespace TAN.ViewModels
             _apiHelper = aPIHelper;
             HomeVM = new HomeViewModel();
             PartiesVM = new PartiesViewModel(events);
-            ItemsVM = new ItemViewModel(events, changeCurrentViewtoAddItems);
+            
 
 
             CurrentView = HomeVM;
@@ -84,7 +84,7 @@ namespace TAN.ViewModels
 
             ItemViewCommand = new RelayCommand(o =>
             {
-                CurrentView = ItemsVM;
+                CurrentView = new ItemMainVIew(0, _events, changeCurrentViewtoAddItems, changeCurrentViewtoAddUnits);
             });
 
             saleInvoicesCommand = new RelayCommand(o =>
@@ -132,6 +132,15 @@ namespace TAN.ViewModels
 
             });
         }
+        public void changeCurrentViewtoAddUnits()
+        {
+            CurrentView = new AddUnitVIew(_events, _apiHelper, changeCurrentViewtoUnits);
+        }
+        public void changeCurrentViewtoUnits()
+        {
+            CurrentView = new ItemMainVIew(1,_events, changeCurrentViewtoItems , changeCurrentViewtoAddUnits);
+        }
+
 
         public void changeCurrentViewtoAddItems()
         {
@@ -139,7 +148,7 @@ namespace TAN.ViewModels
         }
         public void changeCurrentViewtoItems()
         {
-            CurrentView = ItemsVM;
+            CurrentView = new ItemMainVIew(0,_events, changeCurrentViewtoAddItems , changeCurrentViewtoAddUnits);
         }
         public void changeCurrentViewtoAddBank()
         {

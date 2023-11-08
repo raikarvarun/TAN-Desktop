@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:TAN.Controls"
                     xmlns:controls="clr-namespace:TAN.Notification.Controls"
+                    xmlns:controls1="clr-namespace:TAN.Controls"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:TAN.Notification"
                     xmlns:helper="clr-namespace:TAN.Helpers">
@@ -74,10 +75,15 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="0" />
                             </Grid.RowDefinitions>
-                            <TextBox x:Name="CustomerSuggestionEditor"
+                            <controls1:CusTextBox x:Name="CustomerSuggestionEditor"
+                                         PlaceHolder="Customer *"
+                                         
+                                         
+                                          />
+                            <!--<TextBox x:Name="CustomerSuggestionEditor"
                                      AutoWordSelection="True"
                                      FontSize="16"
-                                     FontWeight="SemiBold"></TextBox>
+                                     FontWeight="SemiBold"></TextBox>-->
                             <local:CustomerSuggestion x:Name="CustomerSuggestion"
                                                       Grid.Row="1"
                                                       HorizontalAlignment="Stretch"></local:CustomerSuggestion>

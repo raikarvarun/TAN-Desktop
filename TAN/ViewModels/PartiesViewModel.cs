@@ -16,6 +16,7 @@ namespace TAN.ViewModels
             SaveButtonClicked = new RelayCommand(o =>
             {
                 _events.PublishOnUIThreadAsync(new AddPartyEventModel());
+                
             });
 
         }

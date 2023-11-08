@@ -13,9 +13,9 @@ namespace TAN.Views
         private AddPartiesView _addPartiesView { get; set; }
         private PaymentINorOutPageVIew _paymentInPageVIew { get; set; }
         private SalePageView _salePageView { get; set; }
-        
-        
-        
+        private AddSelectUnit _addSelectUnit { get; set; }
+
+
 
 
 
@@ -104,11 +104,21 @@ namespace TAN.Views
             ShellGridMain.Children.Remove(_paymentInPageVIew);
         }
 
-        
+        public void addSelectUnitShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        {
+            _addSelectUnit = new AddSelectUnit(events, aPIHelper);
+            ShellGridMain.Children.Add(_addSelectUnit);
+        }
+        public void removeSelectUnitChildOfShellView()
+        {
+            ShellGridMain.Children.Remove(_addSelectUnit);
+        }
 
-       
-       
-        
-        
+
+
+
+
+
+
     }
 }

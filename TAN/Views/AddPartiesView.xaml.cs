@@ -67,7 +67,7 @@ namespace TAN.Views
             var data = new customerModel(1, customerName, 0, customerNumber, customerAddress, customerOP, TotalAmount);
             var ans = await _apiHelper.postCustomers(token, data);
             CustomerSqllite.addData(ans.data);
-            PartiesViewModel partiesViewModel = new PartiesViewModel(_events);
+            
             _ = _events.PublishOnUIThreadAsync(new ClearChildShellView());
         }
 

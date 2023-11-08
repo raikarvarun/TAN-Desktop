@@ -225,6 +225,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="15 1"
+                    
                     Command="{Binding SaveButtonClicked}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TAN.Views.ExpenseView"
+﻿<UserControl x:Class="TAN.Views.ItemMainVIew"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,11 +18,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <Button x:Name="CategoryButton"
-                Content="CATEGORY"
+
+            <Button x:Name="ProductsButton"
+                Content="PRODUCTS"
                     
-                    Click="CategoryButton_Click"
+                    Click="PoductsButton_Click"
                     Background="Transparent"
                     BorderBrush="#0b8fc5"
                     BorderThickness="0"
@@ -32,10 +32,10 @@
                     >
                 
             </Button>
-            <Button Content="ITEMS" 
+            <Button Content="UNITS" 
                     Grid.Column="1"
-                    x:Name="ItemsButton"
-                    Click="ItemsButton_Click"
+                    x:Name="UnitsButton"
+                    Click="UnitsButton_Click"
                     Background="Transparent"
                     BorderBrush="#0b8fc5"
                     BorderThickness="0"
@@ -46,7 +46,7 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1">
-            <ContentControl x:Name="ExpenseMainItem" ></ContentControl>
+            <ContentControl x:Name="MainItem" ></ContentControl>
         </Grid>
     </Grid>
 </UserControl>

@@ -202,10 +202,12 @@
     <Compile Include="EventModels\LogOnEventModel.cs" />
     <Compile Include="EventModels\MenuButtonClickEventArgs.cs" />
     <Compile Include="EventModels\PaymentInEventModel.cs" />
+    <Compile Include="EventModels\AddSelectUnitEventModel.cs" />
     <Compile Include="EventModels\PaymentOutEventModel.cs" />
     <Compile Include="EventModels\ProductDataEventArgs.cs" />
     <Compile Include="EventModels\ClearSalePageEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentInEventModel.cs" />
+    <Compile Include="EventModels\RemoveSelectUnitEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentOutEventModel.cs" />
     <Compile Include="EventModels\ShowSalePageEventModel.cs" />
     <Compile Include="Helpers\APIHelper.cs" />
@@ -215,15 +217,9 @@
     <Compile Include="Helpers\Attacher.cs" />
     <Compile Include="Helpers\VisualTreeHelperExtension.cs" />
     <Compile Include="Helpers\GridLengthAnimation.cs" />
-    <Compile Include="Models\adminResponse.cs" />
     <Compile Include="Models\apiVersionResponse.cs" />
-    <Compile Include="Models\customerResponse.cs" />
+    <Compile Include="Models\adminResponse.cs" />
     <Compile Include="Models\GetAllCommanResponse.cs" />
-    <Compile Include="Models\orderProductRelationResponse.cs" />
-    <Compile Include="Models\OrderTableResponse.cs" />
-    <Compile Include="Models\paymentResponse.cs" />
-    <Compile Include="Models\PaymentTypeResponse.cs" />
-    <Compile Include="Models\productVersionResponse.cs" />
     <Compile Include="Notification\Controls\Notification.cs" />
     <Compile Include="Notification\Controls\NotificationArea.cs" />
     <Compile Include="Notification\Controls\ReversibleStackPanel.cs" />
@@ -235,24 +231,27 @@
     </Compile>
     <Compile Include="Notification\NotificationTemplateSelector.cs" />
     <Compile Include="Notification\Utils\VisualTreeHelperExtensions1.cs" />
-    <Compile Include="PostReqResponse\customerPostResponse.cs" />
-    <Compile Include="PostReqResponse\PaymentTypePostResponse.cs" />
     <Compile Include="PostReqResponse\PlaceOrderPostResponse.cs" />
-    <Compile Include="PostReqResponse\productPostResponse.cs" />
+    <Compile Include="PostReqResponse\PostReqCommanResponse.cs" />
     <Compile Include="PostRequest\PlaceOrderPostRequest.cs" />
     <Compile Include="ViewModels\AddItemViewModel.cs" />
     <Compile Include="ViewModels\CommanNavigationViewModel.cs" />
     <Compile Include="ViewModels\DashBoardViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PartiesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\AddBankAccountView.xaml.cs">
       <DependentUpon>AddBankAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddUnitVIew.xaml.cs">
+      <DependentUpon>AddUnitVIew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddItemView.xaml.cs">
       <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSelectUnit.xaml.cs">
+      <DependentUpon>AddSelectUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddPartiesView.xaml.cs">
       <DependentUpon>AddPartiesView.xaml</DependentUpon>
@@ -266,6 +265,9 @@
     <Compile Include="Views\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ItemMainVIew.xaml.cs">
+      <DependentUpon>ItemMainVIew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExpenseView.xaml.cs">
       <DependentUpon>ExpenseView.xaml</DependentUpon>
     </Compile>
@@ -276,6 +278,9 @@
     <Compile Include="Views\IShellView.cs" />
     <Compile Include="Views\ExpenseCatView.xaml.cs">
       <DependentUpon>ExpenseCatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnitView.xaml.cs">
+      <DependentUpon>UnitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
@@ -372,9 +377,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddUnitVIew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AddItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddSelectUnit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AddPartiesView.xaml">
       <SubType>Designer</SubType>
@@ -392,6 +405,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ItemMainVIew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ExpenseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExpenseCatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UnitView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

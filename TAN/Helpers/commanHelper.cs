@@ -52,6 +52,36 @@ namespace TAN.Helpers
             {
                 PaymentTypeSqlite.addData(item);
             }
+
+
+            var ans7 = await _apiHelper.getAllExpenseCategory(token);
+            foreach (var item in ans7.data)
+            {
+                ExpenseCategorySqllite.addData(item);
+            }
+
+            var ans8 = await _apiHelper.getAllExpenseItem(token);
+            foreach (var item in ans8.data)
+            {
+                ExpenseItemSqllite.addData(item);
+            }
+
+            var ans9 = await _apiHelper.getAllRl_expense_cat_item(token);
+            foreach (var item in ans9.data)
+            {
+                Rl_expense_cat_itemSqllite.addData(item);
+            }
+            var ans10 = await _apiHelper.getAllItemMap(token);
+            foreach (var item in ans10.data)
+            {
+                ItemMapSqllite.addData(item);
+            }
+            var ans11 = await _apiHelper.getAllItemUnit(token);
+            foreach (var item in ans11.data)
+            {
+                ItemUnitSqllite.addData(item);
+            }
+
             return Task.CompletedTask;
         }
 

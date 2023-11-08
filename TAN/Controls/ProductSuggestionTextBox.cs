@@ -71,6 +71,7 @@ namespace TAN.Controls
                     textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
                     textBox.KeyDown += (s, e) => { TextBoxKeyDown(e); };
                     textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
+                    textBox.MouseDown += (s, e) => { TextBoxMouseDown(); };
                     //textBox.LostFocus += (s, e) => { suggestion.LostFocuss(e); };
 
                 }
@@ -171,6 +172,12 @@ namespace TAN.Controls
             {
                 suggestion.ProductSuggestionPopup.IsOpen = false;
             }
+        }
+        private void TextBoxMouseDown()
+        {
+            if(!suggestion.ProductSuggestionPopup.IsOpen)
+                suggestion.ProductSuggestionPopup.IsOpen = true;
+            
         }
     }
 }

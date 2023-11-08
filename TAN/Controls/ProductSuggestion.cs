@@ -141,11 +141,11 @@ namespace TAN.Controls
             string searchKey = searchTextBox.Text.ToLower();
             if (searchKey == "")
 
-                ProductSuggestions.ItemsSource = _productMainData.Take(40);
+                ProductSuggestions.ItemsSource = _productMainData.Take(20);
 
 
             else
-                ProductSuggestions.ItemsSource = _productMainData.Where(s => s.productName.ToLower().Contains(searchKey)).ToList().Take(30);
+                ProductSuggestions.ItemsSource = _productMainData.Where(s => s.productName.ToLower().Contains(searchKey)).ToList().Take(20);
         }
         private List<productVersionModel> _productMainData;
         public void AssginProductMainData(List<productVersionModel> productMainData)

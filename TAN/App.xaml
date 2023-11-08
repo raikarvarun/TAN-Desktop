@@ -65,10 +65,7 @@
                 <view:PartiesView/>
             </DataTemplate>
 
-            <DataTemplate
-                DataType="{x:Type viewModel:ItemViewModel}">
-                <view:ItemView/>
-            </DataTemplate>
+            
 
 
             <DataTemplate

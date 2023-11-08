@@ -12,8 +12,10 @@ namespace TAN.ViewModels
         IHandle<AddPartyEventModel>
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
-        
-        
+        , IHandle<AddSelectUnitEventModel>, IHandle<RemoveSelectUnitEventModel>
+
+
+
         , IViewAware
     {
         private IEventAggregator _events;
@@ -105,8 +107,19 @@ namespace TAN.ViewModels
             return Task.CompletedTask;
         }
 
-        
+        public Task HandleAsync(AddSelectUnitEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addSelectUnitShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
 
-        
+        public Task HandleAsync(RemoveSelectUnitEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeSelectUnitChildOfShellView();
+            return Task.CompletedTask;
+        }
+
+
+
     }
 }

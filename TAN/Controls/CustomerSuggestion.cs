@@ -1,9 +1,12 @@
 ﻿using DataBaseManger.Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 
 
@@ -57,9 +60,25 @@ namespace TAN.Controls
             {
                 CustomerSuggestions = this.Template.FindName("CustomerSuggestions", this) as DataGrid;
                 CustomerSuggestionPopup = this.Template.FindName("CustomerSuggestionPopup", this) as Popup;
+
+                BindingOperations.EnableCollectionSynchronization(CustomerMainData, _lockMutex);
+                CustomerSuggestions.ItemsSource = CustomerMainData;
+
+                CustomerSuggestions.GotFocus += (s, e) =>
+                {
+                    var temp = 1;
+                };
+                CustomerSuggestions.GotKeyboardFocus += (s, e) =>
+                {
+                    var temp = 2;
+                };
                 CustomerSuggestions.PreviewMouseDown += (s, e) =>
                 {
                     SuggestionsPreviewMouseDown(e);
+                };
+                CustomerSuggestions.KeyDown += (s, e) =>
+                {
+                    SuggestionskeyDown(e);
                 };
 
 
@@ -136,19 +155,62 @@ namespace TAN.Controls
 
             string searchKey = searchTextBox.Text.ToLower();
             if (searchKey == "")
-                CustomerSuggestions.ItemsSource = _customerMainData.Take(40);
+            {
+                
+                _ = LoadDataAsync();
+            }
+
             else
-                CustomerSuggestions.ItemsSource = _customerMainData.Where(s => s.customerName.ToLower().Contains(searchKey)).ToList().Take(30);
+            {
+                _ = SearchDataAsync(searchKey);
+
+            }
+                 
 
         }
-        private List<customerModel> _customerMainData;
-        public void AssginCustomerMainData(List<customerModel> productMainData)
+        private List<customerModel> mainData;
+        private ObservableCollection<customerModel> _customerMainData;
+        public ObservableCollection<customerModel> CustomerMainData
         {
-            _customerMainData = productMainData;
+            get { return _customerMainData; }
+            set { _customerMainData = value; }
         }
+        private object _lockMutex = new object();
+        public void AssginCustomerMainData(List<customerModel> paraData)
+        {
+            _customerMainData = new ObservableCollection<customerModel>();
+
+            mainData = paraData;
+            
+        //_customerMainData = productMainData;
+        }
+        
+        private Task LoadDataAsync()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                _customerMainData.Clear();
+                foreach (customerModel c in mainData.Take(20))
+                {
+                    _customerMainData.Add(c);
+                }
+            });
+        }
+        private Task SearchDataAsync(string key)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                _customerMainData.Clear();
+                foreach (customerModel c in mainData.Where(s => s.customerName.ToLower().Contains(key)).ToList())
+                {
+                    _customerMainData.Add(c);
+                }
+            });
+        }
+
         internal void LostFocuss(RoutedEventArgs e)
         {
-
+            
             CustomerSuggestionPopup.IsOpen = false;
         }
     }

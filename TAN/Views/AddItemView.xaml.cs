@@ -3,6 +3,7 @@ using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
 using System.Windows;
 using System.Windows.Controls;
+using TAN.EventModels;
 using TAN.Helpers;
 
 namespace TAN.Views
@@ -72,7 +73,12 @@ namespace TAN.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void EditUnitButton_Click(object sender, RoutedEventArgs e)
+        {
+            _events.PublishOnUIThreadAsync(new AddSelectUnitEventModel());
         }
     }
 }

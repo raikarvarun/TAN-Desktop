@@ -1,4 +1,5 @@
-﻿using DataBaseManger.Model;
+﻿using Caliburn.Micro;
+using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,10 +36,11 @@ namespace TAN.Views
             get { return _ItemTranMaindata; }
             set { _ItemTranMaindata = value; }
         }
-
-        public ItemView()
+        public delegate void TEmpfun();
+        private TEmpfun AddItemFun;
+        public ItemView(IEventAggregator events, TEmpfun tempfun)
         {
-
+            AddItemFun = tempfun;
             InitializeComponent();
             _productsMaindata = new ObservableCollection<productVersionModel>();
             _ItemTranMaindata = new ObservableCollection<ItemTransactionModel>();
@@ -50,7 +52,10 @@ namespace TAN.Views
             PRODUCTS.SelectedIndex = 0;
 
         }
-
+        private void SaveButtonClicked_Click(object sender, RoutedEventArgs e)
+        {
+            AddItemFun();
+        }
 
         public void assginParties()
         {
@@ -253,6 +258,6 @@ namespace TAN.Views
 
         }
 
-
+        
     }
 }

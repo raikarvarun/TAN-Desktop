@@ -65,13 +65,23 @@ namespace TAN.Controls
                     textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
                     textBox.KeyDown += (s, e) => { TextBoxKeyDown(e); };
                     textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
+                    textBox.GotFocus += (s, e) => { TextBoxMouseDown(); };
                     //textBox.LostFocus += (s, e) => { suggestion.LostFocuss(e); };
 
                 }
             }
         }
 
+        private void TextBoxMouseDown()
+        {
+            if (!suggestion.CustomerSuggestionPopup.IsOpen) 
+            {
+                suggestion.CustomerSuggestionPopup.IsOpen = true;
+                suggestion.AssginParties(textBox);
+            }
+                
 
+        }
 
         public static RoutedEvent CustomerSelectedEvent = EventManager.RegisterRoutedEvent("CustomerSeleted",
              RoutingStrategy.Bubble, typeof(CustomerChangeEventHandler), typeof(CustomerSuggestionTextBox));
@@ -128,11 +138,15 @@ namespace TAN.Controls
 
         private void TextBoxPreviewKeyDown(KeyEventArgs e)
         {
-            if (e.Key == Key.Down)
+            if (e.Key == Key.Down )
             {
                 suggestion.CustomerSuggestions.Focus();
+                var temp = suggestion.CustomerSuggestions.IsFocused;
+
+                var temp1 = suggestion.CustomerSuggestions.IsKeyboardFocused ; 
+
                 suggestion.CustomerSuggestions.SelectedIndex = 0;
-                e.Handled = true;
+                
             }
         }
 

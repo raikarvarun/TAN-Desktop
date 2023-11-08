@@ -9,24 +9,31 @@ namespace TAN.Helpers
     public interface IAPIHelper
     {
         Task<adminResponse> Authicate(string username, string password);
-        Task<customerResponse> getAllCustomers(string token);
+        Task<GetAllCommanResponse<customerModel>> getAllCustomers(string token);
 
-        Task<paymentResponse> getAllPayments(string token);
+        Task<GetAllCommanResponse<paymentModel>> getAllPayments(string token);
 
 
-        Task<productVersionResponse> getAllProductVersions(string token);
+        Task<GetAllCommanResponse<productVersionModel>> getAllProductVersions(string token);
 
-        Task<orderProductRelationResponse> getAllorderProductRelation(string token);
+        Task<GetAllCommanResponse<orderProductRelationModel>> getAllorderProductRelation(string token);
 
 
         Task<apiVersionResponse> getApiVersion(string token);
-        Task<customerPostResponse> postCustomers(string token, customerModel customer);
-        Task<OrderTableResponse> getAllOrderTable(string token);
-        Task<productPostResponse> postProducts(string token, productVersionModel product);
+        Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer);
+        Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token);
+        Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product);
 
         Task<PlaceOrderPostResponse> postPlaceOrder(string token, PlaceOrderPostRequest PlaceOrder);
-        Task<PaymentTypeResponse> getAllPaymentTypes(string token);
+        Task<GetAllCommanResponse<PaymentTypeModel>> getAllPaymentTypes(string token);
 
-        Task<PaymentTypePostResponse> postPaymentType(string token, PaymentTypeModel paymentType);
+        Task<PostReqCommanResponse<PaymentTypeModel>> postPaymentType(string token, PaymentTypeModel paymentType);
+
+
+        Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token);
+        Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token);
+        Task<GetAllCommanResponse<Rl_expense_cat_itemModel>> getAllRl_expense_cat_item(string token);
+        Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token);
+        Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token);
     }
 }
