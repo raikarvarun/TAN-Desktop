@@ -14,6 +14,12 @@ namespace TAN.Views
         private PaymentINorOutPageVIew _paymentInPageVIew { get; set; }
         private SalePageView _salePageView { get; set; }
         private AddSelectUnit _addSelectUnit { get; set; }
+        private AddExpenseCat _addExpenseCat  { get; set; }
+        private AddExpeneItemView _addExpeneItemView { get; set; }
+        private ExpensePageView _expensePageView { get; set; }
+
+
+
 
 
 
@@ -115,7 +121,35 @@ namespace TAN.Views
         }
 
 
+        public void addExpenseCategoryShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        {
+            _addExpenseCat = new AddExpenseCat(events, aPIHelper);
+            ShellGridMain.Children.Add(_addSelectUnit);
+        }
+        public void removeExpenseCategoryChildOfShellView()
+        {
+            ShellGridMain.Children.Remove(_addExpenseCat);
+        }
 
+        public void addExpenseItemShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        {
+            _addExpeneItemView = new AddExpeneItemView(events, aPIHelper);
+            ShellGridMain.Children.Add(_addExpeneItemView);
+        }
+        public void removeExpenseItemChildOfShellView()
+        {
+            ShellGridMain.Children.Remove(_addExpeneItemView);
+        }
+
+        public void addExpensePageShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        {
+            _expensePageView = new ExpensePageView(events, aPIHelper);
+            ShellGridMain.Children.Add(_expensePageView);
+        }
+        public void removeExpensePageChildOfShellView()
+        {
+            ShellGridMain.Children.Remove(_expensePageView);
+        }
 
 
 

@@ -24,6 +24,14 @@ namespace TAN.Views
             _events = events;
             _apiHelper = aPIHelper;
             _changeCurrentViewtoItems = re;
+            var boxData = ItemUnitSqllite.readAll();
+            
+            for(int i = 0; i < boxData.Count; i++)
+            {
+                var item = boxData[i].FullName +" ("+boxData[i].ShortName + ")";
+                UnitBox.Items.Add(item);
+            }
+
         }
 
 
@@ -76,9 +84,6 @@ namespace TAN.Views
             
         }
 
-        private void EditUnitButton_Click(object sender, RoutedEventArgs e)
-        {
-            _events.PublishOnUIThreadAsync(new AddSelectUnitEventModel());
-        }
+       
     }
 }

@@ -196,6 +196,9 @@
     <Compile Include="Controls\SuggestionTextBox.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="EventModels\AddExpensePageViewEventModel.cs" />
+    <Compile Include="EventModels\AddExpenseItemEventModel.cs" />
+    <Compile Include="EventModels\AddExpenseCategoryEventModel.cs" />
     <Compile Include="EventModels\AddPartyEventModel.cs" />
     <Compile Include="EventModels\ClearChildShellView.cs" />
     <Compile Include="EventModels\CustomerDataEventArgs.cs" />
@@ -206,6 +209,9 @@
     <Compile Include="EventModels\PaymentOutEventModel.cs" />
     <Compile Include="EventModels\ProductDataEventArgs.cs" />
     <Compile Include="EventModels\ClearSalePageEventModel.cs" />
+    <Compile Include="EventModels\RemoveExpensePageEventModel.cs" />
+    <Compile Include="EventModels\RemoveExpenseItemEventModel.cs" />
+    <Compile Include="EventModels\RemoveExpenseCategoryEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentInEventModel.cs" />
     <Compile Include="EventModels\RemoveSelectUnitEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentOutEventModel.cs" />
@@ -244,6 +250,12 @@
     <Compile Include="Views\AddBankAccountView.xaml.cs">
       <DependentUpon>AddBankAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddExpeneItemView.xaml.cs">
+      <DependentUpon>AddExpeneItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddExpenseCat.xaml.cs">
+      <DependentUpon>AddExpenseCat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUnitVIew.xaml.cs">
       <DependentUpon>AddUnitVIew.xaml</DependentUpon>
     </Compile>
@@ -278,6 +290,9 @@
     <Compile Include="Views\IShellView.cs" />
     <Compile Include="Views\ExpenseCatView.xaml.cs">
       <DependentUpon>ExpenseCatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpensePageView.xaml.cs">
+      <DependentUpon>ExpensePageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UnitView.xaml.cs">
       <DependentUpon>UnitView.xaml</DependentUpon>
@@ -377,6 +392,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddExpeneItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddExpenseCat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AddUnitVIew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -418,6 +441,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExpenseCatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExpensePageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

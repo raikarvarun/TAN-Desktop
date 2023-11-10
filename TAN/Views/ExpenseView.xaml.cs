@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TAN.Helpers;
 
 namespace TAN.Views
 {
@@ -20,13 +22,18 @@ namespace TAN.Views
     /// </summary>
     public partial class ExpenseView : UserControl
     {
-        public ExpenseView()
+
+        private IEventAggregator _events;
+        private IAPIHelper _aPIHelper;
+        public ExpenseView(IEventAggregator events, IAPIHelper aPIHelper)
         {
             InitializeComponent();
+            _events = events;
+            _aPIHelper = aPIHelper;
             CategoryButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
             ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
 
-            ExpenseMainItem.Content = new ExpenseCatView();
+            ExpenseMainItem.Content = new ExpenseCatView(events , aPIHelper);
             CategoryButton.Foreground = new SolidColorBrush(Colors.Black);
             CategoryButton.BorderThickness = new Thickness(0, 0, 0, 2);
         }
@@ -46,7 +53,7 @@ namespace TAN.Views
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            ExpenseMainItem.Content = new ExpenseCatView();
+            ExpenseMainItem.Content = new ExpenseCatView(_events ,_aPIHelper);
             CategoryButton.Foreground  = new SolidColorBrush(Colors.Black);
             CategoryButton.BorderThickness = new Thickness(0, 0 , 0 , 2);
 

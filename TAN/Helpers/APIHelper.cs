@@ -65,6 +65,8 @@ namespace TAN.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<PostReqCommanResponse<T>>();
+
+
                     return result;
                 }
                 else
@@ -219,134 +221,35 @@ namespace TAN.Helpers
         //
         //
         //Post Request
+
         public async Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer)
         {
             Comman<customerModel> comman = new Comman<customerModel>();
-            return await comman.PostData(token, "/api/customer/all", customer,  ApiClient);
+            return await comman.PostData(token, "/api/customer/insert", customer,  ApiClient);
             
         }
 
-        //public async Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer)
-        //{
-
-        //    //var data = new FormUrlEncodedContent(new[]
-        //    //{
-        //    //    new KeyValuePair<string, string>("customerName", customer.customerName),
-        //    //    new KeyValuePair<string, string>("customerTypeID", customer.customerTypeID.ToString()),
-        //    //    new KeyValuePair<string, string>("customerMobile", customer.customerMobile),
-        //    //    new KeyValuePair<string, string>("customerAddress", customer.customerAddress),
-        //    //    new KeyValuePair<string, string>("customerOpeningAmount", customer.customerOpeningAmount.ToString()),
-        //    //    new KeyValuePair<string, string>("TotalAmount", customer.TotalAmount.ToString())
-        //    //});
-
-        //    var content = JsonConvert.SerializeObject(customer);
-        //    var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-        //    var data = new ByteArrayContent(buffer);
-
-        //    data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-        //    var query = new Dictionary<string, string>()
-        //    {
-        //        ["token"] = token
-
-        //    };
-        //    string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-        //    apiUrl += "/api/customer/insert";
-        //    apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-        //    using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
-        //    {
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var result = await response.Content.ReadAsAsync<PostReqCommanResponse<customerModel>>();
-        //            return result;
-        //        }
-        //        else
-        //        {
-        //            throw new Exception(response.ReasonPhrase);
-        //        }
-        //    }
-        //}
-
-
         public async Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product)
         {
+            Comman<productVersionModel> comman = new Comman<productVersionModel>();
+            return await comman.PostData(token, "/api/productversion/insert", product, ApiClient);
 
-            //var data = new FormUrlEncodedContent(new[]
-            //{
-            //    new KeyValuePair<string, string>("productType", product.productType),
-            //    new KeyValuePair<string, string>("productPrice", product.productPrice.ToString()),
-            //    new KeyValuePair<string, string>("productQuntity", product.productQuntity.ToString()),
-            //    new KeyValuePair<string, string>("productImage", product.productImage),
-            //    new KeyValuePair<string, string>("productName", product.productName.ToString()),
-            //    new KeyValuePair<string, string>("openingQuantity", product.openingQuantity.ToString()),
-            //    new KeyValuePair<string, string>("atprice", product.atprice.ToString()),
-            //    new KeyValuePair<string, string>("salePrice", product.salePrice.ToString()),
-            //    new KeyValuePair<string, string>("purchasePrice", product.purchasePrice.ToString())
-
-            //});
-            var content = JsonConvert.SerializeObject(product);
-            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            var data = new ByteArrayContent(buffer);
-            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/productversion/insert";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<productVersionModel>>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
         }
+
         public async Task<PostReqCommanResponse<PaymentTypeModel>> postPaymentType(string token, PaymentTypeModel paymentType)
         {
+            Comman<PaymentTypeModel> comman = new Comman<PaymentTypeModel>();
+            return await comman.PostData(token, "/api/paymenttype/insert", paymentType, ApiClient);
 
-            //var data = new FormUrlEncodedContent(new[]
-            //{
-            //    new KeyValuePair<string, string>("paymentTypeType", paymentType.paymentTypeType),
-            //    new KeyValuePair<string, string>("paymentTypeName", paymentType.paymentTypeName)
-
-
-            //});
-            var content = JsonConvert.SerializeObject(paymentType);
-            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            var data = new ByteArrayContent(buffer);
-            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/paymenttype/insert";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<PaymentTypeModel>>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
         }
-        
+
+        public  Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit(string token, ItemUnitModel itemUnit)
+        {
+            Comman<ItemUnitModel> comman = new Comman<ItemUnitModel>();
+            return  comman.PostData(token, "/api/itemunit/insert", itemUnit, ApiClient);
+
+        }
+
         public async Task<PlaceOrderPostResponse> postPlaceOrder(string token, PlaceOrderPostRequest PlaceOrder)
         {
 

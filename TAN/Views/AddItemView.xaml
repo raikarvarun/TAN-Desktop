@@ -87,7 +87,7 @@
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Width="250" />
-                    <Button Grid.Column="1"
+                    <!--<Button Grid.Column="1"
                             Grid.Row="1"
                             Width="100"
                             Height="50"
@@ -101,8 +101,18 @@
                             Click="EditUnitButton_Click"
                             >
                         
-                    </Button>
-                    
+                    </Button>-->
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="1"
+                              Width="100"
+                              Height="50"
+                              Margin="20 0 0 0"
+                              HorizontalAlignment="Left"
+                              x:Name="UnitBox">
+                        
+                            
+                    </ComboBox>
+
                     <Border Grid.Column="0"
                             Grid.Row="1"
                             Panel.ZIndex="-1"

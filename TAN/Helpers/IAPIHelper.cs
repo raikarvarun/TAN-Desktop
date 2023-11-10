@@ -35,5 +35,7 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<Rl_expense_cat_itemModel>> getAllRl_expense_cat_item(string token);
         Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token);
         Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token);
+
+        Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit(string token, ItemUnitModel itemUnit);
     }
 }

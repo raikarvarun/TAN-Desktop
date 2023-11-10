@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using TAN.EventModels;
 using TAN.Helpers;
+using TAN.Notification.Utils;
+using TAN.Notification;
 
 namespace TAN.Views
 {
@@ -32,15 +34,38 @@ namespace TAN.Views
             var unitName = UnitName.Text;
             var shortName = ShortName.Text;
 
+            if(unitName == "" )
+            {
+                var notificationManager = new NotificationManager();
 
+                notificationManager.Show(new NotificationContent
+                {
+                    Title = "Please Enter Unit Name",
+
+                    Type = NotificationType.Error
+                });
+                return;
+            }
+            if( shortName == "")
+            {
+                var notificationManager = new NotificationManager();
+
+                notificationManager.Show(new NotificationContent
+                {
+                    Title = "Please Enter Short Name",
+
+                    Type = NotificationType.Error
+                });
+                return;
+            }
 
             var temp =  appConfigSqlite.getData();
             var token = temp.adminToken;
 
-            //var data = new ;
+            var data = new ItemUnitModel(0,unitName , shortName);
 
-            //var ans = await _apiHelper.postProducts(token, data);
-            //ProductVersionModelSqlite.addData(ans.data);
+            var ans = await _apiHelper.postItemUnit(token, data);
+            ItemUnitSqllite.addData(ans.data);
             _changeCurrentViewtoItems();
         }
 

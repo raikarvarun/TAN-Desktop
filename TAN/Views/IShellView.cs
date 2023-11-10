@@ -18,7 +18,14 @@ namespace TAN.Views
         void addSelectUnitShellView(IEventAggregator events, IAPIHelper aPIHelper);
         void removeSelectUnitChildOfShellView();
 
+        void addExpenseCategoryShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void removeExpenseCategoryChildOfShellView();
 
+        void addExpenseItemShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void removeExpenseItemChildOfShellView();
+
+        void addExpensePageShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void removeExpensePageChildOfShellView();
 
 
 

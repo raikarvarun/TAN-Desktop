@@ -232,7 +232,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="10 1"
-                    Command="{Binding SaveButtonClicked}">
+                    Click="SaveButtonClicked_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"

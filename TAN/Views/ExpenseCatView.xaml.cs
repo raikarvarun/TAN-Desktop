@@ -1,4 +1,5 @@
-﻿using DataBaseManger.Model;
+﻿using Caliburn.Micro;
+using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TAN.EventModels;
+using TAN.Helpers;
 
 namespace TAN.Views
 {
@@ -36,10 +39,14 @@ namespace TAN.Views
             set { _ItemTranMaindata = value; }
         }
 
-        public ExpenseCatView()
+        private IEventAggregator _events;
+        private IAPIHelper _aPIHelper;
+        public ExpenseCatView(IEventAggregator events , IAPIHelper aPIHelper)
         {
 
             InitializeComponent();
+            _events = events;
+            _aPIHelper = aPIHelper;
             _productsMaindata = new ObservableCollection<productVersionModel>();
             _ItemTranMaindata = new ObservableCollection<ItemTransactionModel>();
             BindingOperations.EnableCollectionSynchronization(ProductMainData, _lockMutex);
@@ -50,7 +57,10 @@ namespace TAN.Views
             PRODUCTS.SelectedIndex = 0;
 
         }
-
+        private void SaveButtonClicked_Click(object sender, RoutedEventArgs e)
+        {
+            _ =  _events.PublishOnUIThreadAsync(new AddExpensePageViewEventModel());
+        }
 
         public void assginParties()
         {
@@ -250,6 +260,6 @@ namespace TAN.Views
 
         }
 
-
+        
     }
 }

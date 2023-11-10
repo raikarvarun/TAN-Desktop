@@ -123,7 +123,7 @@ namespace TAN.ViewModels
             });
             ExpenseCommand = new RelayCommand(o =>
             {
-                CurrentView = new ExpenseView();
+                CurrentView = new ExpenseView(_events , _apiHelper);
 
             });
             BankAccountCommand = new RelayCommand(o =>

@@ -13,6 +13,12 @@ namespace TAN.ViewModels
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
         , IHandle<AddSelectUnitEventModel>, IHandle<RemoveSelectUnitEventModel>
+        , IHandle<AddExpenseCategoryEventModel>, IHandle<RemoveExpenseCategoryEventModel>
+        , IHandle<AddExpenseItemEventModel>, IHandle<RemoveExpenseItemEventModel>
+        , IHandle<AddExpensePageViewEventModel>, IHandle<RemoveExpensePageEventModel>
+
+
+
 
 
 
@@ -116,6 +122,42 @@ namespace TAN.ViewModels
         public Task HandleAsync(RemoveSelectUnitEventModel message, CancellationToken cancellationToken)
         {
             _view.removeSelectUnitChildOfShellView();
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(AddExpenseCategoryEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addExpenseCategoryShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(RemoveExpenseCategoryEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeExpenseCategoryChildOfShellView();
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(AddExpenseItemEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addExpenseCategoryShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(RemoveExpenseItemEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeExpenseCategoryChildOfShellView();
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(AddExpensePageViewEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addExpensePageShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(RemoveExpensePageEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeExpensePageChildOfShellView();
             return Task.CompletedTask;
         }
 
