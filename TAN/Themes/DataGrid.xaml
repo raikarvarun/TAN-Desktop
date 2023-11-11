@@ -446,7 +446,103 @@
             </Setter.Value>
         </Setter>
     </Style>
-   
+
+
+    <Style x:Key="CustomerSuggestionsDataGridColumnHeaderStyle"
+       TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="VerticalContentAlignment"
+            Value="Stretch" />
+        <Setter Property="Background"
+            Value="#ffffff" />
+        <Setter Property="FontWeight"
+            Value="SemiBold" />
+        <Setter Property="VerticalAlignment"
+            Value="Stretch" />
+        <Setter Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter Property="FontSize"
+            Value="16" />
+        <Setter Property="Foreground"
+            Value="#777777" />
+        <Setter Property="Padding" Value="0 5"></Setter>
+
+        <!--Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"  
+                            Padding="{TemplateBinding Padding}"-->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="Gray"
+                            BorderThickness="0 0 0 1"
+                            Padding="{TemplateBinding Padding}">
+                            <Grid Margin="{TemplateBinding Padding}">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="1"
+                                              HorizontalAlignment="Left"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <StackPanel Grid.Column="0"
+                                        Orientation="Horizontal"
+                                        Margin="5 0 5 0">
+                                    <Path x:Name="SortUpIcon"
+                                      Height="{TemplateBinding FontSize}"
+                                      Data="M450 976V290L242 498l-42-42 280-280 280 280-42 42-208-208v686h-60Z"
+                                      Fill="#6b6b6b"
+                                      Stretch="Uniform"
+                                      Width="10"
+                                      Visibility="Collapsed" />
+                                    <Path x:Name="SortDownIcon"
+                                      Height="{TemplateBinding FontSize}"
+                                      Data="M480 976 200 696l42-42 208 208V176h60v686l208-208 42 42-280 280Z"
+                                      Fill="#6b6b6b"
+                                      Stretch="Uniform"
+                                      Width="10"
+                                      Visibility="Collapsed" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <Thumb x:Name="PART_LeftHeaderGripper"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource ColumnHeaderGripperStyle}" />
+                        <Thumb x:Name="PART_RightHeaderGripper"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource ColumnHeaderGripperStyle}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SortDirection"
+                             Value="Ascending">
+                            <Setter TargetName="SortDownIcon"
+                                Property="Visibility"
+                                Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="SortDirection"
+                             Value="Descending">
+                            <Setter TargetName="SortUpIcon"
+                                Property="Visibility"
+                                Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                             Value="True">
+                            <Setter Property="Cursor"
+                                Value="Hand" />
+                            <Setter 
+                                Property="Background"
+                                Value="#f2f2f2"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
 </ResourceDictionary>

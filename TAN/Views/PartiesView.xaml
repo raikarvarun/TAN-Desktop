@@ -218,7 +218,7 @@
                     FontSize="14"
                     Background="#f3a33a"
                     Foreground="#fef6ec"
-                    x:Name="SaveButtonClicked"
+                    x:Name="AddPartyButtonClicked"
                     FontWeight="Medium"
                     FontFamily="Times"
                     Padding="15 9"
@@ -226,7 +226,7 @@
                     HorizontalAlignment="Right"
                     Margin="15 1"
                     
-                    Command="{Binding SaveButtonClicked}">
+                    Click="AddPartyButtonClicked_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"

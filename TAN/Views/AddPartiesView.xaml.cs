@@ -62,12 +62,16 @@ namespace TAN.Views
 
             var customerAddress = Address.Text;
             float TotalAmount = customerOP;
-            var temp = appConfigSqlite.getData();
-            var token = temp.adminToken;
+            var appConfigtemp = appConfigSqlite.getData();
+            var token = appConfigtemp.adminToken;
             var data = new customerModel(1, customerName, 0, customerNumber, customerAddress, customerOP, TotalAmount);
             var ans = await _apiHelper.postCustomers(token, data);
             CustomerSqllite.addData(ans.data);
-            
+
+            appConfigtemp.apiVersion = ans.apiVersion;
+            appConfigSqlite.editData(appConfigtemp);
+
+
             _ = _events.PublishOnUIThreadAsync(new ClearChildShellView());
         }
 

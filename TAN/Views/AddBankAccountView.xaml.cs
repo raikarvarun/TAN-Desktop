@@ -34,8 +34,8 @@ namespace TAN.Views
         {
             string name = AccountDisplayName.Text;
 
-            var temp = appConfigSqlite.getData();
-            var token = temp.adminToken;
+            var appConfigtemp = appConfigSqlite.getData();
+            var token = appConfigtemp.adminToken;
 
             var data = new PaymentTypeModel(1,
                 "BANKS",
@@ -44,6 +44,9 @@ namespace TAN.Views
 
             var ans = await _apiHelper.postPaymentType(token, data);
             PaymentTypeSqlite.addData(ans.data);
+            appConfigtemp.apiVersion = ans.apiVersion;
+            appConfigSqlite.editData(appConfigtemp);
+
             _changeCurrentViewtoItems();
         }
     }

@@ -1,5 +1,7 @@
 ﻿using DataBaseManger.Model;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace DataBaseManger.SqlLite
 {
@@ -41,6 +43,24 @@ namespace DataBaseManger.SqlLite
             command.ExecuteNonQuery();
             conn.Close();
         }
+
+        public static void editData(appConfigModel appConfig)
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "UPDATE appconfig SET  " +
+                "appID  = " + appConfig.appID.ToString() + " , " +
+                "adminEmail = \"" + appConfig.adminEmail + "\" , " +
+                "adminPassword = \"" + appConfig.adminPassword + "\" , " +
+                "adminToken = \"" + appConfig.adminToken + "\" ," +
+                "apiVersion = \"" + appConfig.apiVersion + "\"  "
+                +" WHERE appID = " + appConfig.appID.ToString();
+                
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
+        
 
         public static appConfigModel getData()
         {

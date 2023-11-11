@@ -10,8 +10,8 @@ namespace TAN.Helpers
     {
         public static async Task<Task> fetchAllDataAsync(IAPIHelper _apiHelper, string token, appConfigModel appConfig)
         {
-            var apiVersion1 = await _apiHelper.getApiVersion(token);
-            appConfig.apiVersion = apiVersion1.data.appVersion;
+            
+            
             appConfigSqlite.addData(appConfig);
 
 
@@ -97,16 +97,22 @@ namespace TAN.Helpers
                 var apiVersionRemote = await _apiHelper.getApiVersion(token);
                 var apiVersionLocal = appConfigSqlite.getData();
 
+                appConfig.adminToken = token;
+                appConfig.apiVersion = apiVersionRemote.data.appVersion;
+
+                appConfigSqlite.editData(appConfig);
+
                 if (apiVersionLocal.apiVersion == apiVersionRemote.data.appVersion)
                 {
                     //PartiesViewModel.assignParties();
+
                     return true;
                 }
                 else
                 {
                     try
                     {
-                        appConfig.adminToken = token;
+                        
 
                         DbConnection.deleteDb();
                         CommanSQlite.initAll();

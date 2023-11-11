@@ -46,11 +46,11 @@ namespace TAN.Controls
     [TemplatePart(Name = "CustomerSuggestions", Type = typeof(ListBox))]
     [TemplatePart(Name = "CustomerSuggestionPopup", Type = typeof(Popup))]
 
-    public class CustomerSuggestion : Control
+    public class ExpenseCatSuggestion : Control
     {
-        static CustomerSuggestion()
+        static ExpenseCatSuggestion()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomerSuggestion), new FrameworkPropertyMetadata(typeof(CustomerSuggestion)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ExpenseCatSuggestion), new FrameworkPropertyMetadata(typeof(ExpenseCatSuggestion)));
         }
         public DataGrid CustomerSuggestions;
         public Popup CustomerSuggestionPopup;

@@ -243,14 +243,14 @@ namespace TAN.Helpers
 
         }
 
-        public  Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit(string token, ItemUnitModel itemUnit)
+        public  Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit1(string token, ItemUnitModel itemUnit)
         {
             Comman<ItemUnitModel> comman = new Comman<ItemUnitModel>();
             return  comman.PostData(token, "/api/itemunit/insert", itemUnit, ApiClient);
 
         }
 
-        public async Task<PlaceOrderPostResponse> postPlaceOrder(string token, PlaceOrderPostRequest PlaceOrder)
+        public async Task<PlaceOrderPostResponse> postPlaceOrder1(string token, PlaceOrderPostRequest PlaceOrder)
         {
 
             var content = JsonConvert.SerializeObject(PlaceOrder);

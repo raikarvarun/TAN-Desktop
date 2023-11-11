@@ -24,11 +24,11 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token);
         Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product);
 
-        Task<PlaceOrderPostResponse> postPlaceOrder(string token, PlaceOrderPostRequest PlaceOrder);
+        Task<PlaceOrderPostResponse> postPlaceOrder1(string token, PlaceOrderPostRequest PlaceOrder);
         Task<GetAllCommanResponse<PaymentTypeModel>> getAllPaymentTypes(string token);
 
         Task<PostReqCommanResponse<PaymentTypeModel>> postPaymentType(string token, PaymentTypeModel paymentType);
-
+        
 
         Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token);
         Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token);
@@ -36,6 +36,6 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token);
         Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token);
 
-        Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit(string token, ItemUnitModel itemUnit);
+        Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit1(string token, ItemUnitModel itemUnit);
     }
 }

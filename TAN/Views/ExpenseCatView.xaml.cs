@@ -22,16 +22,16 @@ namespace TAN.Views
 
     public partial class ExpenseCatView : UserControl
     {
-        private static List<productVersionModel> _products;
-        private ObservableCollection<productVersionModel> _productsMaindata;
+        private static List<ExpenseCategoryModel> _expenseCats;
+        private ObservableCollection<ExpenseCategoryModel> _expenseCatMaindata;
         private ObservableCollection<ItemTransactionModel> _ItemTranMaindata;
         private object _lockMutex = new object();
         private object _lockMutex1 = new object();
         private int currentProdcutID;
-        public ObservableCollection<productVersionModel> ProductMainData
+        public ObservableCollection<ExpenseCategoryModel> ExpenseCatMainData
         {
-            get { return _productsMaindata; }
-            set { _productsMaindata = value; }
+            get { return _expenseCatMaindata; }
+            set { _expenseCatMaindata = value; }
         }
         public ObservableCollection<ItemTransactionModel> ItemTranMainData
         {
@@ -47,12 +47,12 @@ namespace TAN.Views
             InitializeComponent();
             _events = events;
             _aPIHelper = aPIHelper;
-            _productsMaindata = new ObservableCollection<productVersionModel>();
+            _expenseCatMaindata = new ObservableCollection<ExpenseCategoryModel>();
             _ItemTranMaindata = new ObservableCollection<ItemTransactionModel>();
-            BindingOperations.EnableCollectionSynchronization(ProductMainData, _lockMutex);
+            BindingOperations.EnableCollectionSynchronization(ExpenseCatMainData, _lockMutex);
             BindingOperations.EnableCollectionSynchronization(ItemTranMainData, _lockMutex1);
-            ItemsTransation.ItemsSource = ItemTranMainData;
-            PRODUCTS.ItemsSource = ProductMainData;
+            //ItemsTransation.ItemsSource = ItemTranMainData;
+            PRODUCTS.ItemsSource = ExpenseCatMainData;
             assginParties();
             PRODUCTS.SelectedIndex = 0;
 
@@ -78,7 +78,7 @@ namespace TAN.Views
                 {
                     NameText.Text = product.productName;
                     StockQuantity.Text = product.productQuntity.ToString();
-                    assginTransaction(product.productNo);
+                    //assginTransaction(product.productNo);
                 }
             }
 
@@ -140,10 +140,10 @@ namespace TAN.Views
             return Task.Factory.StartNew(() =>
             {
 
-                _products = ProductVersionModelSqlite.readAll();
-                foreach (productVersionModel c in _products)
+                _expenseCats = ExpenseCategorySqllite.readAll();
+                foreach (ExpenseCategoryModel c in _expenseCats)
                 {
-                    _productsMaindata.Add(c);
+                    _expenseCatMaindata.Add(c);
                 }
             });
         }
@@ -156,10 +156,10 @@ namespace TAN.Views
         {
             return Task.Factory.StartNew(() =>
             {
-                _productsMaindata.Clear();
-                foreach (productVersionModel c in _products.Where(s => s.productName.ToLower().Contains(key)).ToList())
+                _expenseCatMaindata.Clear();
+                foreach (ExpenseCategoryModel c in _expenseCats.Where(s => s.ExpenseCategaryName.ToLower().Contains(key)).ToList())
                 {
-                    _productsMaindata.Add(c);
+                    _expenseCatMaindata.Add(c);
                 }
             });
         }
@@ -172,10 +172,10 @@ namespace TAN.Views
         {
             return Task.Factory.StartNew(() =>
             {
-                _productsMaindata.Clear();
-                foreach (productVersionModel c in _products)
+                _expenseCatMaindata.Clear();
+                foreach (ExpenseCategoryModel c in _expenseCats)
                 {
-                    _productsMaindata.Add(c);
+                    _expenseCatMaindata.Add(c);
                 }
             });
         }

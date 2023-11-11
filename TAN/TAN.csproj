@@ -184,6 +184,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\CusTextBox.cs" />
+    <Compile Include="Controls\ExpenseCatSuggestionTextBox.cs" />
+    <Compile Include="Controls\ExpenseCatSuggestion.cs" />
     <Compile Include="Controls\CustomerSuggestion.cs" />
     <Compile Include="Controls\CustomerSuggestionTextBox.cs" />
     <Compile Include="Controls\DropDownMenu.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="EventModels\AddExpenseCategoryEventModel.cs" />
     <Compile Include="EventModels\AddPartyEventModel.cs" />
     <Compile Include="EventModels\ClearChildShellView.cs" />
+    <Compile Include="EventModels\AddCustomerEventArgs.cs" />
     <Compile Include="EventModels\CustomerDataEventArgs.cs" />
     <Compile Include="EventModels\LogOnEventModel.cs" />
     <Compile Include="EventModels\MenuButtonClickEventArgs.cs" />
@@ -245,7 +248,6 @@
     <Compile Include="ViewModels\DashBoardViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\PartiesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\AddBankAccountView.xaml.cs">
       <DependentUpon>AddBankAccountView.xaml</DependentUpon>
@@ -286,7 +288,6 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IPartiesView.cs" />
     <Compile Include="Views\IShellView.cs" />
     <Compile Include="Views\ExpenseCatView.xaml.cs">
       <DependentUpon>ExpenseCatView.xaml</DependentUpon>

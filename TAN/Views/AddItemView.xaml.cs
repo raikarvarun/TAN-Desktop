@@ -55,8 +55,8 @@ namespace TAN.Views
                 productOQ = int.Parse(Amount.Text);
             }
 
-            var temp = appConfigSqlite.getData();
-            var token = temp.adminToken;
+            var appConfigtemp = appConfigSqlite.getData();
+            var token = appConfigtemp.adminToken;
 
             var data = new productVersionModel(1,
                 "null",
@@ -71,6 +71,8 @@ namespace TAN.Views
 
             var ans = await _apiHelper.postProducts(token, data);
             ProductVersionModelSqlite.addData(ans.data);
+            appConfigtemp.apiVersion = ans.apiVersion;
+            appConfigSqlite.editData(appConfigtemp);
             _changeCurrentViewtoItems();
         }
 

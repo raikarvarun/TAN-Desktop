@@ -64,6 +64,7 @@
                             Margin="40 0 0 0"
                             Height="35"
                             Width="200"
+                            AddPartySelected ="CustomerSuggestionTextBox_AddPartySelected"
                             CustomerSeleted ="CustomerSuggestionTextBox_CustomerSeleted"
                         />
 

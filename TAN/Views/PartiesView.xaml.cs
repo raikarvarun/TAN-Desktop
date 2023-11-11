@@ -1,4 +1,5 @@
-﻿using DataBaseManger.Model;
+﻿using Caliburn.Micro;
+using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,13 +9,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TAN.EventModels;
+using TAN.Helpers;
 
 namespace TAN.Views
 {
     /// <summary>
     /// Interaction logic for PartiesView.xaml
     /// </summary>
-    public partial class PartiesView : UserControl, IPartiesView
+    public partial class PartiesView : UserControl
     {
         
         
@@ -42,11 +45,14 @@ namespace TAN.Views
             get { return _ItemTranMaindata; }
             set { _ItemTranMaindata = value; }
         }
-
-        public PartiesView()
+        private IEventAggregator _events;
+        private IAPIHelper _apiHelper;
+        public PartiesView(IEventAggregator events, IAPIHelper aPIHelper)
         {
 
             InitializeComponent();
+            _events = events;
+            _apiHelper = aPIHelper;
             _customerMaindata = new ObservableCollection<customerModel>();
             _ItemTranMaindata = new ObservableCollection<CustomerTransationmodel>();
             BindingOperations.EnableCollectionSynchronization(CustomerMainData, _lockMutex);
@@ -57,7 +63,10 @@ namespace TAN.Views
             PARTIES.SelectedIndex = 0;
 
         }
-
+        private void AddPartyButtonClicked_Click(object sender, RoutedEventArgs e)
+        {
+            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel());
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             searchButtonDP.Visibility = Visibility.Collapsed;
@@ -248,5 +257,6 @@ namespace TAN.Views
 
         }
 
+        
     }
 }

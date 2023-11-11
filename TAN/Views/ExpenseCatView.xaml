@@ -67,7 +67,7 @@
                                             Header="Category"
                                             MinWidth="50"
                                             Width="*"
-                                            Binding="{Binding productName}"
+                                            Binding="{Binding ExpenseCategaryName}"
                                             ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <DataGridTextColumn 
                                             Header="Amount"

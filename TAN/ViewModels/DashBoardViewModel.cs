@@ -36,7 +36,7 @@ namespace TAN.ViewModels
 
 
         public HomeViewModel HomeVM { get; set; }
-        public PartiesViewModel PartiesVM { get; set; }
+        
        
 
 
@@ -58,7 +58,7 @@ namespace TAN.ViewModels
             _events = events;
             _apiHelper = aPIHelper;
             HomeVM = new HomeViewModel();
-            PartiesVM = new PartiesViewModel(events);
+           
             
 
 
@@ -79,7 +79,7 @@ namespace TAN.ViewModels
 
             PartiesViewCommand = new RelayCommand(o =>
             {
-                CurrentView = PartiesVM;
+                CurrentView = new PartiesView(events , aPIHelper);
             });
 
             ItemViewCommand = new RelayCommand(o =>

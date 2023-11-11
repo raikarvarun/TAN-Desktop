@@ -8,9 +8,11 @@
                     xmlns:helper="clr-namespace:TAN.Helpers">
 
     
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="..\Notification\Themes\NotificationGenric.xaml"></ResourceDictionary>
-        </ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="..\Notification\Themes\NotificationGenric.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="..\Notification\Themes\NotificationGenric.xaml"></ResourceDictionary>
+
+    </ResourceDictionary.MergedDictionaries>
     
     
     
@@ -123,15 +125,21 @@
                                           HorizontalAlignment="Stretch"
                                           CellStyle="{DynamicResource DataGridCellStyle1}"
                                           RowStyle="{DynamicResource DataGridRowStyle1}"
-                                          HeadersVisibility="None">
-
+                                          
+                                          HeadersVisibility="None"
+                                          
+                                         
+                                          >
+                                    
                                     <DataGrid.Columns>
+                                        
                                         <DataGridTextColumn FontSize="18"
-                                                            Header="Name"
+                                                            Header="Add Party"
                                                             Width="*"
+                                                            
                                                             Binding="{Binding customerName}"></DataGridTextColumn>
                                         <DataGridTextColumn FontSize="18"
-                                                            Header="Amount"
+                                                            Header="Party Balance"
                                                             Width="100"
                                                             Binding="{Binding TotalAmount}">
                                             <DataGridTextColumn.ElementStyle>
