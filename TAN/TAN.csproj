@@ -198,12 +198,14 @@
     <Compile Include="Controls\SuggestionTextBox.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="EventModels\AddExpenseCatEventArgs.cs" />
     <Compile Include="EventModels\AddExpensePageViewEventModel.cs" />
     <Compile Include="EventModels\AddExpenseItemEventModel.cs" />
     <Compile Include="EventModels\AddExpenseCategoryEventModel.cs" />
     <Compile Include="EventModels\AddPartyEventModel.cs" />
     <Compile Include="EventModels\ClearChildShellView.cs" />
     <Compile Include="EventModels\AddCustomerEventArgs.cs" />
+    <Compile Include="EventModels\ExpenseCatDataEventArgs.cs" />
     <Compile Include="EventModels\CustomerDataEventArgs.cs" />
     <Compile Include="EventModels\LogOnEventModel.cs" />
     <Compile Include="EventModels\MenuButtonClickEventArgs.cs" />
@@ -370,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ExpenseSuggestionGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

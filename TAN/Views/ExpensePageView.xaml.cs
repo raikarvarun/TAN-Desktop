@@ -49,7 +49,10 @@ namespace TAN.Views
             addRow();
             assognCombobox();
         }
-
+        private void ExpenseCatSuggestionTextBox_AddExpenseCat(object sender, AddExpenseCatEventArgs args)
+        {
+            _=_events.PublishOnUIThreadAsync(new AddExpenseCategoryEventModel());
+        }
 
         private List<PaymentTypeModel> _paymentTypeModels;
         private void assognCombobox()
@@ -131,10 +134,10 @@ namespace TAN.Views
 
         
 
-        private customerModel _customerData;
-        private void CustomerSuggestionTextBox_CustomerSeleted(object sender, CustomerDataEventArgs args)
+        private ExpenseCategoryModel _customerData;
+        private void ExpenseCatSuggestionTextBox_ExpenseCatSeleted(object sender, ExpenseCatDataEventArgs args)
         {
-            _customerData = (customerModel)args.SelectedcustomerData.Clone();
+            _customerData = (ExpenseCategoryModel)args.SelectedData.Clone();
         }
 
 
@@ -186,7 +189,7 @@ namespace TAN.Views
             //order
             placeOrder.order.orderDate = temporderdate;
             placeOrder.order.paymentDone = 1;
-            placeOrder.order.customerID = _customerData.customerID;
+            //placeOrder.order.customerID = _customerData.customerID;
             placeOrder.order.orderType = _orderTypeGlobal;
             placeOrder.order.InvoiceNo = int.Parse(AboveInVoiceNo.Text);
             //relation
@@ -400,5 +403,9 @@ namespace TAN.Views
             }
 
         }
+
+        
+
+        
     }
 }

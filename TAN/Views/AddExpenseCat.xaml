@@ -25,7 +25,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
+                    
                 </Grid.ColumnDefinitions>
                 
 
@@ -81,6 +81,8 @@
                 <Button 
                     Grid.Column="2" Grid.Row="6" 
                     Margin="50 5 20 5" 
+                    Width="100"
+                    HorizontalAlignment="Right"
                     Click="SaveButtonClicked"
                     FontSize="25"
                     FontWeight="Medium"

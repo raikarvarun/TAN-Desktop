@@ -37,32 +37,32 @@ namespace TAN.Controls
     ///     <MyNamespace:CustomerSuggestionTextBox/>
     ///
     /// </summary>
-    [TemplatePart(Name = "CustomerSuggestionEditor", Type = typeof(TextBox))]
-    public class CustomerSuggestionTextBox : Control
+    [TemplatePart(Name = "ExpenseCatSuggestionEditor", Type = typeof(TextBox))]
+    public class ExpenseCatSuggestionTextBox : Control
     {
-        public delegate void CustomerChangeEventHandler(object sender, CustomerDataEventArgs args);
-        public delegate void AddCustomerEventHandler(object sender, AddCustomerEventArgs args);
+        public delegate void ExpenseCatChangeEventHandler(object sender, ExpenseCatDataEventArgs args);
+        public delegate void AddExpenseCatEventHandler(object sender, AddExpenseCatEventArgs args);
 
-        private customerModel _customerData { get; set; }
+        private ExpenseCategoryModel _expenseCategory { get; set; }
 
-        static CustomerSuggestionTextBox()
+        static ExpenseCatSuggestionTextBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomerSuggestionTextBox), new FrameworkPropertyMetadata(typeof(CustomerSuggestionTextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ExpenseCatSuggestionTextBox), new FrameworkPropertyMetadata(typeof(ExpenseCatSuggestionTextBox)));
         }
         TextBox textBox;
-        CustomerSuggestion suggestion;
+        ExpenseCatSuggestion suggestion;
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             if (this.Template != null)
             {
-                textBox = this.Template.FindName("CustomerSuggestionEditor", this) as TextBox;
-                suggestion = this.Template.FindName("CustomerSuggestion", this) as CustomerSuggestion;
+                textBox = this.Template.FindName("ExpenseCatSuggestionEditor", this) as TextBox;
+                suggestion = this.Template.FindName("ExpenseCatSuggestion", this) as ExpenseCatSuggestion;
                 if (textBox != null)
                 {
-                    List<customerModel> CustomerMainData = CustomerSqllite.readAll();
-                    suggestion.AssginCustomerMainData(CustomerMainData);
-                    suggestion.AssginFunction(OnCustomerSeleted, OnAddPartySelected);
+                    List<ExpenseCategoryModel> ExpenseCatMainData = ExpenseCategorySqllite.readAll();
+                    suggestion.AssginExpenseMainData(ExpenseCatMainData);
+                    suggestion.AssginFunction(OnExpenseCatSeleted, OnAddExpenseCat);
                     textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
                     textBox.KeyDown += (s, e) => { TextBoxKeyDown(e); };
                     textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
@@ -75,9 +75,9 @@ namespace TAN.Controls
 
         private void TextBoxMouseDown()
         {
-            if (!suggestion.CustomerSuggestionPopup.IsOpen) 
+            if (!suggestion._expenseCatSuggestionPopup.IsOpen) 
             {
-                suggestion.CustomerSuggestionPopup.IsOpen = true;
+                suggestion._expenseCatSuggestionPopup.IsOpen = true;
                 suggestion.AssginParties(textBox);
             }
                 
@@ -85,95 +85,74 @@ namespace TAN.Controls
         }
 
 
-        //Customer selected event
-        public static RoutedEvent CustomerSelectedEvent = EventManager.RegisterRoutedEvent("CustomerSeleted",
-             RoutingStrategy.Bubble, typeof(CustomerChangeEventHandler), typeof(CustomerSuggestionTextBox));
+        //Expense Cat selected event
+        public static RoutedEvent ExpenseCatSelectedEvent = EventManager.RegisterRoutedEvent("ExpenseCatSeleted",
+             RoutingStrategy.Bubble, typeof(ExpenseCatChangeEventHandler), typeof(ExpenseCatSuggestionTextBox));
 
-        public event CustomerChangeEventHandler CustomerSeleted
+        public event ExpenseCatChangeEventHandler ExpenseCatSeleted
         {
             add
             {
-                AddHandler(CustomerSelectedEvent, value);
+                AddHandler(ExpenseCatSelectedEvent, value);
             }
             remove
             {
-                RemoveHandler(CustomerSelectedEvent, value);
+                RemoveHandler(ExpenseCatSelectedEvent, value);
             }
         }
 
 
-        protected virtual void OnCustomerSeleted(customerModel data)
+        protected virtual void OnExpenseCatSeleted(ExpenseCategoryModel data)
         {
 
-            setcustomerData(data);
-            RaiseEvent(new CustomerDataEventArgs(CustomerSelectedEvent, this) { SelectedcustomerData = data });
+            setData(data);
+            RaiseEvent(new ExpenseCatDataEventArgs(ExpenseCatSelectedEvent, this) { SelectedData = data });
         }
 
 
         //Add party selected event
-        public static RoutedEvent AddPartySelectedEvent = EventManager.RegisterRoutedEvent("AddPartySelected",
-             RoutingStrategy.Bubble, typeof(AddCustomerEventHandler), typeof(CustomerSuggestionTextBox));
+        public static RoutedEvent AddExpenseCatEvent = EventManager.RegisterRoutedEvent("AddExpenseCat",
+             RoutingStrategy.Bubble, typeof(AddExpenseCatEventHandler), typeof(ExpenseCatSuggestionTextBox));
 
-        public event AddCustomerEventHandler AddPartySelected
+        public event AddExpenseCatEventHandler AddExpenseCat
         {
             add
             {
-                AddHandler(AddPartySelectedEvent, value);
+                AddHandler(AddExpenseCatEvent, value);
             }
             remove
             {
-                RemoveHandler(AddPartySelectedEvent, value);
+                RemoveHandler(AddExpenseCatEvent, value);
             }
         }
 
 
-        protected virtual void OnAddPartySelected()
+        protected virtual void OnAddExpenseCat()
         {
 
             
-            RaiseEvent(new AddCustomerEventArgs(AddPartySelectedEvent, this));
+            RaiseEvent(new AddExpenseCatEventArgs(AddExpenseCatEvent, this));
         }
 
 
-        public void setcustomerData(customerModel data)
+        public void setData(ExpenseCategoryModel data)
         {
-            _customerData = data;
+            _expenseCategory = data;
         }
 
 
 
-        //public List<customerModel> CustomerSuggestions
-        //{
-        //    get { return (List<customerModel>)GetValue(SuggestionsProperty); }
-        //    set { SetValue(SuggestionsProperty, value); }
-        //}
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SuggestionsProperty =
-        //    DependencyProperty.Register("CustomerSuggestions", typeof(ObservableCollection<string>), typeof(CustomerSuggestionTextBox), new PropertyMetadata(default));
-
-        //public ObservableCollection<string> CustomerSuggestions
-        //{
-        //    get { return (ObservableCollection<string>)GetValue(SuggestionsProperty); }
-        //    set { SetValue(SuggestionsProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SuggestionsProperty =
-        //    DependencyProperty.Register("CustomerSuggestions", typeof(ObservableCollection<string>), typeof(CustomerSuggestionTextBox), new PropertyMetadata(default));
-
+        
 
 
         private void TextBoxPreviewKeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.Down )
             {
-                suggestion.CustomerSuggestions.Focus();
-                var temp = suggestion.CustomerSuggestions.IsFocused;
+                suggestion._expenseCatSuggestions.Focus();
+                
 
-                var temp1 = suggestion.CustomerSuggestions.IsKeyboardFocused ; 
-
-                suggestion.CustomerSuggestions.SelectedIndex = 0;
+                suggestion._expenseCatSuggestions.SelectedIndex = 0;
                 
             }
         }
@@ -182,7 +161,7 @@ namespace TAN.Controls
         {
             if (e.Key == Key.Enter)
             {
-                suggestion.CustomerSuggestionPopup.IsOpen = false;
+                suggestion._expenseCatSuggestionPopup.IsOpen = false;
             }
         }
     }

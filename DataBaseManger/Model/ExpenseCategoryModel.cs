@@ -12,5 +12,9 @@
             this.ExpenseCategaryName = ExpenseCategaryName;
             
         }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

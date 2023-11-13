@@ -56,7 +56,7 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}"
                           RowStyle="{DynamicResource DataGridRowStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle2}"
-                          x:Name="PRODUCTS"
+                          x:Name="EXPENSECATDATAGRID"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
                           RenderTransformOrigin="0.473,0.462"

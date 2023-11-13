@@ -52,9 +52,9 @@ namespace TAN.Views
             BindingOperations.EnableCollectionSynchronization(ExpenseCatMainData, _lockMutex);
             BindingOperations.EnableCollectionSynchronization(ItemTranMainData, _lockMutex1);
             //ItemsTransation.ItemsSource = ItemTranMainData;
-            PRODUCTS.ItemsSource = ExpenseCatMainData;
+            EXPENSECATDATAGRID.ItemsSource = ExpenseCatMainData;
             assginParties();
-            PRODUCTS.SelectedIndex = 0;
+            EXPENSECATDATAGRID.SelectedIndex = 0;
 
         }
         private void SaveButtonClicked_Click(object sender, RoutedEventArgs e)
@@ -71,26 +71,19 @@ namespace TAN.Views
 
         private void PARTIES_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            productVersionModel product = (productVersionModel)PRODUCTS.SelectedItem;
-            if (product != null)
+            ExpenseCategoryModel data = (ExpenseCategoryModel)EXPENSECATDATAGRID.SelectedItem;
+            if (data != null)
             {
-                if (product.productName != null)
+                if (data.ExpenseCategaryName != null)
                 {
-                    NameText.Text = product.productName;
-                    StockQuantity.Text = product.productQuntity.ToString();
+                    NameText.Text = data.ExpenseCategaryName;
+                    
                     //assginTransaction(product.productNo);
                 }
             }
 
         }
-        private string DisplayIndianCurrency(string data)
-        {
-            decimal parsed = decimal.Parse(data, CultureInfo.InvariantCulture);
-            CultureInfo hindi = new CultureInfo("hi-IN");
-            hindi.NumberFormat.CurrencySymbol = "";
-            string text = string.Format(hindi, "{0:c}", parsed);
-            return text;
-        }
+        
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 

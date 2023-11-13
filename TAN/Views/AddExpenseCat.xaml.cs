@@ -36,12 +36,22 @@ namespace TAN.Views
         }
         private void closePage()
         {
-            //_ = _events.PublishOnUIThreadAsync(new RemoveSelectUnitEventModel());
+            _ = _events.PublishOnUIThreadAsync(new RemoveExpenseCategoryEventModel());
                     
         }
-        private void SaveButtonClicked(object sender, RoutedEventArgs e)
+        private async void SaveButtonClicked(object sender, RoutedEventArgs e)
         {
-            
+            var expenseCatName = ExpenseCategoryTextBox.Text;
+
+            var expenseCatData = new ExpenseCategoryModel(0, expenseCatName);
+
+            var appconfig = appConfigSqlite.getData();
+            var token = appconfig.adminToken;
+            var ans = await _apiHelper.postExpenseCat(token , expenseCatData);
+            ExpenseCategorySqllite.addData(ans.data);
+            appconfig.apiVersion = ans.apiVersion;
+            appConfigSqlite.editData(appconfig);
+            closePage();
         }
 
 

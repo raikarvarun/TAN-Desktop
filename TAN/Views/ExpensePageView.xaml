@@ -58,14 +58,15 @@
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
 
-                        <custom:CustomerSuggestionTextBox 
+                        <custom:ExpenseCatSuggestionTextBox 
                           HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="40 0 0 0"
                             Height="35"
                             Width="200"
-                            CustomerSeleted ="CustomerSuggestionTextBox_CustomerSeleted"
-                        />
+                            ExpenseCatSeleted ="ExpenseCatSuggestionTextBox_ExpenseCatSeleted"
+                            AddExpenseCat ="ExpenseCatSuggestionTextBox_AddExpenseCat" 
+                            />
 
                     </DockPanel>
                     <DockPanel Grid.Column="1"

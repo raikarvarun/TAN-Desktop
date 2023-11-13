@@ -43,8 +43,8 @@ namespace TAN.Controls
     ///     <MyNamespace:CustomerSuggestion/>
     ///
     /// </summary>
-    [TemplatePart(Name = "CustomerSuggestions", Type = typeof(ListBox))]
-    [TemplatePart(Name = "CustomerSuggestionPopup", Type = typeof(Popup))]
+    [TemplatePart(Name = "ExpenseCatSuggestionsDataGrid", Type = typeof(ListBox))]
+    [TemplatePart(Name = "ExpenseCatSuggestionPopup", Type = typeof(Popup))]
 
     public class ExpenseCatSuggestion : Control
     {
@@ -52,40 +52,40 @@ namespace TAN.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ExpenseCatSuggestion), new FrameworkPropertyMetadata(typeof(ExpenseCatSuggestion)));
         }
-        public DataGrid CustomerSuggestions;
-        public Popup CustomerSuggestionPopup;
+        public DataGrid _expenseCatSuggestions;
+        public Popup _expenseCatSuggestionPopup;
         TextBox _textbox;
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             if (this.Template != null)
             {
-                CustomerSuggestions = this.Template.FindName("CustomerSuggestions", this) as DataGrid;
-                CustomerSuggestionPopup = this.Template.FindName("CustomerSuggestionPopup", this) as Popup;
+                _expenseCatSuggestions = this.Template.FindName("ExpenseCatSuggestionsDataGrid", this) as DataGrid;
+                _expenseCatSuggestionPopup = this.Template.FindName("ExpenseCatSuggestionPopup", this) as Popup;
 
-                BindingOperations.EnableCollectionSynchronization(CustomerMainData, _lockMutex);
-                CustomerSuggestions.ItemsSource = CustomerMainData;
-                //CustomerSuggestions.Rows[0].DefaultCellStyle.forecolor = "Color.Red";
-                
-
-
+                BindingOperations.EnableCollectionSynchronization(ExpenseCatMainData, _lockMutex);
+                _expenseCatSuggestions.ItemsSource = ExpenseCatMainData;
                 
 
 
 
-                CustomerSuggestions.GotFocus += (s, e) =>
+
+
+
+
+                _expenseCatSuggestions.GotFocus += (s, e) =>
                 {
                     var temp = 1;
                 };
-                CustomerSuggestions.GotKeyboardFocus += (s, e) =>
+                _expenseCatSuggestions.GotKeyboardFocus += (s, e) =>
                 {
                     var temp = 2;
                 };
-                CustomerSuggestions.PreviewMouseDown += (s, e) =>
+                _expenseCatSuggestions.PreviewMouseDown += (s, e) =>
                 {
                     SuggestionsPreviewMouseDown(e);
                 };
-                CustomerSuggestions.KeyDown += (s, e) =>
+                _expenseCatSuggestions.KeyDown += (s, e) =>
                 {
                     SuggestionskeyDown(e);
                 };
@@ -103,7 +103,7 @@ namespace TAN.Controls
 
                 if (e.Key == Key.Enter)
                 {
-                    CustomerSuggestionPopup.IsOpen = false;
+                    _expenseCatSuggestionPopup.IsOpen = false;
                 }
             }
         }
@@ -112,76 +112,54 @@ namespace TAN.Controls
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                
 
-                customerModel temp = (customerModel)CustomerSuggestions.SelectedItem;
+
+                ExpenseCategoryModel temp = (ExpenseCategoryModel)_expenseCatSuggestions.SelectedItem;
                 if (temp != null)
                 {
-                    if (temp.customerID == -20)
+                    if (temp.ExpenseCategaryID == -20)
                     {
-                        _onAddPartySelected1();
+                        _onAddExpesneCat1();
                     }
                     else
                     {
-                        _textbox.Text = temp.customerName;
-                        _onCustomerSeleted(temp);
+                        _textbox.Text = temp.ExpenseCategaryName;
+                        _onexpenseCatSeleted(temp);
                         _needToFetchData = true;
                     }
-                    CustomerSuggestionPopup.IsOpen = false;
+                    _expenseCatSuggestionPopup.IsOpen = false;
                     e.Handled = true;
                 }
             }
         }
 
-        //internal void ShowSuggestion(ObservableCollection<string> listSuggestion, TextBox textBox)
-        //{
+       
 
-        //    _textbox = textBox;
-        //    CustomerSuggestions.Items.Clear();
+        public delegate void OnExpenseCatSeleted1(ExpenseCategoryModel data);
+        public delegate void OnAddExpesneCat1();
 
-
-
-        //    if (listSuggestion != null)
-        //        foreach (var each in listSuggestion)
-        //            CustomerSuggestions.Items.Add(each);
+        private OnExpenseCatSeleted1 _onexpenseCatSeleted;
+        private OnAddExpesneCat1 _onAddExpesneCat1;
 
 
-
-        //    CustomerSuggestionPopup.IsOpen = CustomerSuggestions.Items.Count > 0;
-        //    CustomerSuggestions.Items.Filter = f =>
-        //    {
-        //        string _text = f as string;
-        //        return _text.StartsWith(_textbox.Text, StringComparison.CurrentCultureIgnoreCase) &&
-        //        !(string.Equals(_text, _textbox.Text, StringComparison.CurrentCultureIgnoreCase));
-        //    };
-
-        //}
-
-        public delegate void OnCustomerSeleted1(customerModel data);
-        public delegate void OnAddPartySelected1();
-
-        private OnCustomerSeleted1 _onCustomerSeleted;
-        private OnAddPartySelected1 _onAddPartySelected1;
-
-
-        public void AssginFunction(OnCustomerSeleted1 data , OnAddPartySelected1 data1)
+        public void AssginFunction(OnExpenseCatSeleted1 data , OnAddExpesneCat1 data1)
         {
-            _onCustomerSeleted = data;
-            _onAddPartySelected1 = data1;
+            _onexpenseCatSeleted = data;
+            _onAddExpesneCat1 = data1;
         }
 
 
-        //private List<customerModel> _products;
+        
         public void AssginParties(TextBox searchTextBox)
         {
             _textbox = searchTextBox;
-            CustomerSuggestionPopup.IsOpen = true;
+            _expenseCatSuggestionPopup.IsOpen = true;
 
             string searchKey = searchTextBox.Text.ToLower();
             if(_needToFetchData)
             {
-                List<customerModel> CustomerMainData = CustomerSqllite.readAll();
-                mainData = CustomerMainData;
+                List<ExpenseCategoryModel> MainData1 = ExpenseCategorySqllite.readAll();
+                mainData = MainData1;
             }
             if (searchKey == "")
             {
@@ -190,7 +168,7 @@ namespace TAN.Controls
 
                 _ = LoadDataAsync();
                 
-                    DataGridRow row = (DataGridRow)CustomerSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
+                    DataGridRow row = (DataGridRow)_expenseCatSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
                     if (row != null)
                     {
                         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(100, 255, 104, 0));
@@ -202,7 +180,7 @@ namespace TAN.Controls
             else
             {
                 _ = SearchDataAsync(searchKey);
-                DataGridRow row = (DataGridRow)CustomerSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
+                DataGridRow row = (DataGridRow)_expenseCatSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
                 if (row != null)
                 {
                     SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(100, 255, 104, 0));
@@ -212,35 +190,35 @@ namespace TAN.Controls
                  
 
         }
-        private List<customerModel> mainData;
-        private ObservableCollection<customerModel> _customerMainData;
-        public ObservableCollection<customerModel> CustomerMainData
+        private List<ExpenseCategoryModel> mainData;
+        private ObservableCollection<ExpenseCategoryModel> _expenseCatMainData;
+        public ObservableCollection<ExpenseCategoryModel> ExpenseCatMainData
         {
-            get { return _customerMainData; }
-            set { _customerMainData = value; }
+            get { return _expenseCatMainData; }
+            set { _expenseCatMainData = value; }
         }
         private object _lockMutex = new object();
-        public void AssginCustomerMainData(List<customerModel> paraData)
+        public void AssginExpenseMainData(List<ExpenseCategoryModel> paraData)
         {
-            _customerMainData = new ObservableCollection<customerModel>();
+            _expenseCatMainData = new ObservableCollection<ExpenseCategoryModel>();
 
             mainData = paraData;
             
-        //_customerMainData = productMainData;
+        
         }
         
         private Task LoadDataAsync()
         {
             return Task.Factory.StartNew(() =>
             {
-                _customerMainData.Clear();
-                _customerMainData.Add(new customerModel(-20, "Add Party", 1, "", "", 0, 0));
+                _expenseCatMainData.Clear();
+                _expenseCatMainData.Add(new ExpenseCategoryModel(-20, "Add Expense Category"));
 
                 
                 
-                foreach (customerModel c in mainData.Take(20))
+                foreach (ExpenseCategoryModel c in mainData.Take(20))
                 {
-                    _customerMainData.Add(c);
+                    _expenseCatMainData.Add(c);
                 }
                 
             });
@@ -249,19 +227,19 @@ namespace TAN.Controls
         {
             return Task.Factory.StartNew(() =>
             {
-                _customerMainData.Clear();
-                _customerMainData.Add(new customerModel(-20, "Add Party", 1, "", "", 0, 0));
-                foreach (customerModel c in mainData.Where(s => s.customerName.ToLower().Contains(key)).ToList())
+                _expenseCatMainData.Clear();
+                _expenseCatMainData.Add(new ExpenseCategoryModel(-20, "Add Expense Category"));
+                foreach (ExpenseCategoryModel c in mainData.Where(s => s.ExpenseCategaryName.ToLower().Contains(key)).ToList())
                 {
-                    _customerMainData.Add(c);
+                    _expenseCatMainData.Add(c);
                 }
             });
         }
 
         internal void LostFocuss(RoutedEventArgs e)
         {
-            
-            CustomerSuggestionPopup.IsOpen = false;
+
+            _expenseCatSuggestionPopup.IsOpen = false;
         }
     }
 }

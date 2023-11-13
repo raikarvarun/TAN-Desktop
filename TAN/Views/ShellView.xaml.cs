@@ -124,7 +124,7 @@ namespace TAN.Views
         public void addExpenseCategoryShellView(IEventAggregator events, IAPIHelper aPIHelper)
         {
             _addExpenseCat = new AddExpenseCat(events, aPIHelper);
-            ShellGridMain.Children.Add(_addSelectUnit);
+            ShellGridMain.Children.Add(_addExpenseCat);
         }
         public void removeExpenseCategoryChildOfShellView()
         {
