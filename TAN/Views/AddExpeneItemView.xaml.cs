@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,12 +37,24 @@ namespace TAN.Views
         }
         private void closePage()
         {
-            //_ = _events.PublishOnUIThreadAsync(new RemoveSelectUnitEventModel());
+            _ = _events.PublishOnUIThreadAsync(new RemoveExpenseItemEventModel());
                     
         }
-        private void SaveButtonClicked(object sender, RoutedEventArgs e)
+        private async void SaveButtonClicked(object sender, RoutedEventArgs e)
         {
-            
+            var expenseitemName = ExpenseitemTextBox.Text;
+            var price = Double.Parse( PriceTextBox.Text);
+
+
+            var data = new ExpenseItemModel(0, expenseitemName, price);
+
+            var appconfig = appConfigSqlite.getData();
+            var token = appconfig.adminToken;
+            var ans = await _apiHelper.postExpenseItem(token, data);
+            ExpenseItemSqllite.addData(ans.data);
+            appconfig.apiVersion = ans.apiVersion;
+            appConfigSqlite.editData(appconfig);
+            closePage();
         }
 
 

@@ -191,13 +191,16 @@
     <Compile Include="Controls\DropDownMenu.cs" />
     <Compile Include="Controls\GrowthDirectionControl.cs" />
     <Compile Include="Controls\MenuButton.cs" />
+    <Compile Include="Controls\ExpenseItemSuggestion.cs" />
     <Compile Include="Controls\ProductSuggestion.cs" />
+    <Compile Include="Controls\ExpenseItemSuggestionTextBox.cs" />
     <Compile Include="Controls\ProductSuggestionTextBox.cs" />
     <Compile Include="Controls\MultiplyConverter.cs" />
     <Compile Include="Controls\Suggestion.cs" />
     <Compile Include="Controls\SuggestionTextBox.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="EventModels\AddProductrEventArgs.cs" />
     <Compile Include="EventModels\AddExpenseCatEventArgs.cs" />
     <Compile Include="EventModels\AddExpensePageViewEventModel.cs" />
     <Compile Include="EventModels\AddExpenseItemEventModel.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="EventModels\PaymentInEventModel.cs" />
     <Compile Include="EventModels\AddSelectUnitEventModel.cs" />
     <Compile Include="EventModels\PaymentOutEventModel.cs" />
+    <Compile Include="EventModels\ExpenseItemDataEventArgs.cs" />
     <Compile Include="EventModels\ProductDataEventArgs.cs" />
     <Compile Include="EventModels\ClearSalePageEventModel.cs" />
     <Compile Include="EventModels\RemoveExpensePageEventModel.cs" />
@@ -280,6 +284,9 @@
     </Compile>
     <Compile Include="Views\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpenseItemView.xaml.cs">
+      <DependentUpon>ExpenseItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemMainVIew.xaml.cs">
       <DependentUpon>ItemMainVIew.xaml</DependentUpon>
@@ -434,6 +441,10 @@
     <Page Include="Views\DashBoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpenseItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ItemMainVIew.xaml">
       <Generator>MSBuild:Compile</Generator>

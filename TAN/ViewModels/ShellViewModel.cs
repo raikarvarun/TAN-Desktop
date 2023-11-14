@@ -139,13 +139,13 @@ namespace TAN.ViewModels
 
         public Task HandleAsync(AddExpenseItemEventModel message, CancellationToken cancellationToken)
         {
-            _view.addExpenseCategoryShellView(_events, _apiHelper);
+            _view.addExpenseItemShellView(_events, _apiHelper);
             return Task.CompletedTask;
         }
 
         public Task HandleAsync(RemoveExpenseItemEventModel message, CancellationToken cancellationToken)
         {
-            _view.removeExpenseCategoryChildOfShellView();
+            _view.removeExpenseItemChildOfShellView();
             return Task.CompletedTask;
         }
 

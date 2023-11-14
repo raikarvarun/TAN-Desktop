@@ -112,7 +112,7 @@
                                    IsOpen="False"
                                    StaysOpen="False">
 
-
+                                
                                 <DataGrid Margin="10 0 5 10"
                                           Foreground="Black"
                                           x:Name="CustomerSuggestions"
@@ -214,10 +214,13 @@
                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                          VerticalAlignment="Stretch"
                                          HorizontalAlignment="Stretch"/>-->
+                                
 
+                                    
                                 <DataGrid Margin="10 0 5 10"
+                                          Grid.Row="1"
                                           Foreground="Black"
-                                          x:Name="ProductSuggestions"
+                                          x:Name="ProductSuggestionsDataGrid"
                                           AutoGenerateColumns="False"
                                           IsReadOnly="True"
                                           RenderTransformOrigin="0.473,0.462"
@@ -265,6 +268,9 @@
                                                          Color="#cee6f3" />
                                     </DataGrid.Resources>
                                 </DataGrid>
+
+                                    
+                                
                             </Popup>
                         </Grid>
                     </Border>
@@ -313,6 +319,7 @@
                 Value="#a9acb4" />
         <Setter Property="FontSize"
                 Value="16" />
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CusTextBox}">
@@ -503,10 +510,7 @@
                                  
                                  
                                   />
-                            <!--<TextBox x:Name="CustomerSuggestionEditor"
-                             AutoWordSelection="True"
-                             FontSize="16"
-                             FontWeight="SemiBold"></TextBox>-->
+                            
                             <local:ExpenseCatSuggestion x:Name="ExpenseCatSuggestion"
                                               Grid.Row="1"
                                               HorizontalAlignment="Stretch"></local:ExpenseCatSuggestion>
@@ -578,6 +582,112 @@
                                                  Color="#cee6f3" />
                                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
                                                  Color="#cee6f3" />
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    
+    <!--s
+    df
+    asdf
+    as
+    df-->
+    <!--Expense ITem-->
+    <Style TargetType="{x:Type local:ExpenseItemSuggestionTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ExpenseItemSuggestionTextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0" />
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="ExpenseCatSuggestionEditor"
+                                        FontSize="16"
+                                        AutoWordSelection="True"
+                                        Text="{TemplateBinding Text1}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"></TextBox>
+
+                            <local:ExpenseItemSuggestion x:Name="ExpenseItemSuggestion"
+                                          Grid.Row="1"
+                                          HorizontalAlignment="Stretch"></local:ExpenseItemSuggestion>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ExpenseItemSuggestion}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ExpenseItemSuggestion}">
+                    <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Popup x:Name="ExpenseItemSuggestionPopup1"
+                                        AllowsTransparency="True"
+                                        Placement="Bottom"
+                                        IsOpen="False"
+                                        StaysOpen="False">
+
+
+                                <DataGrid Margin="10 0 5 10"
+                                            Foreground="Black"
+                                            x:Name="ExpenseItemSuggestionsDataGrid"
+                                            AutoGenerateColumns="False"
+                                            IsReadOnly="True"
+                                            RenderTransformOrigin="0.473,0.462"
+                                            Width="300"
+                                            Height="auto"
+                                            MaxHeight="350"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            CellStyle="{DynamicResource DataGridCellStyle1}"
+                                            RowStyle="{DynamicResource DataGridRowStyle1}"
+                                            
+                                            HeadersVisibility="None"
+                                                >
+
+                                    <DataGrid.Columns>
+
+                                        <DataGridTextColumn FontSize="18"
+                                                Header="Add Party"
+                                                Width="*"
+                                                
+                                                Binding="{Binding ExpenseItemName}"></DataGridTextColumn>
+                                        <DataGridTextColumn FontSize="18"
+                                                Header="Party Balance"
+                                                Width="100"
+                                                Binding="{Binding OpeningAmount}">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="HorizontalAlignment"
+                                                Value="Right" />
+                                                    <Setter Property="Foreground"
+                                                Value="LimeGreen" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                             Color="#cee6f3" />
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                             Color="#cee6f3" />
                                     </DataGrid.Resources>
                                 </DataGrid>
                             </Popup>

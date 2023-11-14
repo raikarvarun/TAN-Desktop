@@ -40,6 +40,8 @@ namespace TAN.Helpers
 
         Task<PostReqCommanResponse<ExpenseCategoryModel>> postExpenseCat(string token, ExpenseCategoryModel data);
 
+        Task<PostReqCommanResponse<ExpenseItemModel>> postExpenseItem(string token, ExpenseItemModel data);
+
 
     }
 }

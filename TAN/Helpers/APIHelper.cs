@@ -256,6 +256,12 @@ namespace TAN.Helpers
             return comman.PostData(token, "/api/expensecat/insert", data, ApiClient);
 
         }
+        public Task<PostReqCommanResponse<ExpenseItemModel>> postExpenseItem(string token, ExpenseItemModel data)
+        {
+            Comman<ExpenseItemModel> comman = new Comman<ExpenseItemModel>();
+            return comman.PostData(token, "/api/expenseitem/insert", data, ApiClient);
+
+        }
 
         public async Task<PlaceOrderPostResponse> postPlaceOrder1(string token, PlaceOrderPostRequest PlaceOrder)
         {

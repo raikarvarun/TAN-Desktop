@@ -30,35 +30,39 @@ namespace TAN.Views
             InitializeComponent();
             _events = events;
             _aPIHelper = aPIHelper;
-            CategoryButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
-            ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
 
-            ExpenseMainItem.Content = new ExpenseCatView(events , aPIHelper);
-            CategoryButton.Foreground = new SolidColorBrush(Colors.Black);
-            CategoryButton.BorderThickness = new Thickness(0, 0, 0, 2);
+            ExpenseCat();
         }
 
-        
-
-        private void ItemsButton_Click(object sender, RoutedEventArgs e)
+        void ExpenseItem()
         {
+            ExpenseMainItem.Content = new ExpenseItemView(_events, _aPIHelper);
             ItemsButton.Foreground = new SolidColorBrush(Colors.Black);
             ItemsButton.BorderThickness = new Thickness(0, 0, 0, 2);
 
             CategoryButton.BorderThickness = new Thickness(0);
 
             CategoryButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
+        }
+        
+        private void ExpenseCat()
+        {
+            ExpenseMainItem.Content = new ExpenseCatView(_events, _aPIHelper);
+            CategoryButton.Foreground = new SolidColorBrush(Colors.Black);
+            CategoryButton.BorderThickness = new Thickness(0, 0, 0, 2);
+
+            ItemsButton.BorderThickness = new Thickness(0);
+            ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
+        }
+        private void ItemsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExpenseItem();
 
         }
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            ExpenseMainItem.Content = new ExpenseCatView(_events ,_aPIHelper);
-            CategoryButton.Foreground  = new SolidColorBrush(Colors.Black);
-            CategoryButton.BorderThickness = new Thickness(0, 0 , 0 , 2);
-
-            ItemsButton.BorderThickness = new Thickness(0);
-            ItemsButton.Foreground = new SolidColorBrush(Color.FromRgb(171, 171, 171));
+            ExpenseCat();
         }
     }
 }

@@ -97,6 +97,17 @@ namespace TAN.Views
             ITEMNO += 1;
         }
 
+        private void ExpenseItemSuggestionTextBox_AddExpenseItem(object sender, AddProductrEventArgs args)
+        {
+            _ = _events.PublishOnUIThreadAsync(new AddExpenseItemEventModel());
+        }
+
+        private void ExpenseItemSuggestionTextBox_ExpenseItemSeleted(object sender, ExpenseItemDataEventArgs args)
+        {
+            
+        }
+
+
         private void ProductSuggestionTextBox_ProductSeleted(object sender, ProductDataEventArgs e)
         {
             int i = saleDataGrid.SelectedIndex;
@@ -403,8 +414,6 @@ namespace TAN.Views
             }
 
         }
-
-        
 
         
     }

@@ -62,7 +62,7 @@
                           HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="40 0 0 0"
-                            Height="35"
+                            Height="50"
                             Width="200"
                             AddPartySelected ="CustomerSuggestionTextBox_AddPartySelected"
                             CustomerSeleted ="CustomerSuggestionTextBox_CustomerSeleted"
@@ -221,7 +221,9 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <custom:ProductSuggestionTextBox Text1="{Binding Text}" 
-                                                                     ProductSeleted="ProductSuggestionTextBox_ProductSeleted"/>
+                                                                     ProductSeleted="ProductSuggestionTextBox_ProductSeleted"
+                                                                     AddItem="ProductSuggestionTextBox_AddItem"
+                                                                     />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

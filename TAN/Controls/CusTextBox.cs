@@ -62,6 +62,7 @@ namespace TAN.Controls
         private TextBlock textBlock;
         public override void OnApplyTemplate()
         {
+            
             textBlock = this.Template.FindName("PlaceHolderTextBox", this) as TextBlock;
 
             base.OnApplyTemplate();
@@ -97,6 +98,8 @@ namespace TAN.Controls
 
                 sb.Children.Add(ta);
                 sb.Begin(this);
+
+                
 
             }
             //IsEmpty1 = true;

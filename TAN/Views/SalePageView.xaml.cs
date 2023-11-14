@@ -50,7 +50,10 @@ namespace TAN.Views
             assognCombobox();
         }
 
-
+        private void ProductSuggestionTextBox_AddItem(object sender, AddProductrEventArgs args)
+        {
+            //_=_events.PublishOnUIThreadAsync(new add())
+        }
         private List<PaymentTypeModel> _paymentTypeModels;
         private void assognCombobox()
         {

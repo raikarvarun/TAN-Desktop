@@ -39,37 +39,41 @@ namespace TAN.Controls
     /// </summary>
 
 
-    [TemplatePart(Name = "ProductSuggestionEditor", Type = typeof(TextBox))]
+    [TemplatePart(Name = "ExpenseCatSuggestionEditor", Type = typeof(TextBox))]
+    
 
 
-    public class ProductSuggestionTextBox : Control
+
+    public class ExpenseItemSuggestionTextBox : Control
     {
 
-        public delegate void ProductChangeEventHandler(object sender, ProductDataEventArgs args);
-        public delegate void AddItemEventHandler(object sender, AddProductrEventArgs args);
+        public delegate void ExpenseChangeEventHandler(object sender, ExpenseItemDataEventArgs args);
+        public delegate void AddExpenseItemEventHandler(object sender, AddProductrEventArgs args);
 
-        static ProductSuggestionTextBox()
+        static ExpenseItemSuggestionTextBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ProductSuggestionTextBox), new FrameworkPropertyMetadata(typeof(ProductSuggestionTextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ExpenseItemSuggestionTextBox), new FrameworkPropertyMetadata(typeof(ExpenseItemSuggestionTextBox)));
         }
         TextBox textBox;
-        ProductSuggestion suggestion;
+        ExpenseItemSuggestion suggestion;
 
-        public productVersionModel ProductData { get; set; }
+        public ExpenseItemModel ExpenseItemData { get; set; }
+
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             if (this.Template != null)
             {
-                textBox = this.Template.FindName("ProductSuggestionEditor", this) as TextBox;
-                suggestion = this.Template.FindName("ProductSuggestion", this) as ProductSuggestion;
+                textBox = this.Template.FindName("ExpenseCatSuggestionEditor", this) as TextBox;
+                suggestion = this.Template.FindName("ExpenseItemSuggestion", this) as ExpenseItemSuggestion;
 
 
                 if (textBox != null)
                 {
-                    ProductMainData = ProductVersionModelSqlite.readAll();
-                    suggestion.AssginProductMainData(ProductMainData);
-                    suggestion.AssginFunction(OnProductSeleted , OnAddItem);
+                    ExpenseItemMainData = ExpenseItemSqllite.readAll();
+                    suggestion.AssginProductMainData(ExpenseItemMainData);
+                    suggestion.AssginFunction(OnExpenseItemSeleted, OnAddItem);
                     textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
                     textBox.KeyDown += (s, e) => { TextBoxKeyDown(e); };
                     textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
@@ -84,15 +88,15 @@ namespace TAN.Controls
 
 
 
-        public List<productVersionModel> ProductMainData
+        public List<ExpenseItemModel> ExpenseItemMainData
         {
-            get { return (List<productVersionModel>)GetValue(ProductDataProperty); }
+            get { return (List<ExpenseItemModel>)GetValue(ProductDataProperty); }
             set { SetValue(ProductDataProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ProductData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ProductDataProperty =
-            DependencyProperty.Register("ProductMainData", typeof(List<productVersionModel>), typeof(ProductSuggestionTextBox), new PropertyMetadata(null));
+            DependencyProperty.Register("ExpenseItemMainData", typeof(List<ExpenseItemModel>), typeof(ExpenseItemSuggestionTextBox), new PropertyMetadata(null));
 
 
 
@@ -105,46 +109,46 @@ namespace TAN.Controls
 
         // Using a DependencyProperty as the backing store for Text1.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty Text1Property =
-            DependencyProperty.Register("Text1", typeof(string), typeof(ProductSuggestionTextBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Text1", typeof(string), typeof(ExpenseItemSuggestionTextBox), new PropertyMetadata(string.Empty));
 
 
-        public static RoutedEvent ProductSelectedEvent = EventManager.RegisterRoutedEvent("ProductSeleted",
-            RoutingStrategy.Bubble, typeof(ProductChangeEventHandler), typeof(ProductSuggestionTextBox));
+        public static RoutedEvent ExpenseItemSelectedEvent = EventManager.RegisterRoutedEvent("ExpenseItemSeleted",
+            RoutingStrategy.Bubble, typeof(ExpenseChangeEventHandler), typeof(ExpenseItemSuggestionTextBox));
 
-        public event ProductChangeEventHandler ProductSeleted
+        public event ExpenseChangeEventHandler ExpenseItemSeleted
         {
             add
             {
-                AddHandler(ProductSelectedEvent, value);
+                AddHandler(ExpenseItemSelectedEvent, value);
             }
             remove
             {
-                RemoveHandler(ProductSelectedEvent, value);
+                RemoveHandler(ExpenseItemSelectedEvent, value);
             }
         }
 
 
-        protected virtual void OnProductSeleted(productVersionModel data)
+        protected virtual void OnExpenseItemSeleted(ExpenseItemModel data)
         {
 
             setProductData(data);
-            RaiseEvent(new ProductDataEventArgs(ProductSelectedEvent, this) { SelectedProductData = data });
+            RaiseEvent(new ExpenseItemDataEventArgs(ExpenseItemSelectedEvent, this) { SelectedData = data });
         }
 
 
         //Add party selected event
-        public static RoutedEvent AddItemEvent = EventManager.RegisterRoutedEvent("AddItem",
-             RoutingStrategy.Bubble, typeof(AddItemEventHandler), typeof(ProductSuggestionTextBox));
+        public static RoutedEvent AddExpenseItemEvent = EventManager.RegisterRoutedEvent("AddExpenseItem",
+             RoutingStrategy.Bubble, typeof(AddExpenseItemEventHandler), typeof(ExpenseItemSuggestionTextBox));
 
-        public event AddItemEventHandler AddItem
+        public event AddExpenseItemEventHandler AddExpenseItem
         {
             add
             {
-                AddHandler(AddItemEvent, value);
+                AddHandler(AddExpenseItemEvent, value);
             }
             remove
             {
-                RemoveHandler(AddItemEvent, value);
+                RemoveHandler(AddExpenseItemEvent, value);
             }
         }
 
@@ -153,13 +157,13 @@ namespace TAN.Controls
         {
 
 
-            RaiseEvent(new AddProductrEventArgs(AddItemEvent, this));
+            RaiseEvent(new AddProductrEventArgs(AddExpenseItemEvent, this));
         }
 
 
-        public void setProductData(productVersionModel data)
+        public void setProductData(ExpenseItemModel data)
         {
-            ProductData = data;
+            ExpenseItemData = data;
         }
         //public List<customerModel> CustomerSuggestions
         //{
@@ -187,8 +191,8 @@ namespace TAN.Controls
         {
             if (e.Key == Key.Down)
             {
-                suggestion.ProductSuggestions.Focus();
-                suggestion.ProductSuggestions.SelectedIndex = 0;
+                suggestion.ExpenseItemSuggestionsDataGrid.Focus();
+                suggestion.ExpenseItemSuggestionsDataGrid.SelectedIndex = 0;
                 e.Handled = true;
             }
         }
@@ -197,13 +201,13 @@ namespace TAN.Controls
         {
             if (e.Key == Key.Enter)
             {
-                suggestion.ProductSuggestionPopup.IsOpen = false;
+                suggestion.ExpenseItemSuggestionPopup.IsOpen = false;
             }
         }
         private void TextBoxMouseDown()
         {
-            if(!suggestion.ProductSuggestionPopup.IsOpen)
-                suggestion.ProductSuggestionPopup.IsOpen = true;
+            if(!suggestion.ExpenseItemSuggestionPopup.IsOpen)
+                suggestion.ExpenseItemSuggestionPopup.IsOpen = true;
             
         }
     }

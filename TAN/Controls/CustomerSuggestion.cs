@@ -43,7 +43,7 @@ namespace TAN.Controls
     ///     <MyNamespace:CustomerSuggestion/>
     ///
     /// </summary>
-    [TemplatePart(Name = "CustomerSuggestions", Type = typeof(ListBox))]
+    //[TemplatePart(Name = "CustomerSuggestions", Type = typeof(ListBox))]
     [TemplatePart(Name = "CustomerSuggestionPopup", Type = typeof(Popup))]
 
     public class CustomerSuggestion : Control
@@ -73,39 +73,38 @@ namespace TAN.Controls
 
 
 
-                CustomerSuggestions.GotFocus += (s, e) =>
-                {
-                    var temp = 1;
-                };
-                CustomerSuggestions.GotKeyboardFocus += (s, e) =>
-                {
-                    var temp = 2;
-                };
+                
                 CustomerSuggestions.PreviewMouseDown += (s, e) =>
                 {
                     SuggestionsPreviewMouseDown(e);
                 };
-                CustomerSuggestions.KeyDown += (s, e) =>
+                CustomerSuggestions.SelectionChanged += (s, e) =>
                 {
-                    SuggestionskeyDown(e);
+                    SuggestionskeyDown();
                 };
 
 
             }
         }
 
-        private void SuggestionskeyDown(KeyEventArgs e)
+        private void SuggestionskeyDown()
         {
-            if (e.OriginalSource is ListBoxItem)
-            {
-                ListBoxItem listBoxItem = e.OriginalSource as ListBoxItem;
-                _textbox.Text = listBoxItem.Content as string;
+            //if (e.Key == Key.Enter)
+            //{
+            //    CustomerSuggestionPopup.IsOpen = false;
+            //}
 
-                if (e.Key == Key.Enter)
+            customerModel data = (customerModel)CustomerSuggestions.SelectedItem  ;
+            if(data!=null)
+            {
+                if(data.customerName!=null)
                 {
-                    CustomerSuggestionPopup.IsOpen = false;
+                    //if(data.customerID!=-20)
+                        _textbox.Text = data.customerName;
                 }
             }
+            
+                    
         }
         bool _needToFetchData = true;
         private void SuggestionsPreviewMouseDown(MouseButtonEventArgs e)
@@ -170,13 +169,67 @@ namespace TAN.Controls
             _onAddPartySelected1 = data1;
         }
 
+        public void TextBoxKeyDown(KeyEventArgs e ,TextBox searchTextBox)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CustomerSuggestionPopup.IsOpen = false;
+            }
+            if (e.Key == Key.Down)
+            {
+                CustomerSuggestions.Focus();
+                Keyboard.Focus(CustomerSuggestions);
+                CustomerSuggestions.SelectedIndex = 0;
+
+            }
+            else
+            {
+                _textbox = searchTextBox;
+                if (!CustomerSuggestionPopup.IsOpen)
+                    CustomerSuggestionPopup.IsOpen = true;
+
+                string searchKey = searchTextBox.Text.ToLower();
+                if (_needToFetchData)
+                {
+                    List<customerModel> CustomerMainData = CustomerSqllite.readAll();
+                    mainData = CustomerMainData;
+                }
+                if (searchKey == "")
+                {
+
+
+
+                    _ = LoadDataAsync();
+
+                    DataGridRow row = (DataGridRow)CustomerSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
+                    if (row != null)
+                    {
+                        SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(100, 255, 104, 0));
+                        row.Background = brush;
+                    }
+
+                }
+
+                else
+                {
+                    _ = SearchDataAsync(searchKey);
+                    DataGridRow row = (DataGridRow)CustomerSuggestions.ItemContainerGenerator.ContainerFromIndex(0);
+                    if (row != null)
+                    {
+                        SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(100, 255, 104, 0));
+                        row.Background = brush;
+                    }
+                }
+            }
+        }
 
         //private List<customerModel> _products;
         public void AssginParties(TextBox searchTextBox)
         {
             _textbox = searchTextBox;
-            CustomerSuggestionPopup.IsOpen = true;
-
+            if(!CustomerSuggestionPopup.IsOpen)
+                CustomerSuggestionPopup.IsOpen = true;
+            
             string searchKey = searchTextBox.Text.ToLower();
             if(_needToFetchData)
             {

@@ -42,34 +42,34 @@ namespace TAN.Controls
     ///
     /// </summary>
     //[TemplatePart(Name = "ProductSuggestions", Type = typeof(ListBox))]
-    [TemplatePart(Name = "ProductSuggestionPopup", Type = typeof(Popup))]
+    [TemplatePart(Name = "ExpenseItemSuggestionPopup1", Type = typeof(Popup))]
 
-    public class ProductSuggestion : Control
+    public class ExpenseItemSuggestion : Control
     {
-        static ProductSuggestion()
+        static ExpenseItemSuggestion()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ProductSuggestion), new FrameworkPropertyMetadata(typeof(ProductSuggestion)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ExpenseItemSuggestion), new FrameworkPropertyMetadata(typeof(ExpenseItemSuggestion)));
         }
-        public DataGrid ProductSuggestions;
-        public Popup ProductSuggestionPopup;
+        public DataGrid ExpenseItemSuggestionsDataGrid;
+        public Popup ExpenseItemSuggestionPopup;
         TextBox _textbox;
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             if (this.Template != null)
             {
-                ProductSuggestions = this.Template.FindName("ProductSuggestionsDataGrid", this) as DataGrid;
-                ProductSuggestionPopup = this.Template.FindName("ProductSuggestionPopup", this) as Popup;
+                ExpenseItemSuggestionsDataGrid = this.Template.FindName("ExpenseItemSuggestionsDataGrid", this) as DataGrid;
+                ExpenseItemSuggestionPopup = this.Template.FindName("ExpenseItemSuggestionPopup1", this) as Popup;
 
-                BindingOperations.EnableCollectionSynchronization(ProductMainData, _lockMutex);
-                ProductSuggestions.ItemsSource = ProductMainData;
+                BindingOperations.EnableCollectionSynchronization(ExpenseItemMainData, _lockMutex);
+                ExpenseItemSuggestionsDataGrid.ItemsSource = ExpenseItemMainData;
 
-                ProductSuggestions.PreviewMouseDown += (s, e) =>
+                ExpenseItemSuggestionsDataGrid.PreviewMouseDown += (s, e) =>
                 {
                     SuggestionsPreviewMouseDown(e);
                 };
 
-                ProductSuggestions.KeyDown += (s, e) =>
+                ExpenseItemSuggestionsDataGrid.KeyDown += (s, e) =>
                 {
                     SuggestionskeyDown(e);
                 };
@@ -78,14 +78,14 @@ namespace TAN.Controls
         }
         private void SuggestionskeyDown(KeyEventArgs e)
         {
-            productVersionModel temp = (productVersionModel)ProductSuggestions.SelectedItem;
+            ExpenseItemModel temp = (ExpenseItemModel)ExpenseItemSuggestionsDataGrid.SelectedItem;
             if (temp != null)
             {
-                _textbox.Text = temp.productName;
+                _textbox.Text = temp.ExpenseItemName;
 
                 if (e.Key == Key.Enter)
                 {
-                    ProductSuggestionPopup.IsOpen = false;
+                    ExpenseItemSuggestionPopup.IsOpen = false;
                 }
             }
         }
@@ -94,23 +94,23 @@ namespace TAN.Controls
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                productVersionModel data = (productVersionModel)ProductSuggestions.SelectedItem;
+                ExpenseItemModel data = (ExpenseItemModel)ExpenseItemSuggestionsDataGrid.SelectedItem;
                 if (data != null)
                 {
                     
                     
                     e.Handled = true;
-                    if (data.productNo == -20)
+                    if (data.ExpenseItemID == -20)
                     {
                         _onAddItem();
                     }
                     else
                     {
-                        _textbox.Text = data.productName;
-                        _onProductDataSelected(data);
+                        _textbox.Text = data.ExpenseItemName;
+                        _onExpenseItemDataSelected(data);
                         
                     }
-                    ProductSuggestionPopup.IsOpen = false;
+                    ExpenseItemSuggestionPopup.IsOpen = false;
                     e.Handled = true;
                 }
 
@@ -144,16 +144,16 @@ namespace TAN.Controls
 
         //}
         
-        public delegate void OnProductDataSelected(productVersionModel data);
+        public delegate void OnExpenseItemDataSelected(ExpenseItemModel data);
         public delegate void OnAddItem();
 
-        private OnProductDataSelected _onProductDataSelected;
+        private OnExpenseItemDataSelected _onExpenseItemDataSelected;
         private OnAddItem _onAddItem;
 
 
-        public void AssginFunction(OnProductDataSelected temp , OnAddItem temp2 )
+        public void AssginFunction(OnExpenseItemDataSelected temp , OnAddItem temp2 )
         {
-            _onProductDataSelected = temp;
+            _onExpenseItemDataSelected = temp;
             _onAddItem = temp2;
         }
 
@@ -161,7 +161,7 @@ namespace TAN.Controls
         public void AssginParties(TextBox searchTextBox)
         {
             _textbox = searchTextBox;
-            ProductSuggestionPopup.IsOpen = true;
+            ExpenseItemSuggestionPopup.IsOpen = true;
             string searchKey = searchTextBox.Text.ToLower();
             if (searchKey == "")
             {
@@ -176,17 +176,17 @@ namespace TAN.Controls
         
 
 
-        private List<productVersionModel> mainData;
-        private ObservableCollection<productVersionModel> _productMainData;
-        public ObservableCollection<productVersionModel> ProductMainData
+        private List<ExpenseItemModel> mainData;
+        private ObservableCollection<ExpenseItemModel> _expenseItemMainData;
+        public ObservableCollection<ExpenseItemModel> ExpenseItemMainData
         {
-            get { return _productMainData; }
-            set { _productMainData = value; }
+            get { return _expenseItemMainData; }
+            set { _expenseItemMainData = value; }
         }
         private object _lockMutex = new object();
-        public void AssginProductMainData(List<productVersionModel> paraData)
+        public void AssginProductMainData(List<ExpenseItemModel> paraData)
         {
-            _productMainData = new ObservableCollection<productVersionModel>();
+            _expenseItemMainData = new ObservableCollection<ExpenseItemModel>();
 
             mainData = paraData;
 
@@ -197,14 +197,16 @@ namespace TAN.Controls
         {
             return Task.Factory.StartNew(() =>
             {
-                _productMainData.Clear();
-                _productMainData.Add(new productVersionModel(-20, "", 1, 0, "", "Add Product", 0, 0,0,0));
+                _expenseItemMainData.Clear();
+                
+                _expenseItemMainData.Add(new ExpenseItemModel(-20, "Add Item", 1));
 
 
 
-                foreach (productVersionModel c in mainData.Take(20))
+
+                foreach (ExpenseItemModel c in mainData.Take(20))
                 {
-                    _productMainData.Add(c);
+                    _expenseItemMainData.Add(c);
                 }
 
             });
@@ -213,12 +215,12 @@ namespace TAN.Controls
         {
             return Task.Factory.StartNew(() =>
             {
-                _productMainData.Clear();
-                _productMainData.Add(new productVersionModel(-20, "", 1, 0,  "", "Add Product", 0, 0,0,0));
+                _expenseItemMainData.Clear();
+                _expenseItemMainData.Add(new ExpenseItemModel(-20, "Add Item", 1));
 
-                foreach (productVersionModel c in mainData.Where(s => s.productName.ToLower().Contains(key)).ToList())
+                foreach (ExpenseItemModel c in mainData.Where(s => s.ExpenseItemName.ToLower().Contains(key)).ToList())
                 {
-                    _productMainData.Add(c);
+                    _expenseItemMainData.Add(c);
                 }
             });
         }
@@ -229,7 +231,7 @@ namespace TAN.Controls
         internal void LostFocuss(RoutedEventArgs e)
         {
 
-            ProductSuggestionPopup.IsOpen = false;
+            ExpenseItemSuggestionPopup.IsOpen = false;
         }
     }
 }

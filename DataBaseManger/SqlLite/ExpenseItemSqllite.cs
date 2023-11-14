@@ -43,7 +43,7 @@ namespace DataBaseManger.SqlLite
             {
                 var data = new ExpenseItemModel(
                     reader.GetInt32(0),
-                    (string)reader["expenseCategaryName"],
+                    (string)reader["expenseItemName"],
                     reader.GetDouble(2)
                     );
                 expenseItems.Add(data);

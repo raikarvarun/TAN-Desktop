@@ -56,14 +56,18 @@
                         
                         <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
-                    <DockPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
+                    <DockPanel Grid.Column="0" 
+                               Grid.Row="1" 
+                               Grid.RowSpan="4"
+                               
+                               >
 
                         <custom:ExpenseCatSuggestionTextBox 
                           HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="40 0 0 0"
-                            Height="35"
-                            Width="200"
+                            Height="50"
+                            Width="250"
                             ExpenseCatSeleted ="ExpenseCatSuggestionTextBox_ExpenseCatSeleted"
                             AddExpenseCat ="ExpenseCatSuggestionTextBox_AddExpenseCat" 
                             />
@@ -220,8 +224,9 @@
                
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <custom:ProductSuggestionTextBox Text1="{Binding Text}" 
-                                                                     ProductSeleted="ProductSuggestionTextBox_ProductSeleted"/>
+                                    <custom:ExpenseItemSuggestionTextBox Text1="{Binding Text}" 
+                                                                     AddExpenseItem="ExpenseItemSuggestionTextBox_AddExpenseItem"
+                                                                         ExpenseItemSeleted="ExpenseItemSuggestionTextBox_ExpenseItemSeleted"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

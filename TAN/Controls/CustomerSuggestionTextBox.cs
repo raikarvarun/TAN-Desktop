@@ -63,9 +63,9 @@ namespace TAN.Controls
                     List<customerModel> CustomerMainData = CustomerSqllite.readAll();
                     suggestion.AssginCustomerMainData(CustomerMainData);
                     suggestion.AssginFunction(OnCustomerSeleted, OnAddPartySelected);
-                    textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
-                    textBox.KeyDown += (s, e) => { TextBoxKeyDown(e); };
-                    textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
+                    //textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
+                    textBox.KeyDown += (s, e) => suggestion.TextBoxKeyDown(e , textBox);
+                    //textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
                     textBox.GotFocus += (s, e) => { TextBoxMouseDown(); };
                     //textBox.LostFocus += (s, e) => { suggestion.LostFocuss(e); };
 
@@ -166,16 +166,7 @@ namespace TAN.Controls
 
         private void TextBoxPreviewKeyDown(KeyEventArgs e)
         {
-            if (e.Key == Key.Down )
-            {
-                suggestion.CustomerSuggestions.Focus();
-                var temp = suggestion.CustomerSuggestions.IsFocused;
-
-                var temp1 = suggestion.CustomerSuggestions.IsKeyboardFocused ; 
-
-                suggestion.CustomerSuggestions.SelectedIndex = 0;
-                
-            }
+            
         }
 
         private void TextBoxKeyDown(KeyEventArgs e)
@@ -183,6 +174,15 @@ namespace TAN.Controls
             if (e.Key == Key.Enter)
             {
                 suggestion.CustomerSuggestionPopup.IsOpen = false;
+            }
+            if (e.Key == Key.Down)
+            {
+                suggestion.CustomerSuggestions.Focus();
+                Keyboard.Focus(suggestion.CustomerSuggestions);
+
+
+                suggestion.CustomerSuggestions.SelectedIndex = 0;
+
             }
         }
     }
