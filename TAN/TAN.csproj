@@ -304,6 +304,9 @@
     <Compile Include="Views\ExpensePageView.xaml.cs">
       <DependentUpon>ExpensePageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportMainView.xaml.cs">
+      <DependentUpon>ReportMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UnitView.xaml.cs">
       <DependentUpon>UnitView.xaml</DependentUpon>
     </Compile>
@@ -465,6 +468,10 @@
     <Page Include="Views\ExpensePageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UnitView.xaml">
       <Generator>MSBuild:Compile</Generator>

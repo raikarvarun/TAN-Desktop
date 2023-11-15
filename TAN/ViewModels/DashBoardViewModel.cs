@@ -27,6 +27,8 @@ namespace TAN.ViewModels
         public RelayCommand BankAccountCommand { get; set; }
 
         public RelayCommand ExpenseCommand { get; set; }
+        public RelayCommand ReportsCommand { get; set; }
+
 
 
 
@@ -129,6 +131,12 @@ namespace TAN.ViewModels
             BankAccountCommand = new RelayCommand(o =>
             {
                 CurrentView = new BankAccountsView(changeCurrentViewtoAddBank);
+
+            });
+
+            ReportsCommand = new RelayCommand(o =>
+            {
+                CurrentView = new ReportMainView(_events , _apiHelper);
 
             });
         }

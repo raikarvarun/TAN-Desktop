@@ -1,0 +1,289 @@
+﻿<UserControl x:Class="TAN.Views.ReportMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TAN.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280">
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
+
+
+        </Grid.ColumnDefinitions>
+        
+        <Grid Background="#fafafa">
+            <Grid.Resources>
+                <Style TargetType="Button"
+                            x:Key="MenuButton">
+                    <Style.Setters>
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="FontSize"
+                                Value="16" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="BorderThickness"
+                                Value="4 0 0 0" />
+                        
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="MinHeight"
+                                Value="35" />
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter   HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style.Setters>
+
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                Value="True">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="#e6e6ea" />
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                    Value="True">
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style TargetType="Button"
+                        x:Key="MenuHeaderButton">
+                    <Style.Setters>
+                        <Setter Property="Background"
+                                Value="#edf7f6" />
+                        <Setter Property="FontSize"
+                                Value="14" />
+                        <Setter Property="Foreground"
+                                Value="Gray" />
+                        <Setter Property="Opacity"
+                                Value="70" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="BorderThickness"
+                                Value="0 0 0 0" />
+
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        
+                        <Setter Property="MinHeight"
+                                Value="40" />
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter   HorizontalAlignment="Left"
+                                            VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style.Setters>
+
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"
+                            Value="True">
+                            <Setter Property="Background"
+                                Value="#edf7f6" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                Value="True">
+                            <Setter Property="Background"
+                             Value="#edf7f6" />
+
+                        </Trigger>
+                        
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+              >
+                <StackPanel>
+
+
+                    <!--Transaction report-->
+
+                    <Button 
+                        Style="{StaticResource MenuHeaderButton}">
+                        <TextBlock  Text="  Transaction report"
+                            VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="SaleButton"
+                        Click="SaleButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Sale"
+                                VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="PurchaseButton"
+                        Click="PurchaseButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Purchase"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="DaybookButton"
+                        Click="DaybookButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Day Book"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="AllTransactionsButton"
+                        Click="AllTransactionsButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" All Transactions"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="ProfitAndLossButton"
+                        Click="ProfitAndLossButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Profit And Loss"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="BillWiseProfitButton"
+                        Click="BillWiseProfitButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Bill Wise Profit"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+
+
+                    <!-- Party report -->
+
+                    <Button 
+                        Style="{StaticResource MenuHeaderButton}">
+                        <TextBlock  Text="  Party report"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="PartyStatementButton"
+                        Click="PartyStatementButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Party Statement"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="PartyWiseProfitAndLossButton"
+                        Click="PartyWiseProfitAndLossButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Party Wise Profit Loss"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="AllpartiesButton"
+                        Click="AllpartiesButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" All Parties"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+
+                    <Button x:Name="PartyReportByItemButton"
+                        Click="PartyReportByItemButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Party Report By Item"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="SalePurchaseByPartyButton"
+                        Click="SalePurchaseByPartyButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Sale Purchase By Party"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <!--Item/ Stock report-->
+                    <Button 
+                        Style="{StaticResource MenuHeaderButton}">
+                        <TextBlock  Text="  Item/ Stock report"
+                                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="StockSummeryButton"
+                        Click="StockSummeryButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Stock summery"
+                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="ItemWiseProfitAndLossButton"
+                        Click="ItemWiseProfitAndLossButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" Item Wise Profit Loss"
+                                VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="StockDetailButton"
+                        Click="StockDetailButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text=" StockDetail"
+                                VerticalAlignment="Center" />
+                    </Button>
+
+
+                    <!--Business Status report-->
+                    <Button 
+                    Style="{StaticResource MenuHeaderButton}">
+                        <TextBlock  Text="  Business Status"
+                    VerticalAlignment="Center" />
+                    </Button>
+
+                    <Button x:Name="BankStatementButton"
+                        Click="BankStatementButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text="  Bank Statement"
+                                VerticalAlignment="Center" />
+                    </Button>
+
+
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        
+        
+        
+        <Grid Grid.Column="1">
+            <ContentControl 
+                x:Name="MainWindow"
+                 />
+        </Grid>
+        
+    </Grid>
+</UserControl>

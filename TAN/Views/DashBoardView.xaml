@@ -590,6 +590,29 @@
                             </StackPanel>
                         </Button>
 
+                        <Button Height="40"
+                                FontSize="18"
+                                Click="Button_Click"
+                                Style="{StaticResource MenuButton}"
+                                Command="{Binding ReportsCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Height="20"
+                                        Data="M120-120v-80l80-80v160h-80Zm160 0v-240l80-80v320h-80Zm160 0v-320l80 81v239h-80Zm160 0v-239l80-80v319h-80Zm160 0v-400l80-80v480h-80ZM120-327v-113l280-280 160 160 280-280v113L560-447 400-607 120-327Z "
+                                        Stretch="Uniform"
+                                        Margin="10 0"
+                                        Width="20">
+                                        <Path.Style>
+                                            <Style>
+                                                <Setter Property="Path.Fill"
+                                                        Value="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                    <TextBlock  Text="Reports"
+                                                VerticalAlignment="Center" />
+
+                                </StackPanel>
+                        </Button>
 
 
 
@@ -601,7 +624,8 @@
 
 
 
-                    </StackPanel>
+
+                        </StackPanel>
                     <DockPanel Grid.Row="2"
                                Background="#212934">
 
@@ -745,7 +769,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Grid.RowSpan="2"
-                                Content="{Binding AllCurrentView}" />
+                                Content="{Binding AllCurrentView}" Margin="17,31,-17,-31" />
 
                 <DockPanel Grid.Column="1"
                            Background="#ffffff">
