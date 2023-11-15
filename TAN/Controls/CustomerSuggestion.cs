@@ -163,32 +163,69 @@ namespace TAN.Controls
         private OnAddPartySelected1 _onAddPartySelected1;
 
 
-        public void AssginFunction(OnCustomerSeleted1 data , OnAddPartySelected1 data1)
+        public void AssginFunction(OnCustomerSeleted1 data , OnAddPartySelected1 data1, TextBox searchTextBox)
         {
             _onCustomerSeleted = data;
             _onAddPartySelected1 = data1;
+            _textbox = searchTextBox;
         }
 
-        public void TextBoxKeyDown(KeyEventArgs e ,TextBox searchTextBox)
+        public void TextBoxKeyDown(object sender , KeyEventArgs e )
         {
             if (e.Key == Key.Enter)
             {
                 CustomerSuggestionPopup.IsOpen = false;
             }
-            if (e.Key == Key.Down)
+            else if (e.Key == Key.Down)
             {
-                CustomerSuggestions.Focus();
-                Keyboard.Focus(CustomerSuggestions);
-                CustomerSuggestions.SelectedIndex = 0;
+                if (CustomerSuggestionPopup.IsOpen)
+                {
 
+                    if (CustomerSuggestions.SelectedIndex < CustomerSuggestions.Items.Count - 1)
+                    {
+                        CustomerSuggestions.SelectedIndex += 1;
+                    }
+                    else
+                    {
+                        CustomerSuggestions.SelectedIndex = 0;
+                    }
+                    CustomerSuggestions.ScrollIntoView(CustomerSuggestions.SelectedItem);
+
+                }
+                
+
+            }
+            else if (e.Key == Key.Up)
+            {
+                if (CustomerSuggestionPopup.IsOpen)
+                {
+
+                    if (CustomerSuggestions.SelectedIndex != 0)
+                        CustomerSuggestions.SelectedIndex -= 1;
+                    else
+                        CustomerSuggestions.SelectedIndex = CustomerSuggestions.Items.Count - 1;
+                    CustomerSuggestions.ScrollIntoView(CustomerSuggestions.SelectedItem);
+
+
+                }
             }
             else
             {
-                _textbox = searchTextBox;
+                string searchKey = _textbox.Text.ToLower();
+                if (e.Key == Key.Back)
+                {
+                    if (searchKey.Length > 1)
+                        searchKey = searchKey.Substring(0, searchKey.Length - 1);
+                    else
+                        searchKey = "";
+                }
+                
+
+
                 if (!CustomerSuggestionPopup.IsOpen)
                     CustomerSuggestionPopup.IsOpen = true;
 
-                string searchKey = searchTextBox.Text.ToLower();
+                
                 if (_needToFetchData)
                 {
                     List<customerModel> CustomerMainData = CustomerSqllite.readAll();

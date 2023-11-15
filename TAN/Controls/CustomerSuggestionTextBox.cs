@@ -62,9 +62,9 @@ namespace TAN.Controls
                 {
                     List<customerModel> CustomerMainData = CustomerSqllite.readAll();
                     suggestion.AssginCustomerMainData(CustomerMainData);
-                    suggestion.AssginFunction(OnCustomerSeleted, OnAddPartySelected);
-                    //textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(e); };
-                    textBox.KeyDown += (s, e) => suggestion.TextBoxKeyDown(e , textBox);
+                    suggestion.AssginFunction(OnCustomerSeleted, OnAddPartySelected , textBox);
+                    textBox.PreviewKeyDown += (s, e) => { TextBoxPreviewKeyDown(s,e); };
+                    textBox.KeyDown += (s, e) => suggestion.TextBoxKeyDown(s,e );
                     //textBox.TextChanged += (s, e) => { suggestion.AssginParties(textBox); };
                     textBox.GotFocus += (s, e) => { TextBoxMouseDown(); };
                     //textBox.LostFocus += (s, e) => { suggestion.LostFocuss(e); };
@@ -142,30 +142,19 @@ namespace TAN.Controls
 
 
 
-        //public List<customerModel> CustomerSuggestions
-        //{
-        //    get { return (List<customerModel>)GetValue(SuggestionsProperty); }
-        //    set { SetValue(SuggestionsProperty, value); }
-        //}
+       
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SuggestionsProperty =
-        //    DependencyProperty.Register("CustomerSuggestions", typeof(ObservableCollection<string>), typeof(CustomerSuggestionTextBox), new PropertyMetadata(default));
-
-        //public ObservableCollection<string> CustomerSuggestions
-        //{
-        //    get { return (ObservableCollection<string>)GetValue(SuggestionsProperty); }
-        //    set { SetValue(SuggestionsProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SuggestionsProperty =
-        //    DependencyProperty.Register("CustomerSuggestions", typeof(ObservableCollection<string>), typeof(CustomerSuggestionTextBox), new PropertyMetadata(default));
-
-
-
-        private void TextBoxPreviewKeyDown(KeyEventArgs e)
+        private void TextBoxPreviewKeyDown(object sender ,KeyEventArgs e)
         {
+            if (e.Key == Key.Down || e.Key == Key.Up || e.Key == Key.Back)
+            {
+
+                suggestion.TextBoxKeyDown(sender ,e);
+
+
+
+
+            }
             
         }
 
