@@ -16,6 +16,8 @@ namespace TAN.ViewModels
         , IHandle<AddExpenseCategoryEventModel>, IHandle<RemoveExpenseCategoryEventModel>
         , IHandle<AddExpenseItemEventModel>, IHandle<RemoveExpenseItemEventModel>
         , IHandle<AddExpensePageViewEventModel>, IHandle<RemoveExpensePageEventModel>
+        , IHandle<AddSettingMainEventModel>, IHandle<RemoveSettingMainEventModel>
+
 
 
 
@@ -158,6 +160,18 @@ namespace TAN.ViewModels
         public Task HandleAsync(RemoveExpensePageEventModel message, CancellationToken cancellationToken)
         {
             _view.removeExpensePageChildOfShellView();
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(AddSettingMainEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addSettingMainViewShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(RemoveSettingMainEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeSettingMainViewChildOfShellView();
             return Task.CompletedTask;
         }
 

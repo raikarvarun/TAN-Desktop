@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="TAN.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TAN.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280">
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#1c2030">
+            <Grid.Resources>
+                <Style TargetType="Button"
+                        x:Key="MenuButton">
+                    <Style.Setters>
+                        <Setter Property="Margin"
+                                 Value="10 0 0 0" />
+                        <Setter Property="Background"
+                            Value="Transparent" />
+                        <Setter Property="FontSize"
+                            Value="18" />
+                        <Setter Property="HorizontalContentAlignment"
+                            Value="Left" />
+                        <Setter Property="BorderThickness"
+                            Value="3 3 0 3" />
+                        
+                        <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                        <Setter Property="Foreground"
+                            Value="LightGray" />
+                        <Setter Property="MinHeight"
+                            Value="50" />
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="10 0 0 10"
+                                            >
+                                        <ContentPresenter   HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style.Setters>
+
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"
+                            Value="True">
+                            <Setter Property="Background"
+                                Value="#1c2030" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                             Value="True">
+                            <Setter Property="Background"
+                                Value="#1c2030" />
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                Value="True">
+                            <Setter Property="Cursor"
+                                Value="Hand" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                
+            </Grid.Resources>
+
+            
+                <StackPanel>
+
+                <Button x:Name="GeneralButton"
+                            Click="GeneralButton_Click"
+                            Style="{StaticResource MenuButton}">
+                    <TextBlock  Text="  GENERAL"
+                                        VerticalAlignment="Center" />
+                </Button>
+
+
+                <Button x:Name="TransactionButton"
+                        Click="TransactionButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text="  TRANSACTION"
+                                    VerticalAlignment="Center" />
+                </Button>
+
+                <Button x:Name="UserManagementButton"
+                        Click="UserManagementButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text="  USER MANAGEMENT"
+                            VerticalAlignment="Center" />
+                </Button>
+
+                <Button x:Name="PartyButton"
+                        Click="PartyButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text="  PARTY"
+                                    VerticalAlignment="Center" />
+                </Button>
+
+                <Button x:Name="ItemButton"
+                        Click="ItemButton_Click"
+                        Style="{StaticResource MenuButton}">
+                        <TextBlock  Text="  ITEM"
+                                    VerticalAlignment="Center" />
+                </Button>
+
+            </StackPanel>
+            
+        </Grid>
+
+
+
+
+        <Grid Grid.Column="1" Background="#fbfafa">
+            <ContentControl 
+            x:Name="MainWindow"
+             />
+        </Grid>
+
+    </Grid>
+</UserControl>

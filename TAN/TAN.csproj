@@ -200,6 +200,7 @@
     <Compile Include="Controls\SuggestionTextBox.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="EventModels\AddSettingMainEventModel.cs" />
     <Compile Include="EventModels\AddProductrEventArgs.cs" />
     <Compile Include="EventModels\AddExpenseCatEventArgs.cs" />
     <Compile Include="EventModels\AddExpensePageViewEventModel.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="EventModels\RemoveExpensePageEventModel.cs" />
     <Compile Include="EventModels\RemoveExpenseItemEventModel.cs" />
     <Compile Include="EventModels\RemoveExpenseCategoryEventModel.cs" />
+    <Compile Include="EventModels\RemoveSettingMainEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentInEventModel.cs" />
     <Compile Include="EventModels\RemoveSelectUnitEventModel.cs" />
     <Compile Include="EventModels\RemovePaymentOutEventModel.cs" />
@@ -306,6 +308,9 @@
     </Compile>
     <Compile Include="Views\ReportMainView.xaml.cs">
       <DependentUpon>ReportMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UnitView.xaml.cs">
       <DependentUpon>UnitView.xaml</DependentUpon>
@@ -473,6 +478,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UnitView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -538,7 +547,10 @@
     <Content Include="Icons\TANSVG.svg" />
     <Resource Include="TANSVG.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\ReportViews\" />
+    <Folder Include="Views\SettingViews\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

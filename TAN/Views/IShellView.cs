@@ -27,6 +27,9 @@ namespace TAN.Views
         void addExpensePageShellView(IEventAggregator events, IAPIHelper aPIHelper);
         void removeExpensePageChildOfShellView();
 
+        void addSettingMainViewShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void removeSettingMainViewChildOfShellView();
+
 
 
     }

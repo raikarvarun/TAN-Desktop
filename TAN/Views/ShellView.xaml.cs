@@ -18,6 +18,9 @@ namespace TAN.Views
         private AddExpeneItemView _addExpeneItemView { get; set; }
         private ExpensePageView _expensePageView { get; set; }
 
+        private SettingsView _settingsView { get; set; }
+
+
 
 
 
@@ -149,6 +152,16 @@ namespace TAN.Views
         public void removeExpensePageChildOfShellView()
         {
             ShellGridMain.Children.Remove(_expensePageView);
+        }
+
+        public void addSettingMainViewShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        {
+            _settingsView = new SettingsView(events, aPIHelper);
+            ShellGridMain.Children.Add(_settingsView);
+        }
+        public void removeSettingMainViewChildOfShellView()
+        {
+            ShellGridMain.Children.Remove(_settingsView);
         }
 
 

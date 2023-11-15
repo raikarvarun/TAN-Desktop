@@ -28,7 +28,8 @@ namespace TAN.ViewModels
 
         public RelayCommand ExpenseCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
-
+        public RelayCommand SettingsCommand { get; set; }
+        
 
 
 
@@ -137,6 +138,12 @@ namespace TAN.ViewModels
             ReportsCommand = new RelayCommand(o =>
             {
                 CurrentView = new ReportMainView(_events , _apiHelper);
+
+            });
+
+            SettingsCommand = new RelayCommand(o =>
+            {
+                _= _events.PublishOnUIThreadAsync(new AddSettingMainEventModel());
 
             });
         }
