@@ -8,5 +8,17 @@ namespace DataBaseManger.Model
         public string adminEmail;
         public string adminPassword;
         public string adminToken;
+        public int isAdmin;
+
+        public adminModel(int adminID, string adminEmail, string adminPassword,
+            string adminToken, int isAdmin)
+        {
+            this.adminID = adminID;
+            this.adminEmail = adminEmail;
+            this.adminPassword = adminPassword;
+            this.adminToken = adminToken;
+            this.isAdmin = isAdmin;
+
+        }
     }
 }

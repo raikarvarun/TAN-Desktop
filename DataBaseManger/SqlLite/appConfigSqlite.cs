@@ -14,11 +14,9 @@ namespace DataBaseManger.SqlLite
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
             string query = "CREATE TABLE IF NOT EXISTS appconfig (" +
-                "appID INTEGER PRIMARY KEY , " +
-                "adminEmail TEXT , " +
-                "adminPassword TEXT , " +
-                "adminToken TEXT, " +
-                "apiVersion TEXT)";
+                "appconfigID INTEGER PRIMARY KEY , " +
+                "appconfigName TEXT , " +
+                "appconfigVersion TEXT)";
             SQLiteCommand command = new SQLiteCommand(query, conn);
             command.ExecuteNonQuery();
             conn.Close();
@@ -28,17 +26,13 @@ namespace DataBaseManger.SqlLite
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
             string query = "INSERT INTO appconfig (  " +
-                "appID  , " +
-                "adminEmail  , " +
-                "adminPassword , " +
-                "adminToken ," +
-                "apiVersion) " +
+                "appconfigID  , " +
+                "appconfigName  , " +
+                "appconfigVersion ) " +
                 "VALUES (" +
-                appConfig.appID.ToString() + ",\'" +
-                appConfig.adminEmail + "\',\'" +
-                appConfig.adminPassword + "\',\'" +
-                appConfig.adminToken + "\',\'" +
-                appConfig.apiVersion + "\')";
+                appConfig.appconfigID.ToString() + ",\'" +
+                appConfig.appconfigName + "\',\'" +
+                appConfig.appconfigVersion + "\')";
             SQLiteCommand command = new SQLiteCommand(query, conn);
             command.ExecuteNonQuery();
             conn.Close();
@@ -49,12 +43,11 @@ namespace DataBaseManger.SqlLite
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
             string query = "UPDATE appconfig SET  " +
-                "appID  = " + appConfig.appID.ToString() + " , " +
-                "adminEmail = \"" + appConfig.adminEmail + "\" , " +
-                "adminPassword = \"" + appConfig.adminPassword + "\" , " +
-                "adminToken = \"" + appConfig.adminToken + "\" ," +
-                "apiVersion = \"" + appConfig.apiVersion + "\"  "
-                +" WHERE appID = " + appConfig.appID.ToString();
+                "appconfigID  = " + appConfig.appconfigID.ToString() + " , " +
+                "appconfigName = \"" + appConfig.appconfigName + "\" , " +
+                "appconfigVersion = \"" + appConfig.appconfigVersion
+                + "\"  "
+                + " WHERE appconfigName = " + appConfig.appconfigName.ToString();
                 
             SQLiteCommand command = new SQLiteCommand(query, conn);
             command.ExecuteNonQuery();
@@ -75,23 +68,22 @@ namespace DataBaseManger.SqlLite
             {
                 appConfig = new appConfigModel(
                     reader.GetInt32(0),
-                    (string)reader["adminEmail"],
-                    (string)reader["adminPassword"],
-                    (string)reader["adminToken"],
-                    (string)reader["apiVersion"]);
+                    (string)reader["appconfigName"],
+                    (string)reader["appconfigVersion"]
+                    );
 
             }
             conn.Close();
             return appConfig;
         }
-        public static void deleteData()
-        {
-            SQLiteConnection conn = DbConnection.createDbConnection();
-            conn.Open();
-            string query = "DELETE FROM appconfig WHERE appID=1";
-            SQLiteCommand command = new SQLiteCommand(query, conn);
-            command.ExecuteNonQuery();
-            conn.Close();
-        }
+        //public static void deleteData()
+        //{
+        //    SQLiteConnection conn = DbConnection.createDbConnection();
+        //    conn.Open();
+        //    string query = "DELETE FROM appconfig WHERE appID=1";
+        //    SQLiteCommand command = new SQLiteCommand(query, conn);
+        //    command.ExecuteNonQuery();
+        //    conn.Close();
+        //}
     }
 }

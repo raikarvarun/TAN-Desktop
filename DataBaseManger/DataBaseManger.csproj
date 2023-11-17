@@ -130,6 +130,7 @@
     <Compile Include="Model\productVersionModel.cs" />
     <Compile Include="Model\SaleInvoiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlLite\AdminTableSqlite.cs" />
     <Compile Include="SqlLite\appConfigSqlite.cs" />
     <Compile Include="SqlLite\CustomerSqllite.cs" />
     <Compile Include="SqlLite\Rl_expense_cat_itemSqllite.cs" />

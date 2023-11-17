@@ -3,21 +3,15 @@
     public class appConfigModel
     {
 
-        public int appID { get; set; }
-        public string adminEmail { get; set; }
-        public string adminPassword { get; set; }
-        public string adminToken { get; set; }
-        public string apiVersion { get; set; }
-
-
-        public appConfigModel(int AppID, string UserName, string Password,
-            string Token, string ApiVersion)
+        public int appconfigID { get; set; }
+        public string appconfigName { get; set; }
+        public string appconfigVersion { get; set; }
+       
+        public appConfigModel(int appconfigID, string appconfigName, string appconfigVersion)
         {
-            appID = AppID;
-            adminEmail = UserName;
-            adminPassword = Password;
-            adminToken = Token;
-            apiVersion = ApiVersion;
+            this.appconfigID = appconfigID;
+            this.appconfigName = appconfigName;
+            this.appconfigVersion = appconfigVersion;
         }
     }
 }

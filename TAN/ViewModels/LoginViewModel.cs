@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using TAN.EventModels;
 using TAN.Helpers;
+using TAN.Models;
 
 namespace TAN.ViewModels
 {
@@ -61,9 +62,9 @@ namespace TAN.ViewModels
             Password = "Saurav2333@";
             try
             {
-                var result = await _apiHelper.Authicate(UserName, Password);
+                adminResponse result = await _apiHelper.Authicate(UserName, Password);
                 var token = result.data1.adminToken;
-                appConfigModel configModel = new appConfigModel(1, UserName, Password, token, "");
+                appConfigModel configModel = new appConfigModel(re, UserName, Password, token, "");
 
 
                 DbConnection.deleteDb();
