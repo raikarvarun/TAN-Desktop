@@ -64,13 +64,13 @@ namespace TAN.ViewModels
             {
                 adminResponse result = await _apiHelper.Authicate(UserName, Password);
                 var token = result.data1.adminToken;
-                appConfigModel configModel = new appConfigModel(re, UserName, Password, token, "");
+                adminModel adminData = new adminModel(1, UserName, Password, token, result.data1.isAdmin);
 
 
                 DbConnection.deleteDb();
                 CommanSQlite.initAll();
 
-                var temp = await commanHelper.fetchAllDataAsync(_apiHelper, token, configModel);
+                var temp = await commanHelper.fetchAllDataAsync(_apiHelper, token, adminData);
 
 
 

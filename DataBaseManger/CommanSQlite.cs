@@ -15,6 +15,7 @@ namespace DataBaseManger
             OrderTableSqlite.createTable();
             PaymentTypeSqlite.createTable();
             ExpenseCategorySqllite.createTable();
+            AdminTableSqlite.createTable();
             ExpenseItemSqllite.createTable();
             Rl_expense_cat_itemSqllite.createTable() ;
             ItemUnitSqllite.createTable();

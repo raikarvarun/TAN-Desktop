@@ -62,7 +62,7 @@ namespace DataBaseManger.SqlLite
         }
         
 
-        public static adminModel getData()
+        public static adminModel getAdminData()
         {
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
