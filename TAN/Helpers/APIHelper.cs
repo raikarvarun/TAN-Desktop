@@ -117,36 +117,19 @@ namespace TAN.Helpers
             }
         }
         
-        public async Task<apiVersionResponse> getApiVersion(string token)
-        {
-
-            var query = new Dictionary<string, string>()
-            {
-                ["token"] = token
-
-            };
-            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
-            apiUrl += "/api/appconfig/get";
-            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
-            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<apiVersionResponse>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
         
+
+
+
         //
         //
         //
         // Get Request
-
+        public Task<GetAllCommanResponse<appConfigModel>> getAllApiVersion1(string token)
+        {
+            Comman<appConfigModel> comman = new Comman<appConfigModel>();
+            return comman.GetAll(token, "/api/appconfig/all", ApiClient);
+        }
 
 
         public Task<GetAllCommanResponse<customerModel>> getAllCustomers(string token)
@@ -197,11 +180,7 @@ namespace TAN.Helpers
             return comman.GetAll(token, "/api/itemunit/all", ApiClient);
         }
 
-        public Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token)
-        {
-            Comman<ItemMapModel> comman = new Comman<ItemMapModel>();
-            return comman.GetAll(token, "/api/itemmap/all", ApiClient);
-        }
+        
 
         public Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token)
         {

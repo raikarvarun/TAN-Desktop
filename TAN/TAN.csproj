@@ -234,7 +234,6 @@
     <Compile Include="Helpers\Attacher.cs" />
     <Compile Include="Helpers\VisualTreeHelperExtension.cs" />
     <Compile Include="Helpers\GridLengthAnimation.cs" />
-    <Compile Include="Models\apiVersionResponse.cs" />
     <Compile Include="Models\adminResponse.cs" />
     <Compile Include="Models\GetAllCommanResponse.cs" />
     <Compile Include="Notification\Controls\Notification.cs" />

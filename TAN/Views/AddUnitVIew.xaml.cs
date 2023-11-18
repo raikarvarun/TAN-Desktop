@@ -59,16 +59,16 @@ namespace TAN.Views
                 return;
             }
 
-            var appConfigtemp =  appConfigSqlite.getData();
-            var token = appConfigtemp.adminToken;
+            var admin = AdminTableSqlite.getAdminData();
+            var token = admin.adminToken;
 
             var data = new ItemUnitModel(0,unitName , shortName);
 
             var ans = await _apiHelper.postItemUnit1(token, data);
             ItemUnitSqllite.addData(ans.data);
+            appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
 
-            appConfigtemp.apiVersion = ans.apiVersion;
-            appConfigSqlite.editData(appConfigtemp);
+            
 
             _changeCurrentViewtoItems();
         }

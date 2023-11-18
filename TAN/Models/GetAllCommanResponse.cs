@@ -1,4 +1,5 @@
 ﻿
+using DataBaseManger.Model;
 using System.Collections.Generic;
 
 namespace TAN.Models
@@ -7,7 +8,12 @@ namespace TAN.Models
     {
         public int status;
         public string msg;
-        public string apiVersion;
+        public List<appConfigResponseModel> apiVersion;
         public List<T> data;
+    }
+    public class appConfigResponseModel
+    {
+        public string appconfigName;
+        public string appconfigVersion;
     }
 }

@@ -48,12 +48,15 @@ namespace TAN.Views
 
             var data = new ExpenseItemModel(0, expenseitemName, price);
 
-            var appconfig = appConfigSqlite.getData();
-            var token = appconfig.adminToken;
+            var admin = AdminTableSqlite.getAdminData();
+            var token = admin.adminToken;
+
             var ans = await _apiHelper.postExpenseItem(token, data);
+
             ExpenseItemSqllite.addData(ans.data);
-            appconfig.apiVersion = ans.apiVersion;
-            appConfigSqlite.editData(appconfig);
+
+            appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
+
             closePage();
         }
 

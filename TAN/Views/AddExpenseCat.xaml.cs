@@ -45,12 +45,12 @@ namespace TAN.Views
 
             var expenseCatData = new ExpenseCategoryModel(0, expenseCatName);
 
-            var appconfig = appConfigSqlite.getData();
-            var token = appconfig.adminToken;
+            var admin = AdminTableSqlite.getAdminData();
+            var token = admin.adminToken;
             var ans = await _apiHelper.postExpenseCat(token , expenseCatData);
             ExpenseCategorySqllite.addData(ans.data);
-            appconfig.apiVersion = ans.apiVersion;
-            appConfigSqlite.editData(appconfig);
+            appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
+
             closePage();
         }
 

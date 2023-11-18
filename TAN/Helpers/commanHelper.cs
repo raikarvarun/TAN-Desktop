@@ -2,6 +2,7 @@
 using DataBaseManger.Model;
 using DataBaseManger.SqlLite;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace TAN.Helpers
@@ -17,44 +18,78 @@ namespace TAN.Helpers
                 var result = await _apiHelper.Authicate(adminData.adminEmail, adminData.adminPassword);
                 var token = result.data1.adminToken;
 
-                var apiVersionRemote = await _apiHelper.getApiVersion(token);
-                var apiVersionLocal = appConfigSqlite.getData();
+                var apiVersionResponse = await _apiHelper.getAllApiVersion1(token);
+                var apiVersionRemoteList = apiVersionResponse.data;
+                var apiVersionLocalList = appConfigSqlite.getData();
+
+                Dictionary<string,string> apiVersionRemote = new Dictionary<string,string>();
+                foreach(var item in apiVersionRemoteList)
+                {
+                    apiVersionRemote.Add(item.appconfigName , item.appconfigVersion);
+                }
+
+                Dictionary<string, string> apiVersionLocal = new Dictionary<string, string>();
+                foreach (var item in apiVersionLocalList)
+                {
+                    apiVersionLocal.Add(item.appconfigName, item.appconfigVersion);
+                }
 
                 adminData.adminToken = token;
-                appConfig.apiVersion = apiVersionRemote.data.appVersion;
+                AdminTableSqlite.editData(adminData);
 
-                appConfigSqlite.editData(appConfig);
 
-                if (apiVersionLocal.apiVersion == apiVersionRemote.data.appVersion)
+                foreach(var item in apiVersionRemote)
                 {
-                    //PartiesViewModel.assignParties();
-
-                    return true;
-                }
-                else
-                {
-                    try
+                    if(item.Value != apiVersionLocal[item.Key])
                     {
-
-
-                        DbConnection.deleteDb();
-                        CommanSQlite.initAll();
-                        var temp3 = await fetchAllDataAsync(_apiHelper, token, adminData);
-
-                        //PartiesViewModel.assignParties();
-                        return true;
+                        validateGetRequest(item.Key, _apiHelper, token);
+                        appConfigSqlite.editData(item.Key , item.Value);
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-
                 }
+
+
+                return true;
+                
 
             }
             return false;
         }
-
+        public static void validateGetRequest(string data ,IAPIHelper _apiHelper ,string token)
+        {
+            switch (data)
+            {
+                case "customer":
+                    _ = fetchAllCustomers( _apiHelper , token);
+                    break;
+                case "payment":
+                    _ = fetchAllPayments(_apiHelper, token);
+                    break;
+                case "ordertable":
+                    _ = fetchAllOrderTable(_apiHelper, token);
+                    break;
+                case "paymentType":
+                    _ = fetchAllPaymentTypes(_apiHelper, token);
+                    break;
+                case "product":
+                    _ = fetchAllProductVersions(_apiHelper, token);
+                    break;
+                case "orderProductRelation":
+                    _ = fetchAllOrderProductRelation(_apiHelper, token);
+                    break;
+                case "expenseCategary":
+                    _ = fetchExpenseCategory(_apiHelper, token);
+                    break;
+                case "expenseItem":
+                    _ = fetchAllExpenseItem(_apiHelper, token);
+                    break;
+                case "Rl_expense_cat_item":
+                    _ = fetchAllRl_expense_cat_item(_apiHelper, token);
+                    break;
+                case "ItemUnit":
+                    _ = fetchAllItemUnit(_apiHelper, token);
+                    break;
+            }
+        }
         public static async Task<Task> fetchAllDataAsync(IAPIHelper _apiHelper, string token, adminModel adminData)
         {
             
@@ -118,15 +153,18 @@ namespace TAN.Helpers
             {
                 Rl_expense_cat_itemSqllite.addData(item);
             }
-            var ans10 = await _apiHelper.getAllItemMap(token);
-            foreach (var item in ans10.data)
-            {
-                ItemMapSqllite.addData(item);
-            }
+            
             var ans11 = await _apiHelper.getAllItemUnit(token);
             foreach (var item in ans11.data)
             {
                 ItemUnitSqllite.addData(item);
+            }
+
+
+            var ans12 = await _apiHelper.getAllApiVersion1(token);
+            foreach (var item in ans12.data)
+            {
+                appConfigSqlite.addData(item);
             }
 
             return Task.CompletedTask;
@@ -198,7 +236,7 @@ namespace TAN.Helpers
 
             return Task.CompletedTask;
         }
-        public static async Task<Task> fetchExpenseCategor(IAPIHelper _apiHelper, string token)
+        public static async Task<Task> fetchExpenseCategory(IAPIHelper _apiHelper, string token)
         {
             var ans7 = await _apiHelper.getAllExpenseCategory(token);
             foreach (var item in ans7.data)
@@ -231,17 +269,7 @@ namespace TAN.Helpers
             return Task.CompletedTask;
         }
 
-        public static async Task<Task> fetchAllItemMap(IAPIHelper _apiHelper, string token)
-        {
-            var ans10 = await _apiHelper.getAllItemMap(token);
-            foreach (var item in ans10.data)
-            {
-                ItemMapSqllite.addData(item);
-            }
-            
-
-            return Task.CompletedTask;
-        }
+        
 
         public static async Task<Task> fetchAllItemUnit(IAPIHelper _apiHelper, string token)
         {

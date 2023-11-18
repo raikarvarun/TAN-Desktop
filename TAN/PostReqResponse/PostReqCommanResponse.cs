@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 
 namespace TAN.PostReqResponse
 {
@@ -6,8 +6,12 @@ namespace TAN.PostReqResponse
     {
         public int status;
         public string msg;
-        public string apiVersion;
+        public List<appConfigResponseModel> apiVersion;
         public T data;
     }
+    public class appConfigResponseModel
+    {
+        public string appconfigName;
+        public string appconfigVersion;
+    }
 }
-

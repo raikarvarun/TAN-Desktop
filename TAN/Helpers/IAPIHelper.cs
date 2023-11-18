@@ -19,7 +19,7 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<orderProductRelationModel>> getAllorderProductRelation(string token);
 
 
-        Task<apiVersionResponse> getApiVersion(string token);
+        Task<GetAllCommanResponse<appConfigModel>> getAllApiVersion1(string token);
         Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer);
         Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token);
         Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product);
@@ -34,7 +34,6 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token);
         Task<GetAllCommanResponse<Rl_expense_cat_itemModel>> getAllRl_expense_cat_item(string token);
         Task<GetAllCommanResponse<ItemUnitModel>> getAllItemUnit(string token);
-        Task<GetAllCommanResponse<ItemMapModel>> getAllItemMap(string token);
 
         Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit1(string token, ItemUnitModel itemUnit);
 

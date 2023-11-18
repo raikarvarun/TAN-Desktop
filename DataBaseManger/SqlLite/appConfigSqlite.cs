@@ -38,16 +38,14 @@ namespace DataBaseManger.SqlLite
             conn.Close();
         }
 
-        public static void editData(appConfigModel appConfig)
+        public static void editData(string name , string version)
         {
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
             string query = "UPDATE appconfig SET  " +
-                "appconfigID  = " + appConfig.appconfigID.ToString() + " , " +
-                "appconfigName = \"" + appConfig.appconfigName + "\" , " +
-                "appconfigVersion = \"" + appConfig.appconfigVersion
+                "appconfigVersion = \"" + version
                 + "\"  "
-                + " WHERE appconfigName = " + appConfig.appconfigName.ToString();
+                + " WHERE appconfigName = \"" + name +"\"";
                 
             SQLiteCommand command = new SQLiteCommand(query, conn);
             command.ExecuteNonQuery();
@@ -55,13 +53,16 @@ namespace DataBaseManger.SqlLite
         }
         
 
-        public static appConfigModel getData()
+        public static List<appConfigModel> getData()
         {
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
-            string query = "select * from appconfig where appID=1";
+            string query = "select * from appconfig";
             SQLiteCommand command = new SQLiteCommand(query, conn);
             SQLiteDataReader reader = command.ExecuteReader();
+
+            List<appConfigModel> ans = new List<appConfigModel>();
+
             appConfigModel appConfig = null;
 
             while (reader.Read())
@@ -71,19 +72,13 @@ namespace DataBaseManger.SqlLite
                     (string)reader["appconfigName"],
                     (string)reader["appconfigVersion"]
                     );
+                ans.Add(appConfig);
 
             }
             conn.Close();
-            return appConfig;
+            return ans;
         }
-        //public static void deleteData()
-        //{
-        //    SQLiteConnection conn = DbConnection.createDbConnection();
-        //    conn.Open();
-        //    string query = "DELETE FROM appconfig WHERE appID=1";
-        //    SQLiteCommand command = new SQLiteCommand(query, conn);
-        //    command.ExecuteNonQuery();
-        //    conn.Close();
-        //}
+
+        
     }
 }

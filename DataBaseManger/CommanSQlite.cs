@@ -19,7 +19,7 @@ namespace DataBaseManger
             ExpenseItemSqllite.createTable();
             Rl_expense_cat_itemSqllite.createTable() ;
             ItemUnitSqllite.createTable();
-            ItemMapSqllite.createTable();
+            
         }
         public static string DisplayIndianCurrency(string data)
         {

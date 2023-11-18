@@ -213,14 +213,14 @@ namespace TAN.Views
 
 
             //call request
-            var appConfigtemp = appConfigSqlite.getData();
-            string token = appConfigtemp.adminToken;
+            var admin = AdminTableSqlite.getAdminData();
+            var token = admin.adminToken;
             var result = await _apiHelper.postPlaceOrder1(token, placeOrder);
             paymentSqlite.addData(result.data.payment);
             OrderTableSqlite.addData(result.data.order);
 
-            appConfigtemp.apiVersion = result.apiVersion;
-            appConfigSqlite.editData(appConfigtemp);
+            //appConfigSqlite.editData(result.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
+
 
             var relation = result.data.orderproductrelation;
 
