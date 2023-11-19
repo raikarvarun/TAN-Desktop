@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="TAN.Views.SettingViews.UserMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TAN.Views.SettingViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1280">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Button
+            Content="Add User"
+            Height="50"
+            Width="100"
+            Click="Button_Click"
+            >
+            
+        </Button>
+        
+        <Grid Grid.Row="1">
+            <StackPanel x:Name="MainStackPanel"
+                        Orientation="Vertical">
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -30,7 +30,8 @@ namespace TAN.Views
         void addSettingMainViewShellView(IEventAggregator events, IAPIHelper aPIHelper);
         void removeSettingMainViewChildOfShellView();
 
-
+        void addAddUserViewShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void removeAddUserViewChildOfShellView();
 
     }
 }

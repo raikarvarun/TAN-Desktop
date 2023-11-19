@@ -11,6 +11,8 @@ namespace TAN.Helpers
         Task<adminResponse> Authicate(string username, string password);
         Task<GetAllCommanResponse<customerModel>> getAllCustomers(string token);
 
+        Task<GetAllCommanResponse<adminModel>> getAllAdminTable(string token);
+
         Task<GetAllCommanResponse<paymentModel>> getAllPayments(string token);
 
 
@@ -40,6 +42,8 @@ namespace TAN.Helpers
         Task<PostReqCommanResponse<ExpenseCategoryModel>> postExpenseCat(string token, ExpenseCategoryModel data);
 
         Task<PostReqCommanResponse<ExpenseItemModel>> postExpenseItem(string token, ExpenseItemModel data);
+
+        Task<PostReqCommanResponse<adminModel>> postAdminTable(string token, adminModel data);
 
 
     }

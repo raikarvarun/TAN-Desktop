@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="TAN.Views.AddUserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TAN.Views"
+             xmlns:controls="clr-namespace:TAN.Controls"
+             mc:Ignorable="d" 
+             Panel.ZIndex="10"
+             d:DesignHeight="720" d:DesignWidth="1280">
+    <Grid>
+
+            <Rectangle Fill="Gray" Opacity="0.3" MouseDown="Rectangle_MouseDown"></Rectangle>
+        <Border CornerRadius="15" Background="White" Width="800" Height="500" >
+            <Grid Margin="10"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Add User" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="20"></TextBlock>
+                <Button Click="Button_Click" Grid.Column="2">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <DockPanel>
+                                <Image Source="../Icons/close.png"   HorizontalAlignment="Right" Margin="5" />
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <controls:CusTextBox x:Name="UserName"
+                     PlaceHolder="UserName*"
+                     Grid.Row="1"
+                     Margin="35 20 0 0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Width="250" />
+
+                <controls:CusTextBox x:Name="Password"
+                        PlaceHolder="Phone Number"
+                        Grid.Row="1" Grid.Column="1"
+                        Margin="35 20 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="250" />
+
+                
+                
+
+
+                
+
+
+                
+
+                
+                    
+                <Border>
+                    <DockPanel>
+                        
+                    </DockPanel>
+                </Border>
+                
+                <Button 
+                    Grid.Column="2" Grid.Row="4" 
+                    Margin="50 0 50 0" 
+                    Click="SaveButtonClicked"
+                    FontSize="25"
+                    FontWeight="Medium"
+                    FontFamily="Times"
+                     Content="Save"
+                     Background="#1789fc"
+                    
+                        Foreground="White">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                </Button>
+                
+                
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

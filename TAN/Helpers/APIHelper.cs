@@ -116,8 +116,8 @@ namespace TAN.Helpers
                 }
             }
         }
-        
-        
+
+
 
 
 
@@ -125,6 +125,12 @@ namespace TAN.Helpers
         //
         //
         // Get Request
+        public Task<GetAllCommanResponse<adminModel>> getAllAdminTable(string token)
+        {
+            Comman<adminModel> comman = new Comman<adminModel>();
+            return comman.GetAll(token, "/api/admintable/all", ApiClient);
+        }
+
         public Task<GetAllCommanResponse<appConfigModel>> getAllApiVersion1(string token)
         {
             Comman<appConfigModel> comman = new Comman<appConfigModel>();
@@ -239,6 +245,13 @@ namespace TAN.Helpers
         {
             Comman<ExpenseItemModel> comman = new Comman<ExpenseItemModel>();
             return comman.PostData(token, "/api/expenseitem/insert", data, ApiClient);
+
+        }
+
+        public Task<PostReqCommanResponse<adminModel>> postAdminTable(string token, adminModel data)
+        {
+            Comman<adminModel> comman = new Comman<adminModel>();
+            return comman.PostData(token, "/api/admintable/insert", data, ApiClient);
 
         }
 

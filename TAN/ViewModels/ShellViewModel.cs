@@ -17,6 +17,8 @@ namespace TAN.ViewModels
         , IHandle<AddExpenseItemEventModel>, IHandle<RemoveExpenseItemEventModel>
         , IHandle<AddExpensePageViewEventModel>, IHandle<RemoveExpensePageEventModel>
         , IHandle<AddSettingMainEventModel>, IHandle<RemoveSettingMainEventModel>
+        , IHandle<AddUserViewEventModel>, IHandle<RemoveAddUserViewEventModel>
+
 
 
 
@@ -175,6 +177,17 @@ namespace TAN.ViewModels
             return Task.CompletedTask;
         }
 
+        public Task HandleAsync(AddUserViewEventModel message, CancellationToken cancellationToken)
+        {
+            _view.addAddUserViewShellView(_events, _apiHelper);
+            return Task.CompletedTask;
+        }
+
+        public Task HandleAsync(RemoveAddUserViewEventModel message, CancellationToken cancellationToken)
+        {
+            _view.removeAddUserViewChildOfShellView();
+            return Task.CompletedTask;
+        }
 
 
     }

@@ -58,8 +58,10 @@ namespace TAN.ViewModels
             
             //UserName = "varun123";
             //Password = "123";
-            UserName = "TANNIBM";
-            Password = "Saurav2333@";
+            //UserName = "TANNIBM";
+            //Password = "Saurav2333@";
+            UserName = "test1";
+            Password = "test2";
             try
             {
                 adminResponse result = await _apiHelper.Authicate(UserName, Password);

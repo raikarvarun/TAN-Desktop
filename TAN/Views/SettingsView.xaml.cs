@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TAN.Helpers;
+using TAN.Views.SettingViews;
 
 namespace TAN.Views
 {
@@ -72,7 +73,7 @@ namespace TAN.Views
         private void UserManagementButton_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelection(sender, e);
-
+            MainWindow.Content = new UserMainView(_events , _apiHelper);
         }
 
         private void PartyButton_Click(object sender, RoutedEventArgs e)
