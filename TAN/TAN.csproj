@@ -261,10 +261,10 @@
     <Compile Include="Views\AddBankAccountView.xaml.cs">
       <DependentUpon>AddBankAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddExpeneItemView.xaml.cs">
+    <Compile Include="Views\ExpenseViews\AddExpeneItemView.xaml.cs">
       <DependentUpon>AddExpeneItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddExpenseCat.xaml.cs">
+    <Compile Include="Views\ExpenseViews\AddExpenseCat.xaml.cs">
       <DependentUpon>AddExpenseCat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingViews\AddUserView.xaml.cs">
@@ -291,23 +291,23 @@
     <Compile Include="Views\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExpenseItemView.xaml.cs">
+    <Compile Include="Views\ExpenseViews\ExpenseItemView.xaml.cs">
       <DependentUpon>ExpenseItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemMainVIew.xaml.cs">
       <DependentUpon>ItemMainVIew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExpenseView.xaml.cs">
+    <Compile Include="Views\ExpenseViews\ExpenseView.xaml.cs">
       <DependentUpon>ExpenseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IShellView.cs" />
-    <Compile Include="Views\ExpenseCatView.xaml.cs">
+    <Compile Include="Views\ExpenseViews\ExpenseCatView.xaml.cs">
       <DependentUpon>ExpenseCatView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExpensePageView.xaml.cs">
+    <Compile Include="Views\ExpenseViews\ExpensePageView.xaml.cs">
       <DependentUpon>ExpensePageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportMainView.xaml.cs">
@@ -318,6 +318,9 @@
     </Compile>
     <Compile Include="Views\SettingViews\UserMainView.xaml.cs">
       <DependentUpon>UserMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubscriptionViews\SubscriptionView.xaml.cs">
+      <DependentUpon>SubscriptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UnitView.xaml.cs">
       <DependentUpon>UnitView.xaml</DependentUpon>
@@ -421,11 +424,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddExpeneItemView.xaml">
+    <Page Include="Views\ExpenseViews\AddExpeneItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddExpenseCat.xaml">
+    <Page Include="Views\ExpenseViews\AddExpenseCat.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -461,7 +464,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ExpenseItemView.xaml">
+    <Page Include="Views\ExpenseViews\ExpenseItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -469,7 +472,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ExpenseView.xaml">
+    <Page Include="Views\ExpenseViews\ExpenseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -477,11 +480,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ExpenseCatView.xaml">
+    <Page Include="Views\ExpenseViews\ExpenseCatView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ExpensePageView.xaml">
+    <Page Include="Views\ExpenseViews\ExpensePageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -496,6 +499,10 @@
     <Page Include="Views\SettingViews\UserMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubscriptionViews\SubscriptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UnitView.xaml">
       <Generator>MSBuild:Compile</Generator>

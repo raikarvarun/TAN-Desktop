@@ -140,7 +140,7 @@ namespace TAN.Views.SettingViews
             return Task.Factory.StartNew(() =>
             {
 
-                _users = AdminTableSqlite.readAll();
+                //_users = AdminTableSqlite.readAll();
                 foreach (adminModel c in _users)
                 {
                     _usersMaindata.Add(c);

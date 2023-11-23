@@ -212,5 +212,33 @@ namespace DataBaseManger.SqlLite
             }
             return customerTransationmodels;
         }
+
+        public static List<customerModel> readOnlySubcriptionCustomers()
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "SELECT * from CUSTOMER WHERE customerID in ( SELECT customerID from OrderTable WHERE orderType=8) ;";
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<customerModel> customerModels = new List<customerModel>();
+
+            while (reader.Read())
+            {
+
+                var customer = new customerModel(
+                    reader.GetInt32(0),
+                    (string)reader["customerName"],
+                    reader.GetInt32(2),
+                    (string)reader["customerMobile"],
+                    (string)reader["customerAddress"],
+                    reader.GetFloat(5),
+                    reader.GetFloat(6)
+                    );
+
+                customerModels.Add(customer);
+            }
+            conn.Close();
+            return customerModels;
+        }
     }
 }
