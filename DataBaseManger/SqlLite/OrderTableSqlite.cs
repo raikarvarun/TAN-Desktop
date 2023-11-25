@@ -163,6 +163,15 @@ namespace DataBaseManger.SqlLite
                 case 6:
                     ans = "Debit Note";
                     break;
+                case 8:
+                    ans = "Subscription";
+                    break;
+                case 9:
+                    ans = "Sale";
+                    break;
+                case 10:
+                    ans = "Cancel";
+                    break;
             }
             return ans;
         }

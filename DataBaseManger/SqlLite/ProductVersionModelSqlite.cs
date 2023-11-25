@@ -233,6 +233,18 @@ namespace DataBaseManger.SqlLite
                     //ans = "Debit Note";
                     result = new SolidColorBrush(Color.FromArgb(255, 199, 126, 184));
                     break;
+                case 8:
+                    //ans = "Subscription ";
+                    result = new SolidColorBrush(Color.FromArgb(255, 89, 168, 111));
+                    break;
+                case 9:
+                    //ans = "Subscription sale";
+                    result = new SolidColorBrush(Color.FromArgb(255, 144, 228, 146));
+                    break;
+                case 10:
+                    //ans = "Subscription cancel";
+                    result = new SolidColorBrush(Color.FromArgb(255, 214, 108, 108));
+                    break;
             }
 
             return result;
