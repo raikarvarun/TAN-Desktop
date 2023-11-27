@@ -267,6 +267,9 @@
     <Compile Include="Views\ExpenseViews\AddExpenseCat.xaml.cs">
       <DependentUpon>AddExpenseCat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportViews\ProfitAndLossReport.xaml.cs">
+      <DependentUpon>ProfitAndLossReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingViews\AddUserView.xaml.cs">
       <DependentUpon>AddUserView.xaml</DependentUpon>
     </Compile>
@@ -432,6 +435,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ReportViews\ProfitAndLossReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SettingViews\AddUserView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -569,9 +576,7 @@
     <Content Include="Icons\TANSVG.svg" />
     <Resource Include="TANSVG.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ReportViews\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
