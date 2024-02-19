@@ -112,8 +112,10 @@ namespace TAN.Helpers
 
 
             var ans3 = await _apiHelper.getAllProductVersions(token);
+            
             foreach (var item in ans3.data)
             {
+
                 ProductVersionModelSqlite.addData(item);
             }
 
