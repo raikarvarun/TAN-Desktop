@@ -259,7 +259,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\AddBankAccountView.xaml.cs">
+    <Compile Include="Views\BankViews\AddBankAccountView.xaml.cs">
       <DependentUpon>AddBankAccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExpenseViews\AddExpeneItemView.xaml.cs">
@@ -274,19 +274,19 @@
     <Compile Include="Views\SettingViews\AddUserView.xaml.cs">
       <DependentUpon>AddUserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddUnitVIew.xaml.cs">
+    <Compile Include="Views\UnitViews\AddUnitVIew.xaml.cs">
       <DependentUpon>AddUnitVIew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddItemView.xaml.cs">
+    <Compile Include="Views\ItemViews\AddItemView.xaml.cs">
       <DependentUpon>AddItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddSelectUnit.xaml.cs">
+    <Compile Include="Views\UnitViews\AddSelectUnit.xaml.cs">
       <DependentUpon>AddSelectUnit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddPartiesView.xaml.cs">
+    <Compile Include="Views\PartyViews\AddPartiesView.xaml.cs">
       <DependentUpon>AddPartiesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BankAccountsView.xaml.cs">
+    <Compile Include="Views\BankViews\BankAccountsView.xaml.cs">
       <DependentUpon>BankAccountsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CommanNavigationView.xaml.cs">
@@ -298,7 +298,7 @@
     <Compile Include="Views\ExpenseViews\ExpenseItemView.xaml.cs">
       <DependentUpon>ExpenseItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItemMainVIew.xaml.cs">
+    <Compile Include="Views\ItemViews\ItemMainVIew.xaml.cs">
       <DependentUpon>ItemMainVIew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExpenseViews\ExpenseView.xaml.cs">
@@ -314,10 +314,10 @@
     <Compile Include="Views\ExpenseViews\ExpensePageView.xaml.cs">
       <DependentUpon>ExpensePageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportMainView.xaml.cs">
+    <Compile Include="Views\ReportViews\ReportMainView.xaml.cs">
       <DependentUpon>ReportMainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsView.xaml.cs">
+    <Compile Include="Views\SettingViews\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingViews\UserMainView.xaml.cs">
@@ -326,16 +326,16 @@
     <Compile Include="Views\SubscriptionViews\SubscriptionView.xaml.cs">
       <DependentUpon>SubscriptionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UnitView.xaml.cs">
+    <Compile Include="Views\UnitViews\UnitView.xaml.cs">
       <DependentUpon>UnitView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItemView.xaml.cs">
+    <Compile Include="Views\ItemViews\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PartiesView.xaml.cs">
+    <Compile Include="Views\PartyViews\PartiesView.xaml.cs">
       <DependentUpon>PartiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaymentInorOutAndCrorDrNoteView.xaml.cs">
@@ -422,7 +422,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddBankAccountView.xaml">
+    <Page Include="Views\BankViews\AddBankAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -442,23 +442,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddUnitVIew.xaml">
+    <Page Include="Views\UnitViews\AddUnitVIew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddItemView.xaml">
+    <Page Include="Views\ItemViews\AddItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddSelectUnit.xaml">
+    <Page Include="Views\UnitViews\AddSelectUnit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddPartiesView.xaml">
+    <Page Include="Views\PartyViews\AddPartiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BankAccountsView.xaml">
+    <Page Include="Views\BankViews\BankAccountsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -474,7 +474,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ItemMainVIew.xaml">
+    <Page Include="Views\ItemViews\ItemMainVIew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -494,11 +494,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ReportMainView.xaml">
+    <Page Include="Views\ReportViews\ReportMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsView.xaml">
+    <Page Include="Views\SettingViews\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -510,11 +510,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UnitView.xaml">
+    <Page Include="Views\UnitViews\UnitView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ItemView.xaml">
+    <Page Include="Views\ItemViews\ItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -522,7 +522,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PartiesView.xaml">
+    <Page Include="Views\PartyViews\PartiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

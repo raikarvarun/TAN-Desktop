@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TAN.Views"
              xmlns:viewmodels="clr-namespace:TAN.ViewModels" 
+             xmlns:controls="clr-namespace:TAN.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
     <Grid Background="#b7babf" >
 
-            
-        
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="150"/>
@@ -18,19 +19,19 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions> 
+        <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            
+
             <RowDefinition />
         </Grid.RowDefinitions>
 
 
         <Border Margin="0 0 0 5" BorderThickness="0 , 0 , 0 ,2" BorderBrush="#0b8fc5" Grid.Row="0" Grid.ColumnSpan="5">
             <DockPanel   Background="#f5f5f5" >
-            <TextBlock
+                <TextBlock
             Text="NAME" 
             Foreground="#50add3"
             HorizontalAlignment="Center"
@@ -56,7 +57,7 @@
                   
                   IsReadOnly="True"
                   RenderTransformOrigin="0.473,0.462" SelectionChanged="PARTIES_SelectionChanged">
-            
+
             <DataGrid.Columns >
                 <DataGridTextColumn 
                     FontSize="18" 
@@ -78,7 +79,7 @@
                             <Setter 
                                 Property="Margin" 
                                 Value="0,5,0,5" />
-                            
+
                             <Setter Property="Padding"
                                 Value="7 5" />
                             <Setter Property="FontSize"
@@ -86,6 +87,23 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Edit" Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:DropDownMenu >
+                                <Border
+                                        Background="White"
+                                        BorderBrush="LightGray"
+                                        BorderThickness="1">
+                                    <StackPanel>
+                                        <Button  Content="Edit" />
+                                        <Button  Content="Delete" />
+                                    </StackPanel>
+                                </Border>
+                            </controls:DropDownMenu>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#cee6f3"/>
@@ -93,9 +111,9 @@
             </DataGrid.Resources>
         </DataGrid>
 
-        
 
-        
+
+
         <DockPanel x:Name="searchTextDockPannel"
                     
                     Grid.ColumnSpan="2" 
@@ -204,7 +222,7 @@
                 </Button.Resources>
             </Button>
         </DockPanel>
-        
+
         <DockPanel x:Name="addPartyDP" 
                    Grid.Column="1" 
                    Grid.Row="1"  
@@ -238,7 +256,7 @@
                             Stretch="Uniform"
                             Margin="0 0 5 0"
                             Width="12">
-                            <Path.Style>
+                        <Path.Style>
                             <Style>
                                 <Setter Property="Path.Fill"
                             Value="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
@@ -250,9 +268,9 @@
 
                 </StackPanel>
             </Button>
-            
+
         </DockPanel>
-        
+
 
         <DockPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Background="#ffffff" Margin="5 5 10 0" Width="auto">
             <TextBlock x:Name="NameText" Text="Name" HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="18" FontWeight="Bold">
@@ -349,7 +367,7 @@
                                      Click="CloseSearchButton1_Click"
                                      BorderThickness="0"
                                      Background="Transparent">
-                                    <Path x:Name="SearchClickable41"
+                                <Path x:Name="SearchClickable41"
                                       Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
                                       Fill="Black"
                                       Stretch="Uniform" />
@@ -438,8 +456,24 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-
-                   </DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Edit" Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:DropDownMenu >
+                                        <Border
+                                                Background="White"
+                                                BorderBrush="LightGray"
+                                                BorderThickness="1">
+                                            <StackPanel>
+                                                <Button  Content="Edit" />
+                                                <Button  Content="Delete" />
+                                            </StackPanel>
+                                        </Border>
+                                    </controls:DropDownMenu>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#cee6f3"/>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>

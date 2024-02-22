@@ -19,7 +19,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <!-- Search textbox -->
             <Border 
                 HorizontalAlignment="Left"
@@ -63,7 +63,7 @@
 
 
 
-                <Button  Grid.Column="2"
+                    <Button  Grid.Column="2"
                         Height="17"
                         Width="17"
                         DockPanel.Dock="Right"
@@ -73,7 +73,7 @@
                         Click="CloseSearchButton_Click"
                         BorderThickness="0"
                         Background="Transparent">
-                    <Path x:Name="SearchClickable41"
+                        <Path x:Name="SearchClickable41"
                          Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
                          Fill="Black"
                          Stretch="Uniform" />
@@ -115,9 +115,9 @@
                 </Button.Resources>
                 <StackPanel Orientation="Horizontal">
                     <Border Background="#fef6ec" CornerRadius="100" Margin="0 0 5 0">
-                        
-                    
-                    <Path Height="12"
+
+
+                        <Path Height="12"
                             Data="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"
                             Stretch="Uniform"
                             Margin="3"
@@ -125,8 +125,8 @@
                             Stroke="#1789fc"
                             StrokeThickness="1"
                             Width="12">
-                        
-                    </Path>
+
+                        </Path>
                     </Border>
                     <TextBlock x:Name="AddButton"  Text="Add Sale"
                     VerticalAlignment="Center" />
@@ -136,8 +136,8 @@
 
 
         </Grid>
-        
-        
+
+
         <Grid Background="#ffffff" Grid.Row="1" >
             <DataGrid 
                  RowStyle="{DynamicResource DataGridRowStyle1}" 
@@ -158,10 +158,10 @@
                 VerticalGridLinesBrush="#dedede"
                       AlternatingRowBackground="#f7f7f7"
                   >
-               
+
                 <DataGrid.Columns >
                     <DataGridTextColumn  FontSize="16" Header="Date" MinWidth="50" Width="*" Binding="{Binding Date}" ElementStyle="{StaticResource ColumnElementStyle}" >
-                        
+
                     </DataGridTextColumn>
                     <DataGridTextColumn FontSize="16" Header="InvoiceNo" MinWidth="50" Binding="{Binding InvoiceNo}"   >
                         <DataGridTextColumn.ElementStyle>
@@ -193,50 +193,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <controls:DropDownMenu >
-                                    <controls:DropDownMenu.Resources>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Setter Property="BorderThickness" Value="0" />
-                                            <Setter Property="Padding" Value="20 10" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border
-                                                        Padding="{TemplateBinding Padding}"
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}">
-                                                            <ContentPresenter Content="{TemplateBinding Content}" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Trigger.EnterActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <ColorAnimation
-                                                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-                                                                To="LightGray"
-                                                                Duration="0:0:0.1" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.EnterActions>
-                                                    <Trigger.ExitActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <ColorAnimation
-                                                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-                                                                To="Transparent"
-                                                                Duration="0:0:0.1" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.ExitActions>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </controls:DropDownMenu.Resources>
                                     <Border
                                     Background="White"
                                     BorderBrush="LightGray"
@@ -249,7 +205,7 @@
                                 </controls:DropDownMenu>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>               
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
 
                 <DataGrid.Resources>

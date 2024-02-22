@@ -112,7 +112,7 @@
                                    IsOpen="False"
                                    StaysOpen="False">
 
-                                
+
                                 <DataGrid Margin="10 0 5 10"
                                           Foreground="Black"
                                           x:Name="CustomerSuggestions"
@@ -131,9 +131,9 @@
                                           
                                          
                                           >
-                                    
+
                                     <DataGrid.Columns>
-                                        
+
                                         <DataGridTextColumn FontSize="18"
                                                             Header="Add Party"
                                                             Width="*"
@@ -214,9 +214,9 @@
                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                          VerticalAlignment="Stretch"
                                          HorizontalAlignment="Stretch"/>-->
-                                
 
-                                    
+
+
                                 <DataGrid Margin="10 0 5 10"
                                           Grid.Row="1"
                                           Foreground="Black"
@@ -269,8 +269,8 @@
                                     </DataGrid.Resources>
                                 </DataGrid>
 
-                                    
-                                
+
+
                             </Popup>
                         </Grid>
                     </Border>
@@ -303,8 +303,54 @@
                                Placement="Bottom"
                                PlacementTarget="{Binding ElementName=checkdejh}"
                                StaysOpen="False">
+                            <Popup.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Padding" Value="20 10" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border
+                                                        Padding="{TemplateBinding Padding}"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                            To="LightGray"
+                                                            Duration="0:0:0.1" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                            To="Transparent"
+                                                            Duration="0:0:0.1" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Popup.Resources>
                             <ContentControl Content="{TemplateBinding Content}">
+
                             </ContentControl>
+
                         </Popup>
                     </Grid>
                 </ControlTemplate>
@@ -312,14 +358,14 @@
         </Setter>
     </Style>
 
-   
+
     <Style TargetType="{x:Type local:CusTextBox}"
            BasedOn="{StaticResource ResourceKey={x:Type TextBox}}">
         <Setter Property="BorderBrush"
                 Value="#a9acb4" />
         <Setter Property="FontSize"
                 Value="16" />
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CusTextBox}">
@@ -330,18 +376,18 @@
                         <SolidColorBrush x:Key="TextBox.Focus.Border"
                                          Color="#2d8dec" />
 
-                        
+
                     </ControlTemplate.Resources>
                     <Grid>
                         <Grid.RowDefinitions>
-                            
+
                             <RowDefinition Height="55" />
                             <RowDefinition Height="auto" />
 
                         </Grid.RowDefinitions>
-                        
-                        
-                        
+
+
+
 
                         <TextBlock Panel.ZIndex="9"
                                    x:Name="PlaceHolderTextBox"
@@ -380,7 +426,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
 
-                       
+
                         <Trigger Property="IsMouseOver"
                                  Value="true">
                             <Setter Property="BorderBrush"
@@ -392,13 +438,13 @@
                             <Setter Property="BorderBrush"
                                     
                                     Value="{StaticResource TextBox.Focus.Border}" />
-                            
-                            
+
+
                             <Setter Property="BorderThickness"
                                     
                                     Value="2"></Setter>
                         </Trigger>
-                        
+
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -406,7 +452,7 @@
         </Setter>
     </Style>
 
-    
+
 
 
     <Style TargetType="{x:Type local:GrowthDirectionControl}"
@@ -458,7 +504,7 @@
                                    >
 
                         </TextBlock>
-                        
+
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Tag,ElementName=temptest}"
@@ -488,7 +534,7 @@
 
 
 
-    
+
 
     <!--x:Name="CustomerSuggestionEditor"-->
 
@@ -510,7 +556,7 @@
                                  
                                  
                                   />
-                            
+
                             <local:ExpenseCatSuggestion x:Name="ExpenseCatSuggestion"
                                               Grid.Row="1"
                                               HorizontalAlignment="Stretch"></local:ExpenseCatSuggestion>
@@ -592,8 +638,8 @@
         </Setter>
     </Style>
 
-    
-    
+
+
     <!--s
     df
     asdf

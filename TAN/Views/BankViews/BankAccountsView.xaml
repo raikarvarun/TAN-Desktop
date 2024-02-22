@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TAN.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:controls="clr-namespace:TAN.Controls"
+             d:DesignHeight="720" d:DesignWidth="1280">
     <Grid Background="#b7babf" >
 
 
@@ -55,6 +56,23 @@
             <DataGrid.Columns >
                 <DataGridTextColumn FontSize="18" Header="Name" MinWidth="50" Width="*" Binding="{Binding paymentTypeType}"></DataGridTextColumn>
                 <DataGridTextColumn FontSize="18" Header="Mobile" MinWidth="50" Binding="{Binding paymentTypeName}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Edit" Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:DropDownMenu >
+                                <Border
+                                        Background="White"
+                                        BorderBrush="LightGray"
+                                        BorderThickness="1">
+                                    <StackPanel>
+                                        <Button  Content="Edit" />
+                                        <Button  Content="Delete" />
+                                    </StackPanel>
+                                </Border>
+                            </controls:DropDownMenu>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -144,8 +162,24 @@
                         <DataGridTextColumn  Header="NAME" MinWidth="10" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
                         <DataGridTextColumn  Header="DATE" MinWidth="10"  Width="*" Binding="{Binding Date}"></DataGridTextColumn>
                         <DataGridTextColumn  Header="AMOUNT" MinWidth="10"  Width="*" Binding="{Binding Amount}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Edit" Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:DropDownMenu >
+                                        <Border
+                                            Background="White"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="1">
+                                            <StackPanel>
+                                                <Button  Content="Edit" />
+                                                <Button  Content="Delete" />
+                                            </StackPanel>
+                                        </Border>
+                                    </controls:DropDownMenu>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                        
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>

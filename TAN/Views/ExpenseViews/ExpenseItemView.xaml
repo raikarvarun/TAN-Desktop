@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:TAN.Views"
+             xmlns:controls="clr-namespace:TAN.Controls"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="1280">
@@ -88,6 +89,23 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Edit" Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:DropDownMenu >
+                                        <Border
+                                            Background="White"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="1">
+                                            <StackPanel>
+                                                <Button  Content="Edit" />
+                                                <Button  Content="Delete" />
+                                            </StackPanel>
+                                        </Border>
+                                    </controls:DropDownMenu>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
@@ -273,8 +291,8 @@
                       />
 
 
-        
-        
+
+
 
 
 
@@ -449,6 +467,23 @@
                                              Width="*"
                                              Binding="{Binding Status}"
                                              ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Edit" Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <controls:DropDownMenu >
+                                        <Border
+                                                Background="White"
+                                                BorderBrush="LightGray"
+                                                BorderThickness="1">
+                                            <StackPanel>
+                                                <Button  Content="Edit" />
+                                                <Button  Content="Delete" />
+                                            </StackPanel>
+                                        </Border>
+                                    </controls:DropDownMenu>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"

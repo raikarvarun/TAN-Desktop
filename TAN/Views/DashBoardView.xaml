@@ -107,11 +107,11 @@
                     </Grid.RowDefinitions>
                     <DockPanel Background="#212934"
                                Margin="0 0 0 0.3">
-                        <Image Margin="10 5 5 5"
+                        <!--<Image Margin="10 5 5 5"
                                Source="../Icons/TANPNG.png"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
-                        <TextBlock Text="Mahesh Dairy"
+                               VerticalAlignment="Center" />-->
+                        <TextBlock Text=" Mahesh Dairy Farm"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    FontSize="18"
