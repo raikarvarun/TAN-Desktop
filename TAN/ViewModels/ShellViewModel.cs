@@ -8,8 +8,10 @@ using TAN.Views;
 namespace TAN.ViewModels
 {
 
-    public class ShellViewModel : Conductor<Object>, IHandle<LogOnEventModel>,
-        IHandle<AddPartyEventModel>
+    public class ShellViewModel : Conductor<Object>
+        ,IHandle<LogOnEventModel>
+        ,IHandle<LogInEventModel>
+        ,IHandle<AddPartyEventModel>
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
         , IHandle<AddSelectUnitEventModel>, IHandle<RemoveSelectUnitEventModel>
@@ -79,7 +81,11 @@ namespace TAN.ViewModels
             ActivateItemAsync(_dashboardVM);
             return Task.CompletedTask;
         }
-
+        public Task HandleAsync(LogInEventModel message, CancellationToken cancellationToken)
+        {
+            _ = ActivateItemAsync(_container.GetInstance<LoginViewModel>());
+            return Task.CompletedTask;
+        }
         public Task HandleAsync(AddPartyEventModel message, CancellationToken cancellationToken)
         {
             _view.addPartiesInShellView(_events, _apiHelper);

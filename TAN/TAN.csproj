@@ -212,6 +212,7 @@
     <Compile Include="EventModels\AddCustomerEventArgs.cs" />
     <Compile Include="EventModels\ExpenseCatDataEventArgs.cs" />
     <Compile Include="EventModels\CustomerDataEventArgs.cs" />
+    <Compile Include="EventModels\LogInEventModel.cs" />
     <Compile Include="EventModels\LogOnEventModel.cs" />
     <Compile Include="EventModels\MenuButtonClickEventArgs.cs" />
     <Compile Include="EventModels\PaymentInEventModel.cs" />
@@ -568,10 +569,12 @@
     <Resource Include="Icons\close.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\TANPNG.png" />
+    <Resource Include="Icons\TANPNG1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Icons\TANPNG.png" />
     <Content Include="Icons\TANSVG.svg" />
+    <Content Include="Icons\TANSVG1.svg" />
     <Resource Include="TANSVG.ico" />
   </ItemGroup>
   <ItemGroup />

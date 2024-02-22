@@ -14,7 +14,7 @@ namespace TAN.ViewModels
 
         private object _showView;
 
-        public object ShowView
+        public object ShowView  
         {
             get { return _showView; }
             set

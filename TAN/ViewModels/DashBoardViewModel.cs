@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using DataBaseManger;
+using System.Windows;
 using TAN.Core;
 using TAN.EventModels;
 using TAN.Helpers;
@@ -29,8 +31,10 @@ namespace TAN.ViewModels
         public RelayCommand ExpenseCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
-        public RelayCommand SubscriptionViewCommand { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
+        public RelayCommand SubscriptionViewCommand { get; set; }
+        
 
 
 
@@ -147,12 +151,34 @@ namespace TAN.ViewModels
                 _= _events.PublishOnUIThreadAsync(new AddSettingMainEventModel());
 
             });
+            LogoutCommand = new RelayCommand(o =>
+            {
+                Logout();
+                
+            });
 
             SubscriptionViewCommand = new RelayCommand(o =>
             {
                 CurrentView = new SubscriptionView(_events);
 
             });
+        }
+        private void Logout()
+        {
+            string msgtext = "You want to logout. Do you want to continue?";
+            string txt = "TAN NIBM";
+            MessageBoxButton button = MessageBoxButton.OKCancel;
+            MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    DbConnection.deleteDb();
+                    _ = _events.PublishOnUIThreadAsync(new LogInEventModel());
+                    break;
+                case MessageBoxResult.Cancel:
+
+                    break;
+            }
         }
         public void changeCurrentViewtoAddUnits()
         {
