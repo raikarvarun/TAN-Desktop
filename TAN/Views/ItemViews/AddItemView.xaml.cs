@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using TAN.EventModels;
 using TAN.Helpers;
+using TAN.Notification.Utils;
+using TAN.Notification;
 
 namespace TAN.Views
 {
@@ -25,10 +27,10 @@ namespace TAN.Views
             _apiHelper = aPIHelper;
             _changeCurrentViewtoItems = re;
             var boxData = ItemUnitSqllite.readAll();
-            
-            for(int i = 0; i < boxData.Count; i++)
+
+            for (int i = 0; i < boxData.Count; i++)
             {
-                var item = boxData[i].FullName +" ("+boxData[i].ShortName + ")";
+                var item = boxData[i].FullName + " (" + boxData[i].ShortName + ")";
                 UnitBox.Items.Add(item);
             }
 
@@ -73,6 +75,14 @@ namespace TAN.Views
             ProductVersionModelSqlite.addData(ans.data);
             appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
 
+            var notificationManager = new NotificationManager();
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "New Item Save Sucessfully",
+
+                Type = NotificationType.Success
+            });
+
             _changeCurrentViewtoItems();
         }
 
@@ -83,9 +93,9 @@ namespace TAN.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-       
+
     }
 }

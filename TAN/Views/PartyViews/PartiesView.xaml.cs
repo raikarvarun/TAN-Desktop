@@ -19,16 +19,16 @@ namespace TAN.Views
     /// </summary>
     public partial class PartiesView : UserControl
     {
-        
-        
-        
-        
 
-        
 
-        
 
-       
+
+
+
+
+
+
+
         private static List<customerModel> _customer;
         private ObservableCollection<customerModel> _customerMaindata;
         private ObservableCollection<CustomerTransationmodel> _ItemTranMaindata;
@@ -65,7 +65,12 @@ namespace TAN.Views
         }
         private void AddPartyButtonClicked_Click(object sender, RoutedEventArgs e)
         {
-            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel());
+            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel(1, null));
+        }
+        private void EditCustomerButtonClick(object sender, RoutedEventArgs e)
+        {
+            customerModel custoemr = (customerModel)PARTIES.SelectedItem;
+            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel(2, custoemr));
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -93,7 +98,7 @@ namespace TAN.Views
                 }
             }
         }
-        
+
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -184,7 +189,7 @@ namespace TAN.Views
             });
         }
 
-       
+
 
         //Transation Logic
         //
@@ -257,6 +262,7 @@ namespace TAN.Views
 
         }
 
-        
+
+
     }
 }

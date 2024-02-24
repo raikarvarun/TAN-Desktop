@@ -15,9 +15,9 @@ namespace TAN.Helpers
 {
     public class Comman<T>
     {
-        
 
-        public async Task<GetAllCommanResponse<T>> GetAll(string token , string url1 , HttpClient ApiClient)
+
+        public async Task<GetAllCommanResponse<T>> GetAll(string token, string url1, HttpClient ApiClient)
         {
             var query = new Dictionary<string, string>()
             {
@@ -41,10 +41,10 @@ namespace TAN.Helpers
             }
         }
 
-        public async Task<PostReqCommanResponse<T>> PostData(string token, string url1 , T newData , HttpClient ApiClient)
+        public async Task<PostReqCommanResponse<T>> PostData(string token, string url1, T newData, HttpClient ApiClient)
         {
 
-            
+
 
             var content = JsonConvert.SerializeObject(newData);
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
@@ -61,6 +61,40 @@ namespace TAN.Helpers
             apiUrl += url1;
             apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
             using (HttpResponseMessage response = await ApiClient.PostAsync(apiUrl, data))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<T>>();
+
+
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+        public async Task<PostReqCommanResponse<T>> UpdateData(string token, string url1, T newData, HttpClient ApiClient)
+        {
+
+
+
+            var content = JsonConvert.SerializeObject(newData);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var data = new ByteArrayContent(buffer);
+
+            data.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var query = new Dictionary<string, string>()
+            {
+                ["token"] = token
+
+            };
+            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+            apiUrl += url1;
+            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+            using (HttpResponseMessage response = await ApiClient.PutAsync(apiUrl, data))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -139,9 +173,9 @@ namespace TAN.Helpers
 
 
         public Task<GetAllCommanResponse<customerModel>> getAllCustomers(string token)
-        { 
+        {
             Comman<customerModel> comman = new Comman<customerModel>();
-            return comman.GetAll(token , "/api/customer/all" , ApiClient);
+            return comman.GetAll(token, "/api/customer/all", ApiClient);
         }
 
         public Task<GetAllCommanResponse<paymentModel>> getAllPayments(string token)
@@ -164,7 +198,7 @@ namespace TAN.Helpers
 
         public Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token)
         {
-            Comman< ExpenseCategoryModel > comman = new Comman<ExpenseCategoryModel>();
+            Comman<ExpenseCategoryModel> comman = new Comman<ExpenseCategoryModel>();
             return comman.GetAll(token, "/api/expensecat/all", ApiClient);
         }
 
@@ -186,7 +220,7 @@ namespace TAN.Helpers
             return comman.GetAll(token, "/api/itemunit/all", ApiClient);
         }
 
-        
+
 
         public Task<GetAllCommanResponse<OrderTableModel>> getAllOrderTable(string token)
         {
@@ -210,8 +244,8 @@ namespace TAN.Helpers
         public async Task<PostReqCommanResponse<customerModel>> postCustomers(string token, customerModel customer)
         {
             Comman<customerModel> comman = new Comman<customerModel>();
-            return await comman.PostData(token, "/api/customer/insert", customer,  ApiClient);
-            
+            return await comman.PostData(token, "/api/customer/insert", customer, ApiClient);
+
         }
 
         public async Task<PostReqCommanResponse<productVersionModel>> postProducts(string token, productVersionModel product)
@@ -228,10 +262,10 @@ namespace TAN.Helpers
 
         }
 
-        public  Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit1(string token, ItemUnitModel itemUnit)
+        public Task<PostReqCommanResponse<ItemUnitModel>> postItemUnit1(string token, ItemUnitModel itemUnit)
         {
             Comman<ItemUnitModel> comman = new Comman<ItemUnitModel>();
-            return  comman.PostData(token, "/api/itemunit/insert", itemUnit, ApiClient);
+            return comman.PostData(token, "/api/itemunit/insert", itemUnit, ApiClient);
 
         }
 
@@ -284,6 +318,18 @@ namespace TAN.Helpers
 
                 }
             }
+        }
+
+        //
+        //
+        //
+        // Put Request
+        public async Task<PostReqCommanResponse<customerModel>> editCustomers(string token, customerModel customer)
+        {
+            Comman<customerModel> comman = new Comman<customerModel>();
+            var url = "/api/customer/update/" + customer.customerID;
+            return await comman.UpdateData(token, url, customer, ApiClient);
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DataBaseManger.Model;
 using System.Windows;
 using System.Windows.Input;
 using TAN.Helpers;
@@ -14,7 +15,7 @@ namespace TAN.Views
         private PaymentINorOutPageVIew _paymentInPageVIew { get; set; }
         private SalePageView _salePageView { get; set; }
         private AddSelectUnit _addSelectUnit { get; set; }
-        private AddExpenseCat _addExpenseCat  { get; set; }
+        private AddExpenseCat _addExpenseCat { get; set; }
         private AddExpeneItemView _addExpeneItemView { get; set; }
         private ExpensePageView _expensePageView { get; set; }
         private SettingsView _settingsView { get; set; }
@@ -82,9 +83,9 @@ namespace TAN.Views
         {
             Application.Current.Windows[0].Close();
         }
-        public void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper)
+        public void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper, int whichMode, customerModel customer)
         {
-            _addPartiesView = new AddPartiesView(events, aPIHelper);
+            _addPartiesView = new AddPartiesView(events, aPIHelper, whichMode, customer);
             ShellGridMain.Children.Add(_addPartiesView);
         }
         public void clearChildOfShellView()
@@ -101,12 +102,12 @@ namespace TAN.Views
         {
             ShellGridMain.Children.Remove(_salePageView);
         }
-        
 
 
-        public void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper ,int orderType)
+
+        public void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
         {
-            _paymentInPageVIew = new PaymentINorOutPageVIew(events, aPIHelper, true,orderType);
+            _paymentInPageVIew = new PaymentINorOutPageVIew(events, aPIHelper, true, orderType);
             ShellGridMain.Children.Add(_paymentInPageVIew);
         }
         public void removePaymentChildOfShellView()

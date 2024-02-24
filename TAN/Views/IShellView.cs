@@ -1,16 +1,17 @@
 ﻿using Caliburn.Micro;
+using DataBaseManger.Model;
 using TAN.Helpers;
 
 namespace TAN.Views
 {
     public interface IShellView
     {
-        void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper);
+        void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper, int whichMode, customerModel customerData);
         void clearChildOfShellView();
 
-        void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper , int orderType);
+        void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType);
         void removeSalePagefromShellView();
-        
+
 
         void addPaymentInShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType);
         void removePaymentChildOfShellView();

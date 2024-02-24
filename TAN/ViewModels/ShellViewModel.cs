@@ -9,9 +9,9 @@ namespace TAN.ViewModels
 {
 
     public class ShellViewModel : Conductor<Object>
-        ,IHandle<LogOnEventModel>
-        ,IHandle<LogInEventModel>
-        ,IHandle<AddPartyEventModel>
+        , IHandle<LogOnEventModel>
+        , IHandle<LogInEventModel>
+        , IHandle<AddPartyEventModel>
         , IHandle<ClearChildShellView>, IHandle<ShowSalePageEventModel>, IHandle<ClearSalePageEventModel>
         , IHandle<PaymentInEventModel>, IHandle<RemovePaymentInEventModel>
         , IHandle<AddSelectUnitEventModel>, IHandle<RemoveSelectUnitEventModel>
@@ -88,7 +88,7 @@ namespace TAN.ViewModels
         }
         public Task HandleAsync(AddPartyEventModel message, CancellationToken cancellationToken)
         {
-            _view.addPartiesInShellView(_events, _apiHelper);
+            _view.addPartiesInShellView(_events, _apiHelper, message.whichMode, message.SelectedcustomerData);
             return Task.CompletedTask;
         }
 
@@ -113,7 +113,7 @@ namespace TAN.ViewModels
 
         public Task HandleAsync(PaymentInEventModel message, CancellationToken cancellationToken)
         {
-            _view.addPaymentInShellView(_events, _apiHelper , message.orderType);
+            _view.addPaymentInShellView(_events, _apiHelper, message.orderType);
             return Task.CompletedTask;
         }
 

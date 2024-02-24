@@ -4,6 +4,8 @@ using DataBaseManger.SqlLite;
 using System.Windows;
 using System.Windows.Controls;
 using TAN.Helpers;
+using TAN.Notification.Utils;
+using TAN.Notification;
 
 namespace TAN.Views
 {
@@ -44,7 +46,15 @@ namespace TAN.Views
 
             var ans = await _apiHelper.postPaymentType(token, data);
             PaymentTypeSqlite.addData(ans.data);
-            appConfigSqlite.editData(ans.apiVersion[0].appconfigName , ans.apiVersion[0].appconfigVersion);
+            appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
+
+            var notificationManager = new NotificationManager();
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "Add Bank Account Sucessfully",
+
+                Type = NotificationType.Success
+            });
 
             _changeCurrentViewtoItems();
         }

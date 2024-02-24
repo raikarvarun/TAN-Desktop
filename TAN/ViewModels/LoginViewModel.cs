@@ -55,11 +55,11 @@ namespace TAN.ViewModels
 
         public async Task LogIn()
         {
-            
+
             //UserName = "varun123";
             //Password = "123";
-            //UserName = "TANNIBM";
-            //Password = "Saurav2333@";
+            UserName = "TANNIBM";
+            Password = "Saurav2333@";
             //UserName = "test1";
             //Password = "test2";
             //UserName = "mahesh";
@@ -79,7 +79,7 @@ namespace TAN.ViewModels
 
 
 
-                
+
 
                 //calling Dashboard data
                 _ = _events.PublishOnUIThreadAsync(new LogOnEventModel());

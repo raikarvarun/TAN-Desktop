@@ -30,7 +30,7 @@ namespace TAN.Helpers
         Task<GetAllCommanResponse<PaymentTypeModel>> getAllPaymentTypes(string token);
 
         Task<PostReqCommanResponse<PaymentTypeModel>> postPaymentType(string token, PaymentTypeModel paymentType);
-        
+
 
         Task<GetAllCommanResponse<ExpenseCategoryModel>> getAllExpenseCategory(string token);
         Task<GetAllCommanResponse<ExpenseItemModel>> getAllExpenseItem(string token);
@@ -44,6 +44,8 @@ namespace TAN.Helpers
         Task<PostReqCommanResponse<ExpenseItemModel>> postExpenseItem(string token, ExpenseItemModel data);
 
         Task<PostReqCommanResponse<adminModel>> postAdminTable(string token, adminModel data);
+
+        Task<PostReqCommanResponse<customerModel>> editCustomers(string token, customerModel customer);
 
 
     }

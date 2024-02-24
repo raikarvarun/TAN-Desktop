@@ -149,7 +149,7 @@ namespace TAN.Views
         }
         private void CustomerSuggestionTextBox_AddPartySelected(object sender, AddCustomerEventArgs args)
         {
-            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel());
+            _ = _events.PublishOnUIThreadAsync(new AddPartyEventModel(1, null));
         }
 
 
@@ -244,7 +244,7 @@ namespace TAN.Views
                 {
                     productVersionModel.productQuntity -= placeOrder.orderQuantitys[i];
                 }
-                else if(_orderTypeGlobal == 2)
+                else if (_orderTypeGlobal == 2)
                 {
                     productVersionModel.productQuntity += placeOrder.orderQuantitys[i];
                 }
@@ -526,6 +526,6 @@ namespace TAN.Views
 
         }
 
-        
+
     }
 }
