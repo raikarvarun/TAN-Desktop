@@ -52,8 +52,53 @@ namespace TAN.Views
             addRow();
             addRow();
             assognCombobox();
+            assginData();
         }
+        private void assginData()
+        {
+            if (_orderTypeGlobal == 1)
+            {
+                if (_whichMode == 1)
+                {
+                    SalePageTittle.Text = "Sale";
 
+                }
+                else
+                {
+                    SalePageTittle.Text = "Edit Sale";
+                }
+            }
+            else if (_orderTypeGlobal == 2)
+            {
+                if (_whichMode == 1)
+                {
+                    SalePageTittle.Text = "Purchase";
+                }
+                else
+                {
+                    SalePageTittle.Text = "Edit Purchase";
+                }
+
+            }
+            else if (_orderTypeGlobal == 8)
+            {
+                if (_whichMode == 1)
+                {
+                    SalePageTittle.Text = "Subscription";
+                }
+                else
+                {
+                    SalePageTittle.Text = "Edit Subscription";
+                }
+            }
+            if (_whichMode == 2)
+            {
+                var payment = paymentSqlite.getSingleDataByID(_selectedData.paymentID);
+
+            }
+
+
+        }
         private void ProductSuggestionTextBox_AddItem(object sender, AddProductrEventArgs args)
         {
             //_=_events.PublishOnUIThreadAsync(new add())
