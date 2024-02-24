@@ -81,5 +81,27 @@ namespace DataBaseManger.SqlLite
             conn.Close();
             return orderProductRelationModels;
         }
+        public static List<orderProductRelationModel> readAllbyOrderID(int searchKey)
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "select * from orderProductRelationModel where orderID = " + searchKey.ToString();
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<orderProductRelationModel> orderProductRelationModels = new List<orderProductRelationModel>();
+
+            while (reader.Read())
+            {
+                var orderProductRelation = new orderProductRelationModel(
+                    reader.GetInt32(0),
+                    reader.GetInt32(1),
+                    reader.GetInt32(2),
+                    reader.GetFloat(3)
+                    );
+                orderProductRelationModels.Add(orderProductRelation);
+            }
+            conn.Close();
+            return orderProductRelationModels;
+        }
     }
 }

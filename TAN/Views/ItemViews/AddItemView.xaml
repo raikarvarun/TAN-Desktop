@@ -15,62 +15,63 @@
                 
                 CornerRadius="10"
                 BorderBrush="Transparent">
-            
-                <Grid>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="100" />
-                        <RowDefinition Height="60" />
-                        <RowDefinition />
-                        <RowDefinition Height="60" />
-                        <RowDefinition Height="100" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="10" />
-                    </Grid.RowDefinitions>
+            <Grid>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="10" />
+                </Grid.RowDefinitions>
 
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
 
-                    <TextBlock Text="Add Item"
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Add Item"
+                           Name="ItemTitle"
                                FontWeight="SemiBold"
                                HorizontalAlignment="Left"
                                Margin="20 5 0 0"
                                VerticalAlignment="Center"
                                FontSize="24"></TextBlock>
 
-                    <DockPanel Grid.Column="2"
+                <DockPanel Grid.Column="2"
                                Grid.Row="0"
                                Background="Transparent"
                                HorizontalAlignment="Right">
 
-                        <Button Height="40"
+                    <Button Height="40"
                                 Width="40"
                                 HorizontalAlignment="Left"
                                 Margin="0 5 20 0"
-                                Click="Button_Click_1"
+                                Click="CloseButtonClicked"
                                 BorderThickness="0"
                                 Background="Transparent">
-                            <Path x:Name="SearchClickable"
+                        <Path x:Name="SearchClickable"
                                   Height="20"
                                   Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
                                   Fill="Gray"
                                   Stretch="Uniform"
                                   Width="20" />
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius"
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius"
                                             Value="40"></Setter>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </DockPanel>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </DockPanel>
 
-                    <Border Panel.ZIndex="-1"
+                <Border Panel.ZIndex="-1"
                             Grid.Column="0"
                             Grid.Row="0"
                             Grid.ColumnSpan="3"
@@ -78,16 +79,16 @@
                             BorderThickness="0 0 0 0.5"
                             Background="Transparent">
 
-                    </Border>
+                </Border>
 
-                    <controls:CusTextBox x:Name="ItemName"
+                <controls:CusTextBox x:Name="ItemName"
                                          PlaceHolder="Item Name *"
                                          Grid.Row="1"
                                          Margin="35 20 0 0"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Width="250" />
-                    <!--<Button Grid.Column="1"
+                <!--<Button Grid.Column="1"
                             Grid.Row="1"
                             Width="100"
                             Height="50"
@@ -102,18 +103,18 @@
                             >
                         
                     </Button>-->
-                    <ComboBox Grid.Column="1"
+                <ComboBox Grid.Column="1"
                               Grid.Row="1"
                               Width="100"
                               Height="50"
                               Margin="20 0 0 0"
                               HorizontalAlignment="Left"
                               x:Name="UnitBox">
-                        
-                            
-                    </ComboBox>
 
-                    <Border Grid.Column="0"
+
+                </ComboBox>
+
+                <Border Grid.Column="0"
                             Grid.Row="1"
                             Panel.ZIndex="-1"
                             Grid.ColumnSpan="3"
@@ -123,9 +124,9 @@
                             Opacity="0.5"
                             Background="Transparent">
 
-                    </Border>
+                </Border>
 
-                    <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="2"
                                Grid.Column="0"
                                Text="Pricing"
                                FontSize="18"
@@ -134,51 +135,51 @@
 
 
 
-                    <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical"
                                 Background="#f9fafa"
                                 Width="auto"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Margin="20 0 0 0"
                                 Grid.Row="3">
-                        <TextBlock Text="Purchase Price"
+                    <TextBlock Text="Purchase Price"
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Margin="25 25 0 10">
 
-                        </TextBlock>
-                        <controls:CusTextBox x:Name="PurchasePrice"
+                    </TextBlock>
+                    <controls:CusTextBox x:Name="PurchasePrice"
                                              PlaceHolder="Purchase Price"
                                              Grid.Row="3"
                                              Margin="25 0 40 20"
                                              HorizontalAlignment="Left"
                                              VerticalAlignment="Top"
                                              Width="250" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 Background="#f9fafa"
                                 Width="auto"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top">
-                        <TextBlock Text="Sale Price"
+                    <TextBlock Text="Sale Price"
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Margin="25 25 0 10">
 
-                        </TextBlock>
-                        <controls:CusTextBox x:Name="SalePrice"
+                    </TextBlock>
+                    <controls:CusTextBox x:Name="SalePrice"
                                              PlaceHolder="Sale Price"
                                              Margin="25 0 40 20"
                                              HorizontalAlignment="Left"
                                              VerticalAlignment="Top"
                                              Width="250" />
-                    </StackPanel>
+                </StackPanel>
 
 
 
-                    <Border Grid.Column="0"
+                <Border Grid.Column="0"
                             Grid.ColumnSpan="3"
                             Grid.Row="3"
                             BorderThickness="0 0 0 0.5"
@@ -189,21 +190,21 @@
                             Background="Transparent"></Border>
 
 
-                    <TextBlock Grid.Row="4"
+                <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                Text="Opening Stock"
                                FontWeight="SemiBold"
                                FontSize="18"
                                Margin="20 20 0 0"></TextBlock>
 
-                    <controls:CusTextBox x:Name="Amount"
+                <controls:CusTextBox x:Name="Amount"
                                          PlaceHolder="Opening Balance"
                                          Grid.Row="5"
                                          Margin="35 0 0 0"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Width="250" />
-                    <controls:CusTextBox x:Name="Atprice"
+                <controls:CusTextBox x:Name="Atprice"
                                          PlaceHolder="AtPrice"
                                          Grid.Row="5"
                                          Grid.Column="1"
@@ -213,7 +214,7 @@
                                          Width="250" />
 
 
-                    <Border Grid.Column="0"
+                <Border Grid.Column="0"
                             Grid.ColumnSpan="3"
                             Grid.Row="5"
                             BorderThickness="0 0 0 0.5"
@@ -224,10 +225,11 @@
 
 
 
-                    <Button Grid.Column="2"
+                <Button Grid.Column="2"
                             Grid.Row="6"
+                        x:Name="SaveNewButton"
                             Margin="50 10 130 0"
-                            Click="Button_Click_2"
+                            Click="SaveNewButtonClicked"
                             FontSize="18"
                             Padding="10 5"
                             VerticalAlignment="Top"
@@ -238,19 +240,20 @@
                             Background="Transparent"
                             Foreground="Gray"
                             Opacity="0.7">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius"
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
                                         Value="7" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
 
 
-                    <Button Grid.Column="2"
+                <Button Grid.Column="2"
                             Grid.Row="6"
                             Margin="50 10 30 0"
+                        x:Name="SaveButton"
                             Click="SaveButtonClicked"
                             FontSize="18"
                             Padding="20 5"
@@ -261,18 +264,18 @@
                             Content="Save"
                             Background="#1789fc"
                             Foreground="White">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius"
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
                                         Value="7" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
 
 
-                </Grid>
-            
+            </Grid>
+
         </Border>
     </Grid>
 </UserControl>

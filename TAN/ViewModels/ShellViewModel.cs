@@ -100,7 +100,7 @@ namespace TAN.ViewModels
 
         public Task HandleAsync(ShowSalePageEventModel message, CancellationToken cancellationToken)
         {
-            _view.addSalePagetoShellView(_events, _apiHelper, message.orderType);
+            _view.addSalePagetoShellView(_events, _apiHelper, message.orderType, message.whichMode, message.SelectedData);
             return Task.CompletedTask;
         }
 

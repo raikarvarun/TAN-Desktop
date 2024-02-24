@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DataBaseManger;
+using DataBaseManger.Model;
 using System.Windows;
 using TAN.Core;
 using TAN.EventModels;
@@ -34,7 +35,7 @@ namespace TAN.ViewModels
         public RelayCommand LogoutCommand { get; set; }
 
         public RelayCommand SubscriptionViewCommand { get; set; }
-        
+
 
 
 
@@ -44,7 +45,7 @@ namespace TAN.ViewModels
 
 
         public HomeViewModel HomeVM { get; set; }
-        
+
 
 
 
@@ -66,19 +67,19 @@ namespace TAN.ViewModels
             _events = events;
             _apiHelper = aPIHelper;
             HomeVM = new HomeViewModel();
-           
-            
+
+
 
 
             CurrentView = HomeVM;
 
             AddSaleClicked = new RelayCommand(o =>
             {
-                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1));
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(1, 1, null));
             });
             PurchaseSaleClicked = new RelayCommand(o =>
             {
-                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(2));
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(2, 1, null));
             });
             HomeViewCommand = new RelayCommand(o =>
             {
@@ -87,7 +88,7 @@ namespace TAN.ViewModels
 
             PartiesViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new PartiesView(events , aPIHelper);
+                CurrentView = new PartiesView(events, aPIHelper);
             });
 
             ItemViewCommand = new RelayCommand(o =>
@@ -123,7 +124,7 @@ namespace TAN.ViewModels
                 CurrentView = new CommanNavigationViewModel(5, _events, _apiHelper);
 
             });
-            
+
             PurchaseReturnCommand = new RelayCommand(o =>
             {
                 CurrentView = new CommanNavigationViewModel(6, _events, _apiHelper);
@@ -131,7 +132,7 @@ namespace TAN.ViewModels
             });
             ExpenseCommand = new RelayCommand(o =>
             {
-                CurrentView = new ExpenseView(_events , _apiHelper);
+                CurrentView = new ExpenseView(_events, _apiHelper);
 
             });
             BankAccountCommand = new RelayCommand(o =>
@@ -142,19 +143,19 @@ namespace TAN.ViewModels
 
             ReportsCommand = new RelayCommand(o =>
             {
-                CurrentView = new ReportMainView(_events , _apiHelper);
+                CurrentView = new ReportMainView(_events, _apiHelper);
 
             });
 
             SettingsCommand = new RelayCommand(o =>
             {
-                _= _events.PublishOnUIThreadAsync(new AddSettingMainEventModel());
+                _ = _events.PublishOnUIThreadAsync(new AddSettingMainEventModel());
 
             });
             LogoutCommand = new RelayCommand(o =>
             {
                 Logout();
-                
+
             });
 
             SubscriptionViewCommand = new RelayCommand(o =>
@@ -186,17 +187,17 @@ namespace TAN.ViewModels
         }
         public void changeCurrentViewtoUnits()
         {
-            CurrentView = new ItemMainVIew(1,_events, changeCurrentViewtoItems , changeCurrentViewtoAddUnits);
+            CurrentView = new ItemMainVIew(1, _events, changeCurrentViewtoAddItems, changeCurrentViewtoAddUnits);
         }
 
 
-        public void changeCurrentViewtoAddItems()
+        public void changeCurrentViewtoAddItems(int whichMode, productVersionModel data)
         {
-            CurrentView = new AddItemView(_events, _apiHelper, changeCurrentViewtoItems);
+            CurrentView = new AddItemView(_events, _apiHelper, changeCurrentViewtoItems, whichMode, data);
         }
         public void changeCurrentViewtoItems()
         {
-            CurrentView = new ItemMainVIew(0,_events, changeCurrentViewtoAddItems , changeCurrentViewtoAddUnits);
+            CurrentView = new ItemMainVIew(0, _events, changeCurrentViewtoAddItems, changeCurrentViewtoAddUnits);
         }
         public void changeCurrentViewtoAddBank()
         {

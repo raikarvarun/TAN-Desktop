@@ -34,6 +34,15 @@ namespace TAN.Controls
         public static readonly DependencyProperty BalanceHolderProperty =
             DependencyProperty.Register("BalanceHolder", typeof(string), typeof(CusTextBox), new PropertyMetadata(string.Empty));
 
+        public string SetText
+        {
+            get { return (string)GetValue(SetTextProperty); }
+            set { SetValue(SetTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlaceHolder.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SetTextProperty =
+            DependencyProperty.Register("SetText", typeof(string), typeof(CusTextBox), new PropertyMetadata(string.Empty));
 
         public bool IsEmpty
         {
@@ -62,9 +71,25 @@ namespace TAN.Controls
         private TextBlock textBlock;
         public override void OnApplyTemplate()
         {
-            
-            textBlock = this.Template.FindName("PlaceHolderTextBox", this) as TextBlock;
 
+            textBlock = this.Template.FindName("PlaceHolderTextBox", this) as TextBlock;
+            bool setTextbool = String.IsNullOrEmpty(SetText);
+            if (!setTextbool)
+            {
+                this.Text = SetText;
+                var sb = new Storyboard();
+                var ta = new ThicknessAnimation();
+                ta.BeginTime = new TimeSpan(0);
+                ta.SetValue(Storyboard.TargetProperty, textBlock);
+                Storyboard.SetTargetProperty(ta, new PropertyPath(MarginProperty));
+
+                ta.From = new Thickness(10, 15, 0, 0);
+                ta.To = new Thickness(10, 0, 0, 0);
+                ta.Duration = new Duration(TimeSpan.FromMilliseconds(180));
+
+                sb.Children.Add(ta);
+                sb.Begin(this);
+            }
             base.OnApplyTemplate();
         }
         protected override void OnTextChanged(TextChangedEventArgs e)
@@ -99,7 +124,7 @@ namespace TAN.Controls
                 sb.Children.Add(ta);
                 sb.Begin(this);
 
-                
+
 
             }
             //IsEmpty1 = true;

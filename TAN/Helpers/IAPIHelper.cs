@@ -45,7 +45,8 @@ namespace TAN.Helpers
 
         Task<PostReqCommanResponse<adminModel>> postAdminTable(string token, adminModel data);
 
-        Task<PostReqCommanResponse<customerModel>> editCustomers(string token, customerModel customer);
+        Task<PostReqCommanResponse<customerModel>> editCustomer(string token, customerModel customer);
+        Task<PostReqCommanResponse<productVersionModel>> editProduct(string token, productVersionModel product);
 
 
     }

@@ -36,10 +36,12 @@ namespace TAN.Views
             else if (_whichMode == 2)
             {
                 PageTittle.Text = "Edit Party";
-                PartyName.Text = mainCustomerData.customerName;
-                PhoneNumber.Text = mainCustomerData.customerMobile;
-                Amount.Text = mainCustomerData.TotalAmount.ToString();
-                Address.Text = mainCustomerData.customerAddress;
+                SaveNewButton.Content = "Delete";
+                SaveButton.Content = "Update";
+                PartyName.SetText = mainCustomerData.customerName;
+                PhoneNumber.SetText = mainCustomerData.customerMobile;
+                Amount.SetText = mainCustomerData.TotalAmount.ToString();
+                Address.SetText = mainCustomerData.customerAddress;
 
             }
         }
@@ -50,10 +52,7 @@ namespace TAN.Views
             closePage();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            closePage();
-        }
+
         private void closePage()
         {
             string msgtext = "Current changes will be discarded. Do you want to continue?";
@@ -70,7 +69,21 @@ namespace TAN.Views
                     break;
             }
         }
-        private async void SaveButtonClicked(object sender, RoutedEventArgs e)
+        private void SaveButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (_whichMode == 1)
+                SaveData();
+            else
+                UpdateData();
+        }
+        private void SaveNewButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (_whichMode == 1)
+                SaveNewData();
+            else
+                DeleteData();
+        }
+        private async void SaveData()
         {
             var customerName = PartyName.Text;
             var customerNumber = PhoneNumber.Text;
@@ -102,7 +115,46 @@ namespace TAN.Views
             _ = _events.PublishOnUIThreadAsync(new ClearChildShellView());
         }
 
-        private async void UpdateButtonClicked(object sender, RoutedEventArgs e)
+
+        private void DeleteData()
+        {
+
+        }
+        private async void SaveNewData()
+        {
+            var customerName = PartyName.Text;
+            var customerNumber = PhoneNumber.Text;
+            float customerOP = float.Parse("0");
+            if (Amount.Text.Length > 0)
+            {
+                customerOP = float.Parse(Amount.Text);
+            }
+
+            var customerAddress = Address.Text;
+            float TotalAmount = customerOP;
+            var admin = AdminTableSqlite.getAdminData();
+            var token = admin.adminToken;
+            var data = new customerModel(1, customerName, 0, customerNumber, customerAddress, customerOP, TotalAmount);
+            var ans = await _apiHelper.postCustomers(token, data);
+            CustomerSqllite.addData(ans.data);
+
+
+            appConfigSqlite.editData(ans.apiVersion[0].appconfigName, ans.apiVersion[0].appconfigVersion);
+
+            var notificationManager = new NotificationManager();
+
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "New Party Save Sucessfully",
+
+                Type = NotificationType.Success
+            });
+            PartyName.SetText = "";
+            PhoneNumber.SetText = "";
+            Amount.SetText = "";
+            Address.SetText = "";
+        }
+        private async void UpdateData()
         {
             var customerName = PartyName.Text;
             var customerNumber = PhoneNumber.Text;
@@ -117,7 +169,7 @@ namespace TAN.Views
             var admin = AdminTableSqlite.getAdminData();
             var token = admin.adminToken;
             var data = new customerModel(_mainCustomerData.customerID, customerName, 0, customerNumber, customerAddress, customerOP, TotalAmount);
-            var ans = await _apiHelper.editCustomers(token, data);
+            var ans = await _apiHelper.editCustomer(token, data);
             CustomerSqllite.UpdateByID(ans.data);
 
 
@@ -134,5 +186,9 @@ namespace TAN.Views
             _ = _events.PublishOnUIThreadAsync(new ClearChildShellView());
         }
 
+        private void CloseButtonClicked(object sender, RoutedEventArgs e)
+        {
+            closePage();
+        }
     }
 }

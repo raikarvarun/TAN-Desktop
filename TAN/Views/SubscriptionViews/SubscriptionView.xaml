@@ -110,7 +110,7 @@
                                                 BorderBrush="LightGray"
                                                 BorderThickness="1">
                                             <StackPanel>
-                                                <Button  Content="Edit" />
+                                                <Button  Content="Edit" Click="SubscriptionEditButtonClicked"/>
                                                 <Button  Content="Delete" />
                                             </StackPanel>
                                         </Border>

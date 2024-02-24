@@ -42,7 +42,7 @@ namespace TAN.Views
         private IEventAggregator _events;
         public SubscriptionView(IEventAggregator events)
         {
-            
+
             InitializeComponent();
             _events = events;
             _customersMaindata = new ObservableCollection<customerModel>();
@@ -57,9 +57,14 @@ namespace TAN.Views
         }
         private void SaveButtonClicked_Click(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(8));
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(8, 1, null));
         }
-
+        private void SubscriptionEditButtonClicked(object sender, RoutedEventArgs e)
+        {
+            customerModel custe = (customerModel)CustomerDataGrid.SelectedItem;
+            OrderTableModel data = SubscriptionSqllite.getSingleOrderDataByCustomerIDandOrdertype(custe.customerID);
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(8, 2, data));
+        }
         public void assginParties()
         {
 
@@ -84,7 +89,7 @@ namespace TAN.Views
             }
 
         }
-        
+
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -254,6 +259,6 @@ namespace TAN.Views
 
         }
 
-        
+
     }
 }

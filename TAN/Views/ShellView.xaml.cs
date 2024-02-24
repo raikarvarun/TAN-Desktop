@@ -3,6 +3,7 @@ using DataBaseManger.Model;
 using System.Windows;
 using System.Windows.Input;
 using TAN.Helpers;
+using TAN.PostRequest;
 
 namespace TAN.Views
 {
@@ -93,9 +94,9 @@ namespace TAN.Views
             ShellGridMain.Children.Remove(_addPartiesView);
         }
 
-        public void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
+        public void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType, int whichMode, OrderTableModel SelectedData)
         {
-            _salePageView = new SalePageView(events, aPIHelper, orderType);
+            _salePageView = new SalePageView(events, aPIHelper, orderType, whichMode, SelectedData);
             ShellGridMain.Children.Add(_salePageView);
         }
         public void removeSalePagefromShellView()

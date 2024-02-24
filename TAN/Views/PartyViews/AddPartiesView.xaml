@@ -19,7 +19,8 @@
                     <RowDefinition Height="80"/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="2" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -29,39 +30,72 @@
 
                 </Grid.ColumnDefinitions>
 
+                <DockPanel Grid.Column="2"
+                            Grid.Row="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Right">
+
+                    <Button Height="40"
+                            Width="40"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 20 0"
+                            Click="CloseButtonClicked"
+                            BorderThickness="0"
+                            Background="Transparent">
+                        <Path x:Name="SearchClickable"
+                                Height="20"
+                                Data="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                                Fill="Gray"
+                                Stretch="Uniform"
+                                Width="20" />
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius"
+                                        Value="40"></Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </DockPanel>
+
+                <Border Panel.ZIndex="-1"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="3"
+                        BorderBrush="Gray"
+                        BorderThickness="0 0 0 0.5"
+                        Background="Transparent">
+
+                </Border>
                 <TextBlock Name="PageTittle"
                             Text="Add Party" 
-                           HorizontalAlignment="Center"
+                           Margin="35 0 0 0"
                            VerticalAlignment="Center"
                            FontSize="20"></TextBlock>
-                <Button Click="Button_Click" Grid.Column="2">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <DockPanel>
-                                <Image Source="../Icons/close.png"   HorizontalAlignment="Right" Margin="5" />
-                            </DockPanel>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+
                 <controls:CusTextBox x:Name="PartyName"
-                     PlaceHolder="Party Name*"
-                     Grid.Row="1"
-                     Margin="35 20 0 0"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     Width="250" />
+                        PlaceHolder="Party Name*"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="35 20 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="250"
+                        />
 
                 <controls:CusTextBox x:Name="PhoneNumber"
                         PlaceHolder="Phone Number"
                         Grid.Row="1" Grid.Column="1"
-                        Margin="35 20 0 0"
+                        Grid.ColumnSpan="2"
+                        Margin="100 20 0 0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Width="250" />
 
                 <controls:CusTextBox x:Name="Amount"
                         PlaceHolder="Opening Balance"
-                        Grid.Row="2" Grid.Column="0"
+                        Grid.Row="2" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         Margin="35 20 0 0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
@@ -70,37 +104,67 @@
                 <controls:CusTextBox x:Name="Address"
                         PlaceHolder="Address"
                         Grid.Row="2" Grid.Column="1"
-                        Margin="35 20 0 0"
+                        Grid.ColumnSpan="2"
+                        Margin="100 20 0 0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Width="250" />
 
 
+                <Border Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="3"
+                        BorderThickness="0 0 0 0.5"
+                        BorderBrush="Gray"
+                        Panel.ZIndex="-1"
+                        Opacity="0.7"
+                        Background="Transparent"></Border>
 
+                <Button Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="4" 
+                        Margin="50 10 150 0"
+                        x:Name="SaveNewButton"
+                        Click="SaveNewButtonClicked"
+                        FontSize="18"
+                        Padding="10 5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        FontWeight="Medium"
+                        FontFamily="Times"
+                        Content="Save &amp; New"
+                        Background="Transparent"
+                        Foreground="#1789fc"
+                        BorderBrush="#1789fc"
+                        BorderThickness="2"
+                        Opacity="0.7">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                        Value="7" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
-
-
-
-
-
-
-                <Border>
-                    <DockPanel>
-
-                    </DockPanel>
-                </Border>
 
                 <Button 
-                    Grid.Column="2" Grid.Row="4" 
-                    Margin="50 0 50 0" 
+                    x:Name="SaveButton"
+                    Grid.Column="1" 
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Margin="50 10 30 0"
+                    FontSize="18"
+                    Padding="20 5"
                     Click="SaveButtonClicked"
-                    FontSize="25"
+                    
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    
                     FontWeight="Medium"
                     FontFamily="Times"
-                     Content="Save"
-                     Background="#1789fc"
-                    
-                        Foreground="White">
+                    Content="Save"
+                    Background="#1789fc"
+                    Foreground="White">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>

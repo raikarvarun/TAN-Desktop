@@ -27,12 +27,16 @@ namespace TAN.Views
         private float _finalAmount;
         private float _balance;
         private int _orderTypeGlobal;
-        public SalePageView(IEventAggregator events, IAPIHelper aPIHelper, int orderType)
+        private int _whichMode;
+        private OrderTableModel _selectedData;
+        public SalePageView(IEventAggregator events, IAPIHelper aPIHelper, int orderType, int whichMode, OrderTableModel SelectedData)
         {
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
             _orderTypeGlobal = orderType;
+            _whichMode = whichMode;
+            _selectedData = SelectedData;
             //InvoiceDatePicker.Text = DateTime.Now.ToString();
             var tem = OrderTableSqlite.getInvoiceNo(1);
             _invoiceNO = tem == -1 ? 1 : tem + 1;

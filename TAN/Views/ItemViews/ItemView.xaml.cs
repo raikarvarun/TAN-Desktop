@@ -36,11 +36,11 @@ namespace TAN.Views
             get { return _ItemTranMaindata; }
             set { _ItemTranMaindata = value; }
         }
-        public delegate void TEmpfun();
-        private TEmpfun AddItemFun;
+        public delegate void TEmpfun(int whichMode, productVersionModel data);
+        private TEmpfun changeCurrentViewtoAddItems;
         public ItemView(IEventAggregator events, TEmpfun tempfun)
         {
-            AddItemFun = tempfun;
+            changeCurrentViewtoAddItems = tempfun;
             InitializeComponent();
             _productsMaindata = new ObservableCollection<productVersionModel>();
             _ItemTranMaindata = new ObservableCollection<ItemTransactionModel>();
@@ -54,9 +54,13 @@ namespace TAN.Views
         }
         private void SaveButtonClicked_Click(object sender, RoutedEventArgs e)
         {
-            AddItemFun();
+            changeCurrentViewtoAddItems(1, null);
         }
-
+        private void EditItemClicked(object sender, RoutedEventArgs e)
+        {
+            productVersionModel product = (productVersionModel)PRODUCTS.SelectedItem;
+            changeCurrentViewtoAddItems(2, product);
+        }
         public void assginParties()
         {
 
@@ -258,6 +262,6 @@ namespace TAN.Views
 
         }
 
-        
+
     }
 }

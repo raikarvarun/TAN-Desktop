@@ -18,7 +18,7 @@ namespace TAN.Views
     /// </summary>
     public partial class PaymentInorOutAndCrorDrNoteView : UserControl
     {
-       
+
         private static List<PaymentInModel> _sales;
         private object _lockMutex = new object();
         private ObservableCollection<PaymentInModel> _saleInvoiceModel;
@@ -36,13 +36,13 @@ namespace TAN.Views
             InitializeComponent();
             _events = events;
             _apiHelper = aPIHelper;
-            _orderTypeGlobal= orderType;
+            _orderTypeGlobal = orderType;
 
             if (orderType == 3)
             {
                 AddButtonTextBlock.Text = "Add Payment-In";
             }
-            else if(orderType == 4)
+            else if (orderType == 4)
             {
                 AddButtonTextBlock.Text = "Add Payment-Out";
             }
@@ -64,8 +64,8 @@ namespace TAN.Views
 
         private void AddButtonClicked(object sender, RoutedEventArgs e)
         {
-            if(_orderTypeGlobal==5 || _orderTypeGlobal==6)
-                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal));
+            if (_orderTypeGlobal == 5 || _orderTypeGlobal == 6)
+                _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal, 1, null));
             else
                 _events.PublishOnUIThreadAsync(new PaymentInEventModel(_orderTypeGlobal));
         }

@@ -52,13 +52,13 @@ namespace TAN.Views
             _saleInvoiceModel = new ObservableCollection<SaleInvoiceModel>();
             BindingOperations.EnableCollectionSynchronization(SaleInvoiceModel, _lockMutex);
             SaleDatagrid.ItemsSource = SaleInvoiceModel;
-            
+
             assginSales();
         }
 
         private void AddButtonClicked(object sender, RoutedEventArgs e)
         {
-            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal));
+            _events.PublishOnUIThreadAsync(new ShowSalePageEventModel(_orderTypeGlobal, 1, null));
         }
 
 
@@ -81,13 +81,13 @@ namespace TAN.Views
                 }
             });
         }
-        
 
-       
+
+
         private void CloseSearchButton_Click(object sender, RoutedEventArgs e)
         {
             searchTextBox1.Clear();
-            
+
         }
 
 
@@ -108,7 +108,7 @@ namespace TAN.Views
             }
         }
 
-        
+
         private void ReassginWholeData()
         {
             _ = ReassginWholeDataAsync();
@@ -140,6 +140,6 @@ namespace TAN.Views
 
         }
 
-        
+
     }
 }

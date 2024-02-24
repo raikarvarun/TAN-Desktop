@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using DataBaseManger.Model;
 using TAN.Helpers;
+using TAN.PostRequest;
 
 namespace TAN.Views
 {
@@ -9,7 +10,7 @@ namespace TAN.Views
         void addPartiesInShellView(IEventAggregator events, IAPIHelper aPIHelper, int whichMode, customerModel customerData);
         void clearChildOfShellView();
 
-        void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType);
+        void addSalePagetoShellView(IEventAggregator events, IAPIHelper aPIHelper, int orderType, int whichMode, OrderTableModel SelectedData);
         void removeSalePagefromShellView();
 
 

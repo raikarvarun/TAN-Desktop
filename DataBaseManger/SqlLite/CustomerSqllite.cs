@@ -166,16 +166,16 @@ namespace DataBaseManger.SqlLite
 
             SQLiteConnection conn = DbConnection.createDbConnection();
             conn.Open();
-            string query = "UPDATE CUSTOMER SET " +
-                " customerName = \"" + customer.customerName + "\"," +
+            string query = "UPDATE CUSTOMER SET" +
+                " customerName = \'" + customer.customerName + "\'," +
                 " customerTypeID = " + customer.customerTypeID.ToString() + "," +
-                " customerMobile =  \"" + customer.customerMobile + "\"," +
-                " customerAddress = \"" + customer.customerAddress + "\"," +
+                " customerMobile =  \'" + customer.customerMobile + "\'," +
+                " customerAddress = \'" + customer.customerAddress + "\'," +
                 " customerOpeningAmount = " + customer.customerOpeningAmount.ToString() + "," +
                 " TotalAmount = " + customer.TotalAmount.ToString() +
                 " where customerID = " + customer.customerID.ToString();
             SQLiteCommand command = new SQLiteCommand(query, conn);
-            SQLiteDataReader reader = command.ExecuteReader();
+            command.ExecuteNonQuery();
             conn.Close();
         }
 
@@ -202,11 +202,11 @@ namespace DataBaseManger.SqlLite
                 myPath.Data = Geometry.Parse("M480 976q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Z");
 
                 string totalBalance = "₹ " + CommanSQlite.DisplayIndianCurrency(payment.TotalBalance.ToString());
-                string remBalance = "₹ " +  CommanSQlite.DisplayIndianCurrency(payment.remainingBalance.ToString());
-                CustomerTransationmodel customerTransation = new CustomerTransationmodel(myPath, 
+                string remBalance = "₹ " + CommanSQlite.DisplayIndianCurrency(payment.remainingBalance.ToString());
+                CustomerTransationmodel customerTransation = new CustomerTransationmodel(myPath,
                     type1, model.InvoiceNo.ToString(), ordredate, totalBalance, remBalance
                     );
-                
+
 
                 customerTransationmodels.Add(customerTransation);
             }

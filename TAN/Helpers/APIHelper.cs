@@ -324,12 +324,22 @@ namespace TAN.Helpers
         //
         //
         // Put Request
-        public async Task<PostReqCommanResponse<customerModel>> editCustomers(string token, customerModel customer)
+        public async Task<PostReqCommanResponse<customerModel>> editCustomer(string token, customerModel customer)
         {
             Comman<customerModel> comman = new Comman<customerModel>();
             var url = "/api/customer/update/" + customer.customerID;
             return await comman.UpdateData(token, url, customer, ApiClient);
 
         }
+        public async Task<PostReqCommanResponse<productVersionModel>> editProduct(string token, productVersionModel product)
+        {
+            Comman<productVersionModel> comman = new Comman<productVersionModel>();
+            var url = "/api/productversion/update/" + product.productNo;
+
+            return await comman.UpdateData(token, url, product, ApiClient);
+
+        }
+
+
     }
 }
