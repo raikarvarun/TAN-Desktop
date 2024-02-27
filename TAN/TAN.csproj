@@ -573,6 +573,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\TANPNG.png" />
+    <Resource Include="Icons\login_background.jpg" />
     <Content Include="Icons\TANSVG.svg" />
     <Content Include="Icons\TANSVG1.svg" />
     <Resource Include="TANSVG.ico" />
