@@ -13,6 +13,7 @@ using TAN.EventModels;
 using TAN.Helpers;
 using TAN.Notification.Utils;
 using TAN.Notification;
+using System;
 
 namespace TAN.Views
 {
@@ -299,5 +300,15 @@ namespace TAN.Views
 
 
         }
+
+        private void SendBill(object sender, RoutedEventArgs e)
+        {
+
+
+            Random _random = new Random();
+            int num = _random.Next(1000);
+            //_apiHelper.sendBill(num);
+        }
     }
 }
+

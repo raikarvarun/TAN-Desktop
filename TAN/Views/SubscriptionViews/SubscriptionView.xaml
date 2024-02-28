@@ -111,6 +111,7 @@
                                                 BorderThickness="1">
                                             <StackPanel>
                                                 <Button  Content="Edit" Click="SubscriptionEditButtonClicked"/>
+                                                <Button  Content="Delete" Click="SendBill" />
                                                 <Button  Content="Delete" />
                                             </StackPanel>
                                         </Border>

@@ -136,6 +136,30 @@ namespace TAN.Helpers
                 }
             }
         }
+        public async Task<GetAllCommanResponse<T>> SendBills(string token, string url1, HttpClient ApiClient)
+        {
+            var query = new Dictionary<string, string>()
+            {
+                ["token"] = token
+
+            };
+            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+            apiUrl += url1;
+            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+            using (HttpResponseMessage response = await ApiClient.GetAsync(apiUrl))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<GetAllCommanResponse<T>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
     }
 
     public class APIHelper : IAPIHelper

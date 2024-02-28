@@ -22,10 +22,10 @@ namespace TAN.Helpers
                 var apiVersionRemoteList = apiVersionResponse.data;
                 var apiVersionLocalList = appConfigSqlite.getData();
 
-                Dictionary<string,string> apiVersionRemote = new Dictionary<string,string>();
-                foreach(var item in apiVersionRemoteList)
+                Dictionary<string, string> apiVersionRemote = new Dictionary<string, string>();
+                foreach (var item in apiVersionRemoteList)
                 {
-                    apiVersionRemote.Add(item.appconfigName , item.appconfigVersion);
+                    apiVersionRemote.Add(item.appconfigName, item.appconfigVersion);
                 }
 
                 Dictionary<string, string> apiVersionLocal = new Dictionary<string, string>();
@@ -38,28 +38,28 @@ namespace TAN.Helpers
                 AdminTableSqlite.editData(adminData);
 
 
-                foreach(var item in apiVersionRemote)
+                foreach (var item in apiVersionRemote)
                 {
-                    if(item.Value != apiVersionLocal[item.Key])
+                    if (item.Value != apiVersionLocal[item.Key])
                     {
                         validateGetRequest(item.Key, _apiHelper, token);
-                        appConfigSqlite.editData(item.Key , item.Value);
+                        appConfigSqlite.editData(item.Key, item.Value);
                     }
                 }
 
 
                 return true;
-                
+
 
             }
             return false;
         }
-        public static void validateGetRequest(string data ,IAPIHelper _apiHelper ,string token)
+        public static void validateGetRequest(string data, IAPIHelper _apiHelper, string token)
         {
             switch (data)
             {
                 case "customer":
-                    _ = fetchAllCustomers( _apiHelper , token);
+                    _ = fetchAllCustomers(_apiHelper, token);
                     break;
                 case "payment":
                     _ = fetchAllPayments(_apiHelper, token);
@@ -92,8 +92,8 @@ namespace TAN.Helpers
         }
         public static async Task<Task> fetchAllDataAsync(IAPIHelper _apiHelper, string token, adminModel adminData)
         {
-            
-            
+
+
             AdminTableSqlite.addData(adminData);
 
 
@@ -112,7 +112,7 @@ namespace TAN.Helpers
 
 
             var ans3 = await _apiHelper.getAllProductVersions(token);
-            
+
             foreach (var item in ans3.data)
             {
 
@@ -155,7 +155,7 @@ namespace TAN.Helpers
             {
                 Rl_expense_cat_itemSqllite.addData(item);
             }
-            
+
             var ans11 = await _apiHelper.getAllItemUnit(token);
             foreach (var item in ans11.data)
             {
@@ -271,7 +271,7 @@ namespace TAN.Helpers
             return Task.CompletedTask;
         }
 
-        
+
 
         public static async Task<Task> fetchAllItemUnit(IAPIHelper _apiHelper, string token)
         {
@@ -283,8 +283,6 @@ namespace TAN.Helpers
 
             return Task.CompletedTask;
         }
-
-
 
 
     }
