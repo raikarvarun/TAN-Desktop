@@ -11,6 +11,17 @@ namespace DataBaseManger.SqlLite
         {
 
         }
+
+        public static void deleteByID(string orderID)
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "DELETE FROM OrderTable WHERE orderID = " + orderID;
+
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
         public static void createTable()
         {
             SQLiteConnection conn = DbConnection.createDbConnection();
@@ -480,7 +491,7 @@ namespace DataBaseManger.SqlLite
                 var data = new PurchaseHomeViewBoxModel(
                     (string)reader["productName"],
                     reader.GetFloat(1)
-                    
+
                     );
 
                 purchaseModels.Add(data);
@@ -498,17 +509,17 @@ namespace DataBaseManger.SqlLite
                 "WHERE orderType=1 AND " +
                 "date(orderDate)>=\"2023-05-01\" " +
                 "AND date(orderDate)<=\"2023-05-31\" " +
-                "GROUP by date(orderDate)" ;
+                "GROUP by date(orderDate)";
             SQLiteCommand command = new SQLiteCommand(query, conn);
             SQLiteDataReader reader = command.ExecuteReader();
-            List<ChartSalesModel> ChartSales = new List<ChartSalesModel>() ;
+            List<ChartSalesModel> ChartSales = new List<ChartSalesModel>();
             ChartSalesModel chart;
             while (reader.Read())
             {
 
 
                 chart = new ChartSalesModel(
-                    
+
                     (string)reader["orderDate"],
                     reader.GetFloat(1)
 
@@ -531,36 +542,36 @@ namespace DataBaseManger.SqlLite
             SQLiteCommand command = new SQLiteCommand(query, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             List<float> ans = new List<float>();
-            
+
             while (reader.Read())
             {
                 if (!reader.IsDBNull(0))
                 {
                     ans.Add(reader.GetFloat(0));
-                    
+
                 }
                 else
                 {
                     ans.Add(0);
                 }
-                if(!reader.IsDBNull(1))
+                if (!reader.IsDBNull(1))
                 {
                     ans.Add(reader.GetFloat(1));
                 }
-                else 
-                { 
+                else
+                {
                     ans.Add(0);
                 }
-                if(!reader.IsDBNull(2))
+                if (!reader.IsDBNull(2))
                 {
                     ans.Add(reader.GetFloat(2));
-                    
+
                 }
                 else
                 {
                     ans.Add(0);
                 }
-                
+
             }
             conn.Close();
             return ans;

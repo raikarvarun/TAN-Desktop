@@ -49,5 +49,7 @@ namespace TAN.Helpers
         Task<PostReqCommanResponse<productVersionModel>> editProduct(string token, productVersionModel product);
 
 
+        Task<PostReqCommanResponse<customerModel>> deleteSubscription(string token, string orderID, string PaymentID);
+
     }
 }

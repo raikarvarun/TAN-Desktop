@@ -592,7 +592,7 @@
                                                 BorderThickness="1">
                                             <StackPanel>
                                                 <Button  Content="Edit" />
-                                                <Button  Content="Delete" />
+                                                <Button  Content="Delete" Click="deleteSubscription"/>
                                             </StackPanel>
                                         </Border>
                                     </controls:DropDownMenu>

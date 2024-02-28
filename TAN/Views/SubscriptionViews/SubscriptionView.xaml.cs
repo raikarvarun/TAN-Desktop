@@ -10,6 +10,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using TAN.EventModels;
+using TAN.Helpers;
+using TAN.Notification.Utils;
+using TAN.Notification;
 
 namespace TAN.Views
 {
@@ -40,11 +43,13 @@ namespace TAN.Views
         public delegate void TEmpfun();
         private TEmpfun AddItemFun;
         private IEventAggregator _events;
-        public SubscriptionView(IEventAggregator events)
+        private IAPIHelper _apiHelper;
+        public SubscriptionView(IEventAggregator events, IAPIHelper aPIHelper)
         {
 
             InitializeComponent();
             _events = events;
+            _apiHelper = aPIHelper;
             _customersMaindata = new ObservableCollection<customerModel>();
             _TranMaindata = new ObservableCollection<CustomerTransationmodel>();
             BindingOperations.EnableCollectionSynchronization(CustomerMainData, _lockMutex);
@@ -259,6 +264,40 @@ namespace TAN.Views
 
         }
 
+        private async void deleteSubscription(object sender, RoutedEventArgs e)
+        {
+            CustomerTransationmodel data = (CustomerTransationmodel)ItemsTransation.SelectedItem;
 
+
+            string msgtext = "Do you want to Delete Transaction?";
+            string txt = "Mahesh Dairy Farm";
+            MessageBoxButton button = MessageBoxButton.OKCancel;
+            MessageBoxResult result1 = MessageBox.Show(msgtext, txt, button);
+            switch (result1)
+            {
+                case MessageBoxResult.OK:
+                    var admin = AdminTableSqlite.getAdminData();
+                    var token = admin.adminToken;
+                    var ans = await _apiHelper.deleteSubscription(token, data.orderID.ToString(), data.paymentID.ToString());
+                    orderProductRelationModelSqlite.deleteByID(data.orderID.ToString());
+                    OrderTableSqlite.deleteByID(data.orderID.ToString());
+                    paymentSqlite.deleteByID(data.paymentID.ToString());
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show(new NotificationContent
+                    {
+                        Title = "Transaction Deleted Sucessfully",
+
+                        Type = NotificationType.Success
+                    });
+                    assginTransaction(currentProdcutID);
+
+                    break;
+                case MessageBoxResult.Cancel:
+
+                    break;
+            }
+
+
+        }
     }
 }

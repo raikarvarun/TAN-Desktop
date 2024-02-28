@@ -10,6 +10,16 @@ namespace DataBaseManger.SqlLite
         {
 
         }
+        public static void deleteByID(string orderID)
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "DELETE FROM PAYMENT WHERE paymentID = " + orderID;
+
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
         public static void createTable()
         {
             SQLiteConnection conn = DbConnection.createDbConnection();

@@ -204,7 +204,7 @@ namespace DataBaseManger.SqlLite
                 string totalBalance = "₹ " + CommanSQlite.DisplayIndianCurrency(payment.TotalBalance.ToString());
                 string remBalance = "₹ " + CommanSQlite.DisplayIndianCurrency(payment.remainingBalance.ToString());
                 CustomerTransationmodel customerTransation = new CustomerTransationmodel(myPath,
-                    type1, model.InvoiceNo.ToString(), ordredate, totalBalance, remBalance
+                    type1, model.InvoiceNo.ToString(), ordredate, totalBalance, remBalance, model.orderID, model.paymentID
                     );
 
 

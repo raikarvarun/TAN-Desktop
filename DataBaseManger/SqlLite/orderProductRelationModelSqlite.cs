@@ -6,7 +6,16 @@ namespace DataBaseManger.SqlLite
 {
     public class orderProductRelationModelSqlite
     {
+        public static void deleteByID(string orderID)
+        {
+            SQLiteConnection conn = DbConnection.createDbConnection();
+            conn.Open();
+            string query = "DELETE FROM orderProductRelationModel WHERE orderID = " + orderID;
 
+            SQLiteCommand command = new SQLiteCommand(query, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+        }
         public static void createTable()
         {
             SQLiteConnection conn = DbConnection.createDbConnection();

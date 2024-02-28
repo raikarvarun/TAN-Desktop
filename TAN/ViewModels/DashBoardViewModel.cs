@@ -160,7 +160,7 @@ namespace TAN.ViewModels
 
             SubscriptionViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new SubscriptionView(_events);
+                CurrentView = new SubscriptionView(_events, _apiHelper);
 
             });
         }

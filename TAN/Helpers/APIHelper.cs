@@ -1,6 +1,7 @@
 ﻿using DataBaseManger.Model;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -95,6 +96,32 @@ namespace TAN.Helpers
             apiUrl += url1;
             apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
             using (HttpResponseMessage response = await ApiClient.PutAsync(apiUrl, data))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<PostReqCommanResponse<T>>();
+
+
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+        public async Task<PostReqCommanResponse<T>> DeleteData(string url1, Dictionary<string, string> query, HttpClient ApiClient)
+        {
+
+
+
+
+
+
+            string apiUrl = ConfigurationManager.AppSettings["apiUrl"];
+            apiUrl += url1;
+            apiUrl = QueryHelpers.AddQueryString(apiUrl, query);
+            using (HttpResponseMessage response = await ApiClient.DeleteAsync(apiUrl))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -337,6 +364,29 @@ namespace TAN.Helpers
             var url = "/api/productversion/update/" + product.productNo;
 
             return await comman.UpdateData(token, url, product, ApiClient);
+
+        }
+
+
+
+
+        //
+        //
+        //
+        //delete
+
+        public async Task<PostReqCommanResponse<customerModel>> deleteSubscription(string token, string orderID, string PaymentID)
+        {
+            Comman<customerModel> comman = new Comman<customerModel>();
+            var query = new Dictionary<string, string>()
+            {
+                ["token"] = token,
+                ["orderid"] = orderID,
+                ["paymentid"] = PaymentID
+
+            };
+            var url = "/api/subscription/deletesubscription";
+            return await comman.DeleteData(url, query, ApiClient);
 
         }
 
