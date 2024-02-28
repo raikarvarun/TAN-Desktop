@@ -332,12 +332,12 @@
                        Background="#ffffff"
                        
                        Width="auto">
-                <TextBlock  Text="SALE PRICE:"
+                <TextBlock  Visibility="Hidden" Text="SALE PRICE:"
                             HorizontalAlignment="Left"
                             FontSize="14"
                             Margin="10 0 0 0">
                 </TextBlock>
-                <TextBlock x:Name="SalePrice"
+                <TextBlock  Visibility="Hidden" x:Name="SalePrice"
                            Text=""
                            HorizontalAlignment="Left"
                            FontSize="14"
@@ -356,7 +356,7 @@
                                 FontSize="14"
                                 Margin="10 0 0 0">
                     </TextBlock>
-                    <TextBlock x:Name="StockQuantity"
+                    <TextBlock  x:Name="StockQuantity"
                                Text=""
                                FontSize="14"
                                Foreground="#18c184">
@@ -377,13 +377,13 @@
                       
                        
                        Width="auto">
-                <TextBlock Text="PURCHASE PRICE:"
+                <TextBlock Visibility="Hidden" Text="PURCHASE PRICE:"
                            HorizontalAlignment="Right"
                            FontSize="14"
                            
                            Margin="10 0 0 0">
                 </TextBlock>
-                <TextBlock x:Name="PurchasePrice"
+                <TextBlock Visibility="Hidden" x:Name="PurchasePrice"
                            Text=""
                            HorizontalAlignment="Left"
                            FontSize="14"
