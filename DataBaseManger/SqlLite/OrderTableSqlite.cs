@@ -183,6 +183,9 @@ namespace DataBaseManger.SqlLite
                 case 10:
                     ans = "Cancel";
                     break;
+                case 11:
+                    ans = "Complaint";
+                    break;
             }
             return ans;
         }
