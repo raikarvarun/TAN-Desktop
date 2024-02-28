@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TAN.Views"
         mc:Ignorable="d"
-        Icon="../TANSVG.ico"
+        
         
         
         Height="720" Width="1280"
@@ -84,7 +84,7 @@
                         Fill="Black"
                         Stretch="Uniform"
                         Width="20" />
-                    
+
                 </Button>
             </DockPanel>
         </Grid>
@@ -94,7 +94,7 @@
         <Grid Grid.Row="1"  x:Name="ShellGridMain">
             <ContentControl x:Name="ActiveItem" ></ContentControl>
         </Grid>
-        
-       
+
+
     </Grid>
 </Window>
