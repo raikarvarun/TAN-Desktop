@@ -9,15 +9,15 @@
              d:DesignHeight="450" d:DesignWidth="1280">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
