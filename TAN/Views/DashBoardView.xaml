@@ -111,7 +111,7 @@
                                Source="../Icons/TANPNG.png"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />-->
-                            <TextBlock Text=" Mahesh Dairy Farm"
+                            <TextBlock Text=" New Shivdatt Dairy"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    FontSize="18"

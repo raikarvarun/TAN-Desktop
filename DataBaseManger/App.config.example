@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <appSettings>
-    <add key="apiUrl" value="Your API Url"/>
+    <add key="apiUrl" value="Your_API_Url"/>
   </appSettings>
   <configSections>
     <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
